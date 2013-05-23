@@ -1,0 +1,18 @@
+[{
+    "modid": "MysticAdditions",
+    "name": "Mystic Additions",
+    "description": "A mod built to help expand minecraft while using vanilla minecraft items.",
+    "version": "1.1.0",
+    "mcversion": "1.5.1",
+    "url": "https://github.com/Sudwood/MysticAdditions",
+    "updateUrl": "",
+    "authors": [ "Sudwood" ],
+    "credits": "Authored by Sudwood, Texures by PixelVortexGames",
+    "logoFile": "",
+    "screenshots": [ ],
+    "parent": "",
+    "requiredMods": [ "Forge"],
+    "dependencies": [ ],
+    "dependants": [  ],
+    "useDependencyInformation": "false"
+  }]

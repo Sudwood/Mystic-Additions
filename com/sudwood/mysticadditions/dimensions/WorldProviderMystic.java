@@ -1,0 +1,162 @@
+package com.sudwood.mysticadditions.dimensions;
+
+import com.sudwood.mysticadditions.MysticAdditions;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.util.Vec3;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldProvider;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.WorldChunkManagerHell;
+import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.ChunkProviderHell;
+
+public class WorldProviderMystic extends WorldProvider
+{
+    /**
+     * creates a new world chunk manager for WorldProvider
+     */
+    public void registerWorldChunkManager()
+    {
+        this.worldChunkMgr = new WorldChunkManagerHell(MysticAdditions.Mysticbiome, 1.0F, 0.0F);
+        this.isHellWorld = false;
+        this.hasNoSky = false;
+        this.dimensionId = MysticAdditions.DimID;
+    }
+
+    @SideOnly(Side.CLIENT)
+
+    /**
+     * Return Vec3D with biome specific fog color
+     */
+   
+    /**
+     * Creates the light to brightness table
+     */
+    protected void generateLightBrightnessTable()
+    {
+        float var1 = 0.2F;
+
+        for (int var2 = 0; var2 <= 15; ++var2)
+        {
+            float var3 = 1.0F - (float)var2 / 15.0F;
+            this.lightBrightnessTable[var2] = (1.0F - var3) / (var3 * 3.0F + 1.0F) * (1.0F - var1) + var1;
+        }
+    }
+
+    /**
+     * Returns a new chunk provider which generates chunks for this world
+     */
+    public IChunkProvider createChunkGenerator()
+    {
+        return new ChunkProviderMysticA(this.worldObj, this.worldObj.getSeed(), false);
+    }
+
+    /**
+     * Returns 'true' if in the "main surface world", but 'false' if in the Nether or End dimensions.
+     */
+    public boolean isSurfaceWorld()
+    {
+        return false;
+    }
+
+    /**
+     * Will check if the x, z position specified is alright to be set as the map spawn point
+     */
+    public boolean canCoordinateBeSpawn(int par1, int par2)
+    {
+        return true;
+    }
+  /*  public String getSunTexture()
+    {
+        return "/MysticAdditions.png";
+    }
+ 
+    public String getMoonTexture()
+    {
+        return "/custommoon_phases.png";
+    }*/
+
+    /**
+     * Calculates the angle of sun and moon in the sky relative to a specified time (usually worldTime)
+     */
+    public float calculateCelestialAngle(long par1, float par3)
+    {
+    	  return 0.5F;
+    }
+
+    /**
+     * True if the player can respawn in this dimension (true = overworld, false = nether).
+     */
+    public boolean canRespawnHere()
+    {
+        return true;
+    }
+    public float getStarBrightness(World world, float f)
+    {
+        return 1.0F;
+    }
+    public boolean renderVoidFog()
+    {
+        return false;
+    }
+    public boolean renderClouds()
+    {
+        return false;
+    }
+    public float setSunSize()
+    {
+        return 3.0F;
+    }
+     
+    public float setMoonSize()
+    {
+        return 0.33F;
+    }
+    public boolean renderStars()
+    {
+        return true;
+    }
+    public boolean darkenSkyDuringRain()
+    {
+        return false;
+    }
+    public String getSaveFolder()
+    {
+    	return "WarpedDimensionSave";
+    }
+    public String getWelcomeMessage()
+    {
+    	return "Entering the Warp";
+    }
+    public String getDepartMessage()
+    {
+    	return "Returning to Stability";
+    }
+    public double getMovementFactor()
+    {
+    	return 0.5;
+    }
+    public boolean shouldMapSpin(String entity, double x, double y, double z)
+    {
+    	return false;
+    }
+    @SideOnly(Side.CLIENT)
+
+    /**
+     * Returns true if the given X,Z coordinate should show environmental fog.
+     */
+    public boolean doesXZShowFog(int par1, int par2)
+    {
+        return true;
+    }
+
+    /**
+     * Returns the dimension's name, e.g. "The End", "Nether", or "Overworld".
+     */
+    public String getDimensionName()
+    {
+        return "The Dimensional Warp";
+    }
+}

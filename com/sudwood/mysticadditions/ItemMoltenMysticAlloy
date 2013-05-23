@@ -1,0 +1,20 @@
+package net.minecraft.src;
+
+import net.minecraft.src.forge.ITextureProvider;
+
+public class ItemMoltenMysticAlloy extends Item implements ITextureProvider{
+	
+	public ItemMoltenMysticAlloy(int x)
+	{
+		super(x);
+		maxStackSize = 64;	
+		
+		
+	}
+	public String getTextureFile() {
+		
+		return "/MysticAdditions/mysticitems.png";
+	}
+
+	
+}
