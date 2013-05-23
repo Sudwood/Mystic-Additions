@@ -6,6 +6,7 @@ import com.sudwood.mysticadditions.GrinderRecipesMystic;
 import com.sudwood.mysticadditions.ItemBlockMysticSlabs;
 import com.sudwood.mysticadditions.MysticAdditions;
 import com.sudwood.mysticadditions.blocks.energy.BlockCrystalGeneratorBase;
+import com.sudwood.mysticadditions.blocks.energy.BlockLiquidStorage;
 import com.sudwood.mysticadditions.blocks.energy.BlockMysticCrystalGenerator;
 import com.sudwood.mysticadditions.blocks.energy.BlockMysticRedGenerator;
 import com.sudwood.mysticadditions.blocks.energy.BlockMysticRedGrinder;
@@ -88,6 +89,7 @@ public class MysticModBlocks {
 	public static  Block crystalGenerator;
 	public static  Block crystalGeneratorBase;
 	public static  Block mysticRedStorageMrk2;
+	public static  Block liquidStorage;
 	//blocksounds
 	public static final StepSound soundPowderFootstep = new StepSound("stone", 1.0F, 1.0F);
     public static final StepSound soundWoodFootstep = new StepSound("wood", 1.0F, 1.0F);
@@ -159,6 +161,7 @@ public class MysticModBlocks {
 		crystalGenerator = new BlockMysticCrystalGenerator(MysticAdditions.crystalgeneratorid, Material.ice).setHardness(1.5F).setResistance(100F).setUnlocalizedName("crystalgenerator").setCreativeTab(MysticAdditions.mysticTab);
 		crystalGeneratorBase = new BlockCrystalGeneratorBase(MysticAdditions.crystalgeneratorbaseid, Material.ice).setHardness(1.5F).setResistance(100F).setUnlocalizedName("MysticAdditions:crystalgenbase").setCreativeTab(MysticAdditions.mysticTab);
 		mysticRedStorageMrk2 = new BlockMysticRedStoragemrk2(MysticAdditions.mrk2mysticredstorageid, Material.circuits).setHardness(1.5F).setResistance(100F).setUnlocalizedName("MysticAdditions:mysticredstoragemrk2").setCreativeTab(MysticAdditions.mysticTab);
+		liquidStorage = new BlockLiquidStorage(MysticAdditions.liquidstorageblockid, Material.circuits).setHardness(1.5F).setResistance(100F).setUnlocalizedName("MysticAdditions:liquidstorage").setCreativeTab(MysticAdditions.mysticTab);
 		//block registration
 		//dimension stuff
 		
@@ -329,6 +332,8 @@ LanguageRegistry.addName(mysticCobblestone, "Warped Cobblestone");
 	LanguageRegistry.addName(crystalGeneratorBase, "Crystal Amplifier");
 	GameRegistry.registerBlock(mysticRedStorageMrk2 ,"Mrk 2 Red Capacitor");
 	LanguageRegistry.addName(mysticRedStorageMrk2 ,"Mrk 2 Red Capacitor");
+	GameRegistry.registerBlock(liquidStorage ,"liquidStorage");
+	LanguageRegistry.addName(liquidStorage, "Liquid Rift");
 	//stairs
 	GameRegistry.registerBlock(mysticCobbleStairs, "mysticcobbleStairs");
 	GameRegistry.registerBlock(mysticStoneStairs, "mysticstoneStairs");

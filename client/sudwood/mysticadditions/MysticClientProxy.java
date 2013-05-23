@@ -3,6 +3,7 @@ import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraftforge.client.MinecraftForgeClient;
 
+import client.sudwood.mysticadditions.renderers.RenderLiquidStorage;
 import client.sudwood.mysticadditions.renderers.RenderMysticArrow;
 import client.sudwood.mysticadditions.renderers.RenderMysticCrystalGenerator;
 import client.sudwood.mysticadditions.renderers.RenderMysticECapacitorBase;
@@ -24,6 +25,7 @@ import com.sudwood.mysticadditions.entity.EntityFireMiniBoss;
 import com.sudwood.mysticadditions.entity.EntityMysticWaterOrb;
 import com.sudwood.mysticadditions.entity.EntityMysticWindOrb;
 import com.sudwood.mysticadditions.entity.EntityWaterMiniBoss;
+import com.sudwood.mysticadditions.tileentity.TileEntityLiquidStorage;
 import com.sudwood.mysticadditions.tileentity.TileEntityMysticCrystalGenerator;
 import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedGenerator;
 import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedGrinder;
@@ -39,6 +41,7 @@ public class MysticClientProxy extends com.sudwood.mysticadditions.MysticCommonP
 	public static int MysticRedGrinderid;
 	public static int MysticCrystalGeneratorRenderId;
 	public static int MysticCapacitormrk2RenderID;
+	public static int MysticLiquidStorageRenderid;
 	@Override
 	public void registerRenderInformation() 
 	  {  
@@ -79,6 +82,9 @@ public class MysticClientProxy extends com.sudwood.mysticadditions.MysticCommonP
 		
 		MysticCapacitormrk2RenderID = RenderingRegistry.getNextAvailableRenderId();
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMysticRedStorageMrk2.class, new RenderMysticRedStorageMrk2());
+		
+		MysticLiquidStorageRenderid = RenderingRegistry.getNextAvailableRenderId();
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLiquidStorage.class, new RenderLiquidStorage());
 		
 }
 	@Override

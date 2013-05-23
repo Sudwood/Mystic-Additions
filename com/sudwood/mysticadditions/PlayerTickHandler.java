@@ -27,7 +27,7 @@ public class PlayerTickHandler implements ITickHandler {
 		// TODO Auto-generated method stub
 		if(type.contains(TickType.PLAYER)&&tickData[0] instanceof EntityPlayerMP)
 		{
-			this.flightTick((EntityPlayer)tickData[0]);
+			this.flightTick((EntityPlayerMP)tickData[0]);
 			
 		}
 	}
@@ -59,88 +59,171 @@ public class PlayerTickHandler implements ITickHandler {
 	{
 		ItemStack heldStack = player.inventory.getCurrentItem();
 		boolean ison = false;
-		/*
+		
+		
+			//need to check for flight before checking null fields
+		
+		
 		for(int i = 0; i<4;i++)
 		{
-			
-			if(player.inventory.armorItemInSlot(i)!=null)
+			if(player.inventory.armorItemInSlot(i)!=null&&EnchantmentHelper.getEnchantmentLevel(EnchantmentRegister.Flight.effectId,player.inventory.armorItemInSlot(i) )>0)
 			{
-			
-			ItemStack tempStack = player.inventory.armorItemInSlot(i);
-			if(tempStack.getTagCompound()==null)
-			  {
-				tempStack.setTagCompound(new NBTTagCompound());
-			  }
-			NBTTagCompound tag = tempStack.getTagCompound();
-			
-			if(EnchantmentHelper.getEnchantmentLevel(EnchantmentRegister.Flight.effectId,tempStack )>0)
-			{
-				
-			if(tempStack.getItem() instanceof IItemMysticRechargeableArmor)
-			{
-				int charge = tag.getInteger("CurrentCharge");
-				
-				if(charge>=5)
-			 	{				
-				 ison = true;
-			 	 player.capabilities.allowFlying = true;
-				 
-				 player.sendPlayerAbilities();
-				
-					if(player.capabilities.isFlying)
+				if(player.inventory.armorItemInSlot(i).getItem() instanceof IItemMysticRechargeableArmor)
+				{
+					NBTTagCompound tag = player.inventory.armorItemInSlot(i).getTagCompound();
+					int charge = tag.getInteger("CurrentCharge");
+					if(charge >=5)
 					{
-						charge-=5;
-						tag.setInteger("CurrentCharge", charge);
+						ison = true;
+					 	 player.capabilities.allowFlying = true;
+						 
+						 player.sendPlayerAbilities();
+						
+							if(player.capabilities.isFlying)
+							{
+								charge-=5;
+								tag.setInteger("CurrentCharge", charge);
+							}
 					}
-			 	}
-			 else if(charge<5&&!ison)
-			 	{
-				 player.capabilities.allowFlying = false;
-				 player.capabilities.isFlying = false;
+					
+				}
+				else if (player.inventory.armorItemInSlot(i).getItemDamage()<player.inventory.armorItemInSlot(i).getMaxDamage()-1)
+				{
+					ison = true;
+				 	 player.capabilities.allowFlying = true;
+					 
+					 player.sendPlayerAbilities();
+					
+						if(player.capabilities.isFlying)
+						{
+							player.inventory.armorItemInSlot(i).setItemDamage(player.inventory.armorItemInSlot(i).getItemDamage()+1);
+						}
+				}
 				
-				 
-				 player.sendPlayerAbilities();
-			 	}
+				
+				
+				
 			}
-			else if(tempStack.getItemDamage()<tempStack.getMaxDamage()-1)
+			
+		 	
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		if(player.inventory.getCurrentItem() != null&&player.inventory.getCurrentItem().isItemEnchanted()&&!player.capabilities.isCreativeMode)
+		{
+			
+			if(player.inventory.getCurrentItem().getTagCompound()==null)
+			  {
+				player.inventory.getCurrentItem().setTagCompound(new NBTTagCompound());
+			  }
+			 NBTTagCompound tag = player.inventory.getCurrentItem().getTagCompound();
+			if(EnchantmentHelper.getEnchantmentLevel(EnchantmentRegister.Flight.effectId, player.inventory.getCurrentItem())>0)
 			{
+			
+				
+			if(heldStack.getItem() instanceof IItemMysticRechargeable)
+				{
+				
+				 int charge = tag.getInteger("CurrentCharge");
+				 	if(charge>=5)
+				 	{
+				 	
+				 	 player.capabilities.allowFlying = true;
+					 
+					 player.sendPlayerAbilities();
+					 
+					 ison = true;
+					 
+						if(player.capabilities.isFlying)
+						{
+							charge-=5;
+							tag.setInteger("CurrentCharge", charge);
+							((IItemMysticRechargeable) heldStack.getItem()).setItemDamageByCharge(heldStack);
+						}
+				 	}
+				 else if(!ison)
+				 	{
+					 
+					 player.capabilities.allowFlying = false;
+					 player.capabilities.isFlying = false;
+				
+					 
+					 player.sendPlayerAbilities();
+				 	}
+				 
+				}
+			else if(player.inventory.getCurrentItem().getItemDamage()<player.inventory.getCurrentItem().getMaxDamage()-1)
+			{
+				
 			player.capabilities.allowFlying = true;
 			ison = true;
-			
+			 
 			player.sendPlayerAbilities();
 				if(player.capabilities.isFlying)
 				{
-					if(!(tempStack.getItem() instanceof IItemMysticRechargeableArmor))
+					if(!(heldStack.getItem() instanceof IItemMysticRechargeable))
 					{
-					tempStack.setItemDamage(tempStack.getItemDamage()+1);
+					player.inventory.getCurrentItem().setItemDamage(player.inventory.getCurrentItem().getItemDamage()+1);
 					}
 			
 			
 				}
 		
 			}
-			else if(tempStack.getItemDamage()>=tempStack.getMaxDamage()-1)
+			else if(heldStack.getItemDamage()>=heldStack.getMaxDamage()-1&&!ison)
+			{
+				 
+				player.capabilities.allowFlying = false;
+				player.capabilities.isFlying = false;
+		
+				
+				player.sendPlayerAbilities();
+				
+			}
+			}
+			else if(!ison)
 			{
 				player.capabilities.allowFlying = false;
 				player.capabilities.isFlying = false;
+				 
 				
 				player.sendPlayerAbilities();
 			}
 			
-			}
-				if(!tempStack.isItemEnchanted()&&!player.capabilities.isCreativeMode&&!ison)
-				{
-				player.capabilities.allowFlying = false;
-				player.capabilities.isFlying = false;			
-				
-				player.sendPlayerAbilities();			
-				}
-			}
+	    }
+		
+		if(player.inventory.getCurrentItem() != null&&!player.inventory.getCurrentItem().isItemEnchanted()&&!player.capabilities.isCreativeMode&&!ison)
+		{
+		
+			player.capabilities.allowFlying = false;
+			player.capabilities.isFlying = false;
+			 
 			
-
+			player.sendPlayerAbilities();
 			
-		 	
 		}
+		if(player.inventory.getCurrentItem() == null&&!player.capabilities.isCreativeMode&&!ison)
+		{
+		
+			player.capabilities.allowFlying = false;
+			player.capabilities.isFlying = false;
+			 
+			
+			player.sendPlayerAbilities();
+			
+		}
+		
 		if((player.inventory.armorItemInSlot(0) == null||player.inventory.armorItemInSlot(1) == null||player.inventory.armorItemInSlot(2) == null||player.inventory.armorItemInSlot(3) == null)&&!player.capabilities.isCreativeMode&&!ison)
 		{
 			player.capabilities.allowFlying = false;
@@ -161,110 +244,39 @@ public class PlayerTickHandler implements ITickHandler {
 			
 		}
 		
-		
-		*/
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		if(player.inventory.getCurrentItem() != null&&player.inventory.getCurrentItem().isItemEnchanted()&&!player.capabilities.isCreativeMode)
+		for (int ix =0; ix<4; ix++)
 		{
-			if(player.inventory.getCurrentItem().getTagCompound()==null)
-			  {
-				player.inventory.getCurrentItem().setTagCompound(new NBTTagCompound());
-			  }
-			 NBTTagCompound tag = player.inventory.getCurrentItem().getTagCompound();
-			if(EnchantmentHelper.getEnchantmentLevel(EnchantmentRegister.Flight.effectId, player.inventory.getCurrentItem())>0)
+			if(player.inventory.armorItemInSlot(ix)!=null&&player.inventory.armorItemInSlot(ix).getItem() instanceof IItemMysticRechargeable&&!player.capabilities.isCreativeMode&&!ison)
 			{
-			
-				
-			if(heldStack.getItem() instanceof IItemMysticRechargeable)
+				NBTTagCompound tag = player.inventory.armorItemInSlot(ix).getTagCompound();
+				if(tag.getInteger("CurrentCharge")<5&&!ison)
 				{
-				
-				 int charge = tag.getInteger("CurrentCharge");
-				 	if(charge>=5)
-				 	{
-				 	 player.capabilities.allowFlying = true;
 					 
-					 player.sendPlayerAbilities();
-					 ison = true;
-						if(player.capabilities.isFlying)
-						{
-							charge-=5;
-							tag.setInteger("CurrentCharge", charge);
-						}
-				 	}
-				 else if(!ison)
-				 	{
 					 player.capabilities.allowFlying = false;
 					 player.capabilities.isFlying = false;
-				
+					
 					 
 					 player.sendPlayerAbilities();
-				 	}
-				 
 				}
-			else if(player.inventory.getCurrentItem().getItemDamage()<player.inventory.getCurrentItem().getMaxDamage()-1)
-			{
-			player.capabilities.allowFlying = true;
-			ison = true;
-			
-			player.sendPlayerAbilities();
-				if(player.capabilities.isFlying)
-				{
-					if(!(heldStack.getItem() instanceof IItemMysticRechargeable))
-					{
-					player.inventory.getCurrentItem().setItemDamage(player.inventory.getCurrentItem().getItemDamage()+1);
-					}
-			
-			
-				}
-		
 			}
-			else if(!ison)
+			else if(player.inventory.armorItemInSlot(ix)!=null&&player.inventory.armorItemInSlot(ix).getItemDamage()>=player.inventory.armorItemInSlot(ix).getMaxDamage()-1&&!player.capabilities.isCreativeMode&&!ison)
 			{
-				player.capabilities.allowFlying = false;
-				player.capabilities.isFlying = false;
-		
 				
-				player.sendPlayerAbilities();
-				
-			}
-			}
-			else if(!ison)
-			{
 				player.capabilities.allowFlying = false;
 				player.capabilities.isFlying = false;
 				
-				
 				player.sendPlayerAbilities();
 			}
-			
-	    }
+		}
 		
-		if(player.inventory.getCurrentItem() != null&&!player.inventory.getCurrentItem().isItemEnchanted()&&!player.capabilities.isCreativeMode&&!ison)
-		{
-			player.capabilities.allowFlying = false;
-			player.capabilities.isFlying = false;
-			
-			
-			player.sendPlayerAbilities();
-			
-		}
-		if(player.inventory.getCurrentItem() == null&&!player.capabilities.isCreativeMode&&!ison)
-		{
-			player.capabilities.allowFlying = false;
-			player.capabilities.isFlying = false;
-	
-			
-			player.sendPlayerAbilities();
-			
-		}
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 	}

@@ -128,16 +128,6 @@ public class ItemArmorSteelRC extends IItemMysticRechargeableArmor{
 	    }
 	    if(chest!=null&&chest.getItem()==MysticModItems.chestSteelRC)
 	    {
-	    	if(player.isInWater())
-	    	{
-	    		player.capabilities.allowFlying = true;
-	    		player.capabilities.isFlying = true;
-	    	}
-	    	else if(!player.isInWater())
-	    	{
-	    		player.capabilities.allowFlying = false;
-	    		player.capabilities.isFlying = false;
-	    	}
 	    	
 	    	player.extinguish();
 	    }

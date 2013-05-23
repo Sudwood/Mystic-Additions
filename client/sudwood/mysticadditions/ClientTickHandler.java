@@ -3,6 +3,7 @@ package client.sudwood.mysticadditions;
 import java.util.EnumSet;
 
 import com.sudwood.mysticadditions.MysticAdditions;
+import com.sudwood.mysticadditions.items.energy.IItemMysticRechargeable;
 import com.sudwood.mysticadditions.items.energy.IItemMysticRechargeableArmor;
 
 import net.minecraft.client.Minecraft;
@@ -74,7 +75,22 @@ public class ClientTickHandler implements ITickHandler {
 			}
 			}
 		}
-		
+		if(player!=null&&player.inventory.getCurrentItem()!=null)
+		{
+			ItemStack tempStack = player.inventory.getCurrentItem();
+			if(tempStack.getItem() instanceof IItemMysticRechargeable)
+			{
+			if(player.inventory.getCurrentItem().getTagCompound()==null)
+			  {
+				player.inventory.getCurrentItem().setTagCompound(new NBTTagCompound());
+			  }
+			NBTTagCompound tag = player.inventory.getCurrentItem().getTagCompound();
+			doesNeedCharge = true;
+			charge += tag.getInteger("CurrentCharge");
+			nump+= tag.getInteger("MaxStorage");
+			
+			}
+		}
 		
 		if(player!=null&&doesNeedCharge)
 			Minecraft.getMinecraft().fontRenderer.drawString(charge+"/"+nump+" MyJ", 1, 1, 16777215);

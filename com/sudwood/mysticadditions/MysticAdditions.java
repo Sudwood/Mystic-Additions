@@ -43,6 +43,7 @@ import com.sudwood.mysticadditions.tileentity.TileEntityMysticFurnace;
 import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedGenerator;
 import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedGrinder;
 import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedStorage;
+import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedStorageMrk2;
 import com.sudwood.mysticadditions.tileentity.TileEntityPoweredFurnace;
 import com.sudwood.mysticadditions.tileentity.TileEntityPoweredMysticFurnace;
 
@@ -164,6 +165,7 @@ public class MysticAdditions
 		 public static int crystalgeneratorid;
 		 public static int crystalgeneratorbaseid;
 		 public static int mrk2mysticredstorageid;
+		 public static int liquidstorageblockid;
 		//item ids
 		 public static int refinedironingotid;
 		 public static int csteelingotid;
@@ -361,6 +363,7 @@ public void preInit(FMLPreInitializationEvent event){
 	     crystalgeneratorid = config.getBlock("Crystal Generator", 2222).getInt();
 	     crystalgeneratorbaseid = config.getBlock("CrystalGeneratorBase", 2223).getInt();
 	     mrk2mysticredstorageid = config.getBlock("Mrk2RedCapacitor", 2224).getInt();
+	     liquidstorageblockid = config.getBlock("LiquidStorage", 2225).getInt();
 	//item ids
 	     refinedironingotid = config.getItem("RefinedIronIngot", 31000).getInt();
 	     csteelingotid = config.getItem("SteelIngot", 31001).getInt();
@@ -543,6 +546,7 @@ public void load(FMLInitializationEvent event)
 			 GameRegistry.registerTileEntity(TileEntityPoweredMysticFurnace.class, "Powered Mystic Furnace");
 			 GameRegistry.registerTileEntity(TileEntityMysticCrystalGenerator.class, "Mystic crystal gernator");
 			 GameRegistry.registerTileEntity(TileEntityMysticEnergy.class, "Mystic Energy");
+			 GameRegistry.registerTileEntity(TileEntityMysticRedStorageMrk2.class, "MysticRedStorageMrk2");
 			 NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 			
 

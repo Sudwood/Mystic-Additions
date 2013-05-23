@@ -47,6 +47,15 @@ public class TileEntityMysticEnergy extends TileEntity{
 	{
 		   return true;
 	}
+	
+	/**
+	 * 
+	 * 
+	 * @param int array of x,y,z coordinates of block
+	 * @param efficiency level, 1 is 1 to 1 transfers
+	 * @return
+	 */
+	
 	public String setTeleportPowerCoords(int[] coords, double efL)
 	{
 		
@@ -131,6 +140,7 @@ public class TileEntityMysticEnergy extends TileEntity{
 				{
 					if(((TileEntityMysticEnergy) tile).getEnergyLevel()>32)
 					{
+						
 						TileEntityMysticEnergy tile2 = (TileEntityMysticEnergy) worldObj.getBlockTileEntity(coords1[0], coords1[1], coords1[2]);
 						if(tile2!=null)
 						{
@@ -216,7 +226,11 @@ public class TileEntityMysticEnergy extends TileEntity{
 	
 	
 	
-	
+	/**
+	 * 
+	 * @param frequency to be reset
+	 * resets frequencies, used by gui config
+	 */
 
 	public void resetFrequency(int freq)
 	{
@@ -254,15 +268,27 @@ public class TileEntityMysticEnergy extends TileEntity{
 		
 	}
 	
-	
+	/**
+	 * 
+	 * @param sets energy level, converts double to int
+	 */
 	public void setEnergyLevel(double d){
 		
 		energyLevel = (int) d;
 	}
+	/**
+	 * @return
+	 */
 	public int getEnergyLevel()
 	{
 		return energyLevel;
 	}
+	
+	
+	/**
+	 * charges item in top slot, used in capacitors
+	 */
+	
 	 public void rechargeItem()
 	 {
 		 /*if(furnaceItemStacks[0].getItem() instanceof ItemBlock)
@@ -297,6 +323,11 @@ public class TileEntityMysticEnergy extends TileEntity{
 		 }
 		 }
 	 }
+	 
+	 /**
+	  * discharges item in bottom slot, used in most energy blocks
+	  */
+	 
 	 public void dischargeItem()
 	 {
 		 /*if(furnaceItemStacks[0].getItem() instanceof ItemBlock)
@@ -327,6 +358,10 @@ public class TileEntityMysticEnergy extends TileEntity{
 		 }
 	 }
 	 
+	 
+	 /**
+	  * checks nearby inventories for an item that can be discharged and puts it in bottom slot
+	  */
 	 public void checkDischargeable()
 	 {
 		 if(true)
@@ -367,6 +402,14 @@ public class TileEntityMysticEnergy extends TileEntity{
 		 }
 	 }
 	 
+	 
+	 /**
+	  * 
+	  * @param x of block
+	  * @param y of block
+	  * @param z of block
+	  * @return returns arraylist of empty slots
+	  */
 	 public List<Integer> checkSpace(int x, int y, int z)
 	 {
 		 List<Integer> freeSpaces = new ArrayList();
@@ -415,7 +458,14 @@ public class TileEntityMysticEnergy extends TileEntity{
 		 
 	 }
 	 
-	 
+	 /**
+	  * 
+	  * @param x of block
+	  * @param y of block
+	  * @param z of block
+	  * @param stack itemstack to check for space in
+	  * @return arraylist of either empty spaces or spaces that can take the given stack
+	  */
 	 public List<Integer> checkSpace(int x, int y, int z, ItemStack stack)
 	 {
 		 List<Integer> freeSpaces = new ArrayList();
