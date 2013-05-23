@@ -6,6 +6,7 @@ import com.sudwood.mysticadditions.blocks.BlockMysticFurnace;
 import com.sudwood.mysticadditions.blocks.MysticModBlocks;
 import com.sudwood.mysticadditions.items.MysticModItems;
 import com.sudwood.mysticadditions.items.energy.IItemMysticRechargeable;
+import com.sudwood.mysticadditions.items.energy.IItemMysticRechargeableArmor;
 
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -30,11 +31,19 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 
 
-public class TileEntityPoweredFurnace extends TileEntity implements IInventory
+public class TileEntityPoweredFurnace extends TileEntityMysticEnergy implements IInventory
 {
+	public TileEntityPoweredFurnace(int maxEnergy) {
+		super(maxEnergy);
+		
+	}
+	public TileEntityPoweredFurnace() {
+		super(4000);
+		
+	}
 	private int[] coords = {42,42,42};
-	public int energyLevel = 0;
-	public int maxEnergyLevel = 4000;
+
+	
 	 public float spinAngleX = 0F;
 	 public float spinAngleY = 0F;
 	 public float spinAngleZ = 0F;
@@ -62,15 +71,7 @@ public class TileEntityPoweredFurnace extends TileEntity implements IInventory
     {
         return this.furnaceItemStacks[par1];
     }
-    public String setTeleportPowerCoords(int[] coords)
-	{
-		if(Math.abs(Math.abs(coords[0])-Math.abs(this.xCoord))>20||Math.abs(Math.abs(coords[1])-Math.abs(this.yCoord))>20||Math.abs(Math.abs(coords[2])-Math.abs(this.zCoord))>20)
-		{
-			return "Distance too far, Coordinates not set.";
-		}
-		this.teleportedPowerCoords = coords;
-		return "Coordinates set.";
-	}
+   
 	public void setIsGettingTeleportedPower(boolean bool)
 	{
 		isGettingTeleportedPower = bool;
@@ -116,22 +117,8 @@ public class TileEntityPoweredFurnace extends TileEntity implements IInventory
             return null;
         }
     }
-    public void setEnergyLevel(double d){
-		
-		energyLevel = (int) d;
-	}
-    public void getEnergyTeleported()
-	{
-		TileEntity tile = worldObj.getBlockTileEntity(teleportedPowerCoords[0], teleportedPowerCoords[1], teleportedPowerCoords[2]);
-		if(tile instanceof TileEntityMysticRedStorage &&this.energyLevel<this.maxEnergyLevel-32)
-		{
-			if(((TileEntityMysticRedStorage) tile).getEnergyLevel()>32){
-				
-			((TileEntityMysticRedStorage) tile).setEnergyLevel(((TileEntityMysticRedStorage) tile).getEnergyLevel()-32);
-			this.setEnergyLevel(this.energyLevel+32/(this.efficiencyLevel+((TileEntityMysticRedStorage) tile).numberDrawing-1));
-			}
-		}
-		}
+ 
+    
 	
 		
 		
@@ -188,6 +175,12 @@ public class TileEntityPoweredFurnace extends TileEntity implements IInventory
         energyLevel = par1NBTTagCompound.getInteger("energyLevel");
         coords = par1NBTTagCompound.getIntArray("coordinates");
         isFull = par1NBTTagCompound.getBoolean("isFull");
+        this.coords0 = par1NBTTagCompound.getIntArray("coordinates0");
+        this.coords1 = par1NBTTagCompound.getIntArray("coordinates1");
+        this.coords2 = par1NBTTagCompound.getIntArray("coordinates2");
+        this.coords3 = par1NBTTagCompound.getIntArray("coordinates3");
+        this.coords4 = par1NBTTagCompound.getIntArray("coordinated4");
+        this.activeConnections = par1NBTTagCompound.getIntArray("activeconnections");
         teleportedPowerCoords = par1NBTTagCompound.getIntArray("teleportedPowerCoords");
         isGettingTeleportedPower = par1NBTTagCompound.getBoolean("isGettingTeleportedPower");
         for (int var3 = 0; var3 < var2.tagCount(); ++var3)
@@ -216,6 +209,12 @@ public class TileEntityPoweredFurnace extends TileEntity implements IInventory
         par1NBTTagCompound.setIntArray("coordinates", coords);
         par1NBTTagCompound.setBoolean("isFull", isFull);
         par1NBTTagCompound.setDouble("EfficiencyLevel", efficiencyLevel);
+        par1NBTTagCompound.setIntArray("coordinates0", coords0);
+        par1NBTTagCompound.setIntArray("coordinates1", coords1);
+        par1NBTTagCompound.setIntArray("coordinates2", coords2);
+        par1NBTTagCompound.setIntArray("coordinates3", coords3);
+        par1NBTTagCompound.setIntArray("coordinates4", coords4);
+        par1NBTTagCompound.setIntArray("activeconnections", this.activeConnections);
         par1NBTTagCompound.setIntArray("teleportedPowerCoords", teleportedPowerCoords);
         par1NBTTagCompound.setBoolean("isGettingTeleportedPower", isGettingTeleportedPower);
         par1NBTTagCompound.setShort("CookTime", (short)this.furnaceCookTime);
@@ -258,7 +257,18 @@ public class TileEntityPoweredFurnace extends TileEntity implements IInventory
 			 IItemMysticRechargeable item = (IItemMysticRechargeable) furnaceItemStacks[1].getItem();
 			 
 			 item.disCharge(furnaceItemStacks[1]);
-			 if(furnaceItemStacks[1].getItemDamage()!=11)
+			 if(!(item.currentCharge<1+item.rechargeRatePerTick))
+			 {
+			 this.energyLevel+=item.rechargeRatePerTick;
+			 }
+			
+		 }
+    	if(this.furnaceItemStacks[1]!=null&&this.furnaceItemStacks[1].getItem() instanceof IItemMysticRechargeableArmor&&this.energyLevel<this.maxEnergyLevel)
+		 {
+			 IItemMysticRechargeableArmor item = (IItemMysticRechargeableArmor) furnaceItemStacks[1].getItem();
+			 
+			 item.disCharge(furnaceItemStacks[1]);
+			 if(!(item.currentCharge<1+item.rechargeRatePerTick))
 			 {
 			 this.energyLevel+=item.rechargeRatePerTick;
 			 }
@@ -401,7 +411,7 @@ public class TileEntityPoweredFurnace extends TileEntity implements IInventory
             {
                 Block var3 = Block.blocksList[var1];
 
-                if (var3 == MysticModBlocks.compressedRedstone)
+                if (var3 == Block.blockRedstone)
                 {
                     return 14400;
                 }

@@ -32,9 +32,9 @@ public class ItemSwordMystic extends ItemSword
     }
 
     @Override
-	public void updateIcons(IconRegister iconRegister)
+	public void registerIcons(IconRegister iconRegister)
 	{
-		this.iconIndex = iconRegister.registerIcon("MysticAdditions:mysticsword");
+		this.itemIcon = iconRegister.registerIcon("MysticAdditions:mysticsword");
 	}
 
 }

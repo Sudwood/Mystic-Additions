@@ -456,9 +456,9 @@ public class BlockMysticStairs extends BlockStairs
     /**
      * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
      */
-    public Icon getBlockTextureFromSideAndMetadata(int par1, int par2)
+    public Icon getIcon(int par1, int par2)
     {
-        return this.modelBlock.getBlockTextureFromSideAndMetadata(par1, this.modelBlockMetadata);
+        return this.modelBlock.getIcon(par1, this.modelBlockMetadata);
     }
 
     @SideOnly(Side.CLIENT)

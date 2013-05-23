@@ -45,7 +45,7 @@ public class ItemCrudeMysticBattery extends IItemMysticRechargeable{
 			
 	    }
 	  @Override
-		public void updateIcons(IconRegister iconRegister)
+		public void registerIcons(IconRegister iconRegister)
 		{
 		         this.iconList[0] = iconRegister.registerIcon("MysticAdditions:crudebattery0");
 		         this.iconList[1] = iconRegister.registerIcon("MysticAdditions:crudebattery1");

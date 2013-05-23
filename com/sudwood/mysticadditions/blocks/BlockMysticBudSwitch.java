@@ -4,7 +4,7 @@ import java.util.Random;
 
 import com.sudwood.mysticadditions.MysticCommonProxy;
 
-import com.sudwood.mysticadditions.mod_MysticAdditions;
+import com.sudwood.mysticadditions.MysticAdditions;
 import com.sudwood.mysticadditions.tileentity.TileEntityMysticBud;
 
 import cpw.mods.fml.common.LoaderException;
@@ -189,7 +189,7 @@ private boolean pwrlvl = false;
 	            	TileEntityMysticBud tile = (TileEntityMysticBud)par1World.getBlockTileEntity(par2, par3, par4);
 	            	par5EntityPlayer.sendChatToPlayer(tile.getBlockID()+"");
 	            	par5EntityPlayer.sendChatToPlayer(tile.getBlockMeta()+"");
-	              	par5EntityPlayer.openGui(mod_MysticAdditions.instance, 2, par1World, par2, par3, par4);
+	              	par5EntityPlayer.openGui(MysticAdditions.instance, 2, par1World, par2, par3, par4);
 	            }
 
 	            return true;

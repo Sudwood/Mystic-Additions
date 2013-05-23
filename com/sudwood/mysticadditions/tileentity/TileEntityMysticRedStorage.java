@@ -1,8 +1,9 @@
 package com.sudwood.mysticadditions.tileentity;
 
 import com.sudwood.mysticadditions.MysticEnergy;
-import com.sudwood.mysticadditions.mod_MysticAdditions;
+import com.sudwood.mysticadditions.MysticAdditions;
 import com.sudwood.mysticadditions.items.energy.IItemMysticRechargeable;
+import com.sudwood.mysticadditions.items.energy.IItemMysticRechargeableArmor;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -19,11 +20,11 @@ import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.ISidedInventory;
 
-public class TileEntityMysticRedStorage extends TileEntity implements MysticEnergy, IInventory{
+public class TileEntityMysticRedStorage extends TileEntityMysticEnergy implements MysticEnergy, IInventory{
 	private int[] coords = {42,42,42};
 	private int[] connectors = {42,42,42,42,42,42};
-	private final int maxEnergyLevel = 40000;
-	public int energyLevel = 0;
+
+
 	private boolean isFull = false;
 	public static int numberDrawing = 0;
 	private int[] wireConnectors = {0,0,0,0,0,0};
@@ -32,9 +33,13 @@ public class TileEntityMysticRedStorage extends TileEntity implements MysticEner
 	public float rotationAngle =0F;
 	public double efficiencyLevel = 4;
 	private ItemStack[] furnaceItemStacks = new ItemStack[2];
+	public TileEntityMysticRedStorage(int maxEnergy)
+	{
+		super(maxEnergy);
+	}
 	public TileEntityMysticRedStorage()
 	{
-		
+		super(40000);
 	}
 	public boolean canUpdate(){
 		   return true;
@@ -44,6 +49,14 @@ public class TileEntityMysticRedStorage extends TileEntity implements MysticEner
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public int getMaxEnergy()
+	{
+		return this.maxEnergyLevel;
+	}
+	
+	
+	
 	public void readFromNBT(NBTTagCompound tag)
     {
 		
@@ -53,6 +66,12 @@ public class TileEntityMysticRedStorage extends TileEntity implements MysticEner
         connectors = tag.getIntArray("connectors");
         coords = tag.getIntArray("coordinates");
         isFull = tag.getBoolean("isFull");
+        this.coords0 = tag.getIntArray("coordinates0");
+        this.coords1 = tag.getIntArray("coordinates1");
+        this.coords2 = tag.getIntArray("coordinates2");
+        this.coords3 = tag.getIntArray("coordinates3");
+        this.coords4 = tag.getIntArray("coordinated4");
+        this.activeConnections = tag.getIntArray("activeconnections");
         teleportedPowerCoords = tag.getIntArray("teleportedPowerCoords");
         isGettingTeleportedPower = tag.getBoolean("isGettingTeleportedPower");
         numberDrawing = tag.getInteger("numberDrawing");
@@ -71,15 +90,14 @@ public class TileEntityMysticRedStorage extends TileEntity implements MysticEner
         }
     }
 
-	public String setTeleportPowerCoords(int[] coords)
-	{
-		if(Math.abs(Math.abs(coords[0])-Math.abs(this.xCoord))>20||Math.abs(Math.abs(coords[1])-Math.abs(this.yCoord))>20||Math.abs(Math.abs(coords[2])-Math.abs(this.zCoord))>20)
-		{
-			return "Distance too far, Coordinates not set.";
-		}
-		this.teleportedPowerCoords = coords;
-		return "Coordinates set.";
-	}
+	
+	
+	
+	
+		
+		
+		
+	
 	public void setIsGettingTeleportedPower(boolean bool)
 	{
 		isGettingTeleportedPower = bool;
@@ -106,35 +124,8 @@ public class TileEntityMysticRedStorage extends TileEntity implements MysticEner
 	}
 	public void getEnergy()
 	{
-		
-		
-		
 	}
-	public void getEnergyTeleported()
-	{
-		if(this.energyLevel<this.maxEnergyLevel-32)
-		{
-		TileEntity tile = worldObj.getBlockTileEntity(teleportedPowerCoords[0], teleportedPowerCoords[1], teleportedPowerCoords[2]);
-		if(tile instanceof TileEntityMysticRedStorage)
-		{
-			if(((TileEntityMysticRedStorage) tile).getEnergyLevel()>32){
-				
-			((TileEntityMysticRedStorage) tile).setEnergyLevel(((TileEntityMysticRedStorage) tile).getEnergyLevel()-32);
-			this.setEnergyLevel(this.energyLevel+32/(this.efficiencyLevel+((TileEntityMysticRedStorage) tile).numberDrawing-1));
-			}
-		}
-		if(tile instanceof TileEntityMysticRedGenerator)
-		{
-			if(((TileEntityMysticRedGenerator) tile).getEnergyLevel()>32){
-				
-				
-			((TileEntityMysticRedGenerator) tile).setEnergyLevel(((TileEntityMysticRedGenerator) tile).getEnergyLevel()-32);
-			this.setEnergyLevel(this.energyLevel+32/(this.efficiencyLevel+((TileEntityMysticRedGenerator) tile).numberDrawing-1));
-			}
-		}
-		}
-		
-	}
+	
 	  @SideOnly(Side.CLIENT)
 		 public int getCookProgressScaled(int par1)
 		    {
@@ -160,6 +151,12 @@ public class TileEntityMysticRedStorage extends TileEntity implements MysticEner
 	        tag.setInteger("energyLevel", energyLevel);
 	        tag.setIntArray("connectors", connectors);
 	        tag.setIntArray("coordinates", coords);
+	        tag.setIntArray("coordinates0", coords0);
+	        tag.setIntArray("coordinates1", coords1);
+	        tag.setIntArray("coordinates2", coords2);
+	        tag.setIntArray("coordinates3", coords3);
+	        tag.setIntArray("coordinates4", coords4);
+	        tag.setIntArray("activeconnections", activeConnections);
 	        tag.setBoolean("isFull", isFull);
 	        tag.setIntArray("teleportedPowerCoords", teleportedPowerCoords);
 	        tag.setBoolean("isGettingTeleportedPower", isGettingTeleportedPower);
@@ -185,16 +182,32 @@ public class TileEntityMysticRedStorage extends TileEntity implements MysticEner
 		 {
 			 
 		 }*/
-		 if(this.furnaceItemStacks[0]!=null&&this.furnaceItemStacks[0].getItem() instanceof IItemMysticRechargeable&&this.energyLevel>20)
+		 if(this.furnaceItemStacks[0]!=null)
+		 {
+		 if(this.furnaceItemStacks[0].getItem() instanceof IItemMysticRechargeable&&this.energyLevel>20)
 		 {
 			 IItemMysticRechargeable item = (IItemMysticRechargeable) furnaceItemStacks[0].getItem();
 			 
 			 item.Charge(furnaceItemStacks[0]);
-			 if(furnaceItemStacks[0].getItemDamage()!=0)
+			 if(!(item.currentCharge>item.maxStorage-item.rechargeRatePerTick))
 			 {
 			 this.energyLevel-=item.rechargeRatePerTick;
 			 }
+			return;
+		 }
+		 if(this.furnaceItemStacks[0].getItem() instanceof IItemMysticRechargeableArmor&&this.energyLevel>20)
+		 {
+			 IItemMysticRechargeableArmor item = (IItemMysticRechargeableArmor) furnaceItemStacks[0].getItem();
+			 
 			
+			 item.Charge(furnaceItemStacks[0]);
+			 
+			 if(!(item.currentCharge>item.maxStorage-item.rechargeRatePerTick))
+			 {
+			 this.energyLevel-=item.rechargeRatePerTick;
+			 }
+			return;
+		 }
 		 }
 	 }
 	 public void dischargeItem()
@@ -208,7 +221,18 @@ public class TileEntityMysticRedStorage extends TileEntity implements MysticEner
 			 IItemMysticRechargeable item = (IItemMysticRechargeable) furnaceItemStacks[1].getItem();
 			 
 			 item.disCharge(furnaceItemStacks[1]);
-			 if(furnaceItemStacks[1].getItemDamage()!=11)
+			 if(!(item.currentCharge<1+item.rechargeRatePerTick))
+			 {
+			 this.energyLevel+=item.rechargeRatePerTick;
+			 }
+			
+		 }
+		 if(this.furnaceItemStacks[1]!=null&&this.furnaceItemStacks[1].getItem() instanceof IItemMysticRechargeableArmor&&this.energyLevel<this.maxEnergyLevel)
+		 {
+			 IItemMysticRechargeableArmor item = (IItemMysticRechargeableArmor) furnaceItemStacks[1].getItem();
+			 
+			 item.disCharge(furnaceItemStacks[1]);
+			 if(!(item.currentCharge<1+item.rechargeRatePerTick))
 			 {
 			 this.energyLevel+=item.rechargeRatePerTick;
 			 }
@@ -217,21 +241,19 @@ public class TileEntityMysticRedStorage extends TileEntity implements MysticEner
 	 }
 	 public void updateEntity()
 	    {
-		 if (mod_MysticAdditions.areAnimations&&this.energyLevel<this.maxEnergyLevel)
+		 if (MysticAdditions.areAnimations&&this.energyLevel<this.maxEnergyLevel)
 		 {
 			 rotationAngle+=0.05F;
 			 if(rotationAngle>=6.28)
 				 rotationAngle=0F;
 			 
 		 }
-		 if (!this.worldObj.isRemote)
-		 {
-			 if (this.isGettingTeleportedPower)
-			 {
+		
+			 if(!worldObj.isRemote)
 				 this.getEnergyTeleported();
-			 }
+			 
 			
-		 }
+		 
 		 rechargeItem();
 		 dischargeItem();
 		

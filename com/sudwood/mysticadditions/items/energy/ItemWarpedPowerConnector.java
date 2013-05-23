@@ -3,7 +3,7 @@ package com.sudwood.mysticadditions.items.energy;
 import java.util.List;
 
 import com.sudwood.mysticadditions.MysticCommonProxy;
-import com.sudwood.mysticadditions.mod_MysticAdditions;
+import com.sudwood.mysticadditions.MysticAdditions;
 import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedGenerator;
 import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedStorage;
 
@@ -44,9 +44,9 @@ public class ItemWarpedPowerConnector extends Item {
     }
 	
 	@Override
-	public void updateIcons(IconRegister iconRegister)
+	public void registerIcons(IconRegister iconRegister)
 	{
-		this.iconIndex = iconRegister.registerIcon("MysticAdditions:inefficientpowerconnector");
+		this.itemIcon = iconRegister.registerIcon("MysticAdditions:inefficientpowerconnector");
 	}
 
 }

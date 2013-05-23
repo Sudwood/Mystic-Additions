@@ -17,9 +17,9 @@ public class ItemMysticFireArrowhead extends Item
 		
 	}
 	@Override
-	public void updateIcons(IconRegister iconRegister)
+	public void registerIcons(IconRegister iconRegister)
 	{
-		this.iconIndex = iconRegister.registerIcon("MysticAdditions:firearrowheads");
+		this.itemIcon = iconRegister.registerIcon("MysticAdditions:firearrowheads");
 	}
 
 

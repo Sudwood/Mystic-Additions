@@ -19,11 +19,12 @@ public class ItemRawWarpFood extends ItemFood {
 		// TODO Auto-generated constructor stub
 	}
 	@Override
-	public void updateIcons(IconRegister iconRegister)
+	public void registerIcons(IconRegister iconRegister)
 	{
-	         this.iconIndex = iconRegister.registerIcon("MysticAdditions:rawwarpfood");
+	         this.itemIcon = iconRegister.registerIcon("MysticAdditions:rawwarpfood");
 	}
-	protected void func_77849_c(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
+	@Override
+	protected void onFoodEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
            if (!par2World.isRemote)
             {

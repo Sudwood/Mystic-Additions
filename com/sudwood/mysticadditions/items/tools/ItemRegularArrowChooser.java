@@ -9,7 +9,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 import com.sudwood.mysticadditions.MysticCommonProxy;
-import com.sudwood.mysticadditions.mod_MysticAdditions;
+import com.sudwood.mysticadditions.MysticAdditions;
 
 
 public class ItemRegularArrowChooser extends Item 
@@ -23,9 +23,9 @@ public class ItemRegularArrowChooser extends Item
 		
 	}
 	@Override
-	public void updateIcons(IconRegister iconRegister)
+	public void registerIcons(IconRegister iconRegister)
 	{
-		this.iconIndex = iconRegister.registerIcon("MysticAdditions:regulararrowchooser");
+		this.itemIcon = iconRegister.registerIcon("MysticAdditions:regulararrowchooser");
 	}
 
 	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer entityplayer)

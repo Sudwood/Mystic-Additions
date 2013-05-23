@@ -2,7 +2,7 @@ package com.sudwood.mysticadditions.worldgen;
 
 import java.util.Random;
 
-import com.sudwood.mysticadditions.mod_MysticAdditions;
+import com.sudwood.mysticadditions.MysticAdditions;
 
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -14,7 +14,7 @@ public class MysticWorldGenerator implements IWorldGenerator {
 
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
-		if (world.provider.dimensionId==mod_MysticAdditions.DimID)
+		if (world.provider.dimensionId==MysticAdditions.DimID)
 		{
 			this.generateWarped(world, random, chunkX, chunkZ);
 		}

@@ -24,9 +24,9 @@ public class ItemFireToken extends Item
 		
 	}
 	@Override
-	public void updateIcons(IconRegister iconRegister)
+	public void registerIcons(IconRegister iconRegister)
 	{
-	         this.iconIndex = iconRegister.registerIcon("MysticAdditions:firetoken");
+	         this.itemIcon = iconRegister.registerIcon("MysticAdditions:firetoken");
 	}
 	
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) 

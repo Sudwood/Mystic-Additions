@@ -13,9 +13,9 @@ public class ItemWarpShard extends Item {
 		// TODO Auto-generated constructor stub
 	}
 	@Override
-	public void updateIcons(IconRegister iconRegister)
+	public void registerIcons(IconRegister iconRegister)
 	{
-	         this.iconIndex = iconRegister.registerIcon("MysticAdditions:warpshard");
+	         this.itemIcon = iconRegister.registerIcon("MysticAdditions:warpshard");
 	}
 
 

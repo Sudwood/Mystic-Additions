@@ -17,9 +17,9 @@ public class ItemMoltenCSteel extends Item
 		
 	}
 	@Override
-	public void updateIcons(IconRegister iconRegister)
+	public void registerIcons(IconRegister iconRegister)
 	{
-	         this.iconIndex = iconRegister.registerIcon("MysticAdditions:moltensteel");
+	         this.itemIcon = iconRegister.registerIcon("MysticAdditions:moltensteel");
 	}
 
 

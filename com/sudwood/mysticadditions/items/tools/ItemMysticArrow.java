@@ -8,7 +8,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 import com.sudwood.mysticadditions.MysticCommonProxy;
-import com.sudwood.mysticadditions.mod_MysticAdditions;
+import com.sudwood.mysticadditions.MysticAdditions;
 
 public class ItemMysticArrow extends Item 
 {
@@ -19,9 +19,9 @@ public class ItemMysticArrow extends Item
         maxStackSize = 64;
     }
 	@Override
-	public void updateIcons(IconRegister iconRegister)
+	public void registerIcons(IconRegister iconRegister)
 	{
-		this.iconIndex = iconRegister.registerIcon("MysticAdditions:mysticarrow");
+		this.itemIcon = iconRegister.registerIcon("MysticAdditions:mysticarrow");
 	}
 	 public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer entityplayer)
 	    {

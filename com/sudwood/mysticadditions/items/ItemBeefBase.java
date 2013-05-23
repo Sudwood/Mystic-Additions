@@ -22,9 +22,9 @@ public class ItemBeefBase  extends Item{
 		 
 	 }
 	 @Override
-		public void updateIcons(IconRegister iconRegister)
+		public void registerIcons(IconRegister iconRegister)
 		{
-		         this.iconIndex = iconRegister.registerIcon("MysticAdditions:warptargetbeef");
+		         this.itemIcon = iconRegister.registerIcon("MysticAdditions:warptargetbeef");
 		}
 	  @Override 
 	  public boolean doesContainerItemLeaveCraftingGrid(ItemStack itemstack) {

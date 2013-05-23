@@ -37,9 +37,9 @@ public class ItemEnchantedBonemeal extends Item
     
     }
 	@Override
-	public void updateIcons(IconRegister iconRegister)
+	public void registerIcons(IconRegister iconRegister)
 	{
-	         this.iconIndex = iconRegister.registerIcon("MysticAdditions:enchantedbonemeal");
+	         this.itemIcon = iconRegister.registerIcon("MysticAdditions:enchantedbonemeal");
 	}
 
 

@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.lwjgl.input.Keyboard;
 
-import com.sudwood.mysticadditions.mod_MysticAdditions;
+import com.sudwood.mysticadditions.MysticAdditions;
 
 import net.java.games.input.Component.Identifier.Key;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -14,6 +14,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -53,7 +54,7 @@ public class ItemDiggingCatalyst extends IItemMysticRechargeable {
 		  }
 		 NBTTagCompound tag = itemstack.getTagCompound();
 		 this.currentCharge = tag.getInteger("CurrentCharge");
-		if(this.currentCharge>4000)
+		if(this.currentCharge>=5000)
 		{
 		ArrayList<Integer> ids = new ArrayList();
 		int x = (int) entityplayer.posX;
@@ -245,9 +246,12 @@ public class ItemDiggingCatalyst extends IItemMysticRechargeable {
 			entityplayer.dropItem(ids.get(ix), 1);
 		}
 		}
-		this.currentCharge-=4000;
+		this.currentCharge-=5000;
 		tag.setInteger("CurrentCharge", currentCharge);
+		entityplayer.sendChatToPlayer("The destructive energies harm you!");
+		entityplayer.attackEntityFrom(DamageSource.magic, 11);
 		}
+		this.setItemDamageByCharge(itemstack);
 		return itemstack;
     }
 	
@@ -258,7 +262,7 @@ public class ItemDiggingCatalyst extends IItemMysticRechargeable {
 		{
 			this.hasCharged = false;
 		}
-		this.setItemDamageByCharge(par1ItemStack);
+		
 	}
 	
 	
@@ -308,9 +312,9 @@ public class ItemDiggingCatalyst extends IItemMysticRechargeable {
 		  }
 	}
 	@Override
-	public void updateIcons(IconRegister iconRegister)
+	public void registerIcons(IconRegister iconRegister)
 	{
-	         this.iconIndex = iconRegister.registerIcon("MysticAdditions:diggingcatalyst");
+	         this.itemIcon = iconRegister.registerIcon("MysticAdditions:diggingcatalyst");
 	         
 	         
 	}

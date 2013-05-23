@@ -60,9 +60,9 @@ public class ItemSteelShuriken extends Item
 	    	return itemstack;
     }
 	@Override
-	public void updateIcons(IconRegister iconRegister)
+	public void registerIcons(IconRegister iconRegister)
 	{
-		this.iconIndex = iconRegister.registerIcon("MysticAdditions:steelshuriken");
+		this.itemIcon = iconRegister.registerIcon("MysticAdditions:steelshuriken");
 	}
 
 

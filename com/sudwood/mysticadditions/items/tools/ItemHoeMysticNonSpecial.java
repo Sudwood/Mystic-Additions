@@ -16,9 +16,9 @@ public class ItemHoeMysticNonSpecial extends ItemHoe
     }
     
     @Override
-   	public void updateIcons(IconRegister iconRegister)
+   	public void registerIcons(IconRegister iconRegister)
    	{
-   		this.iconIndex = iconRegister.registerIcon("MysticAdditions:CSteel Hoe");
+   		this.itemIcon = iconRegister.registerIcon("MysticAdditions:CSteel Hoe");
    	}
 
 }

@@ -29,9 +29,9 @@ public class ItemPickaxeMystic extends ItemPickaxe
     	return EnumRarity.epic;
     }
     @Override
-	public void updateIcons(IconRegister iconRegister)
+	public void registerIcons(IconRegister iconRegister)
 	{
-		this.iconIndex = iconRegister.registerIcon("MysticAdditions:mysticpickaxe");
+		this.itemIcon = iconRegister.registerIcon("MysticAdditions:mysticpickaxe");
 	}
 
 }

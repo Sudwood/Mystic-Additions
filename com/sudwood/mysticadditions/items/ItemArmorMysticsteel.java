@@ -22,23 +22,23 @@ public class ItemArmorMysticsteel extends ItemArmor
     }
     
     @Override
-	public void updateIcons(IconRegister iconRegister)
+	public void registerIcons(IconRegister iconRegister)
 	{
     		 if(armorpiece==0)
     		 {
-	         this.iconIndex = iconRegister.registerIcon("MysticAdditions:CSteel Helm");
+	         this.itemIcon = iconRegister.registerIcon("MysticAdditions:CSteel Helm");
     		 }
     		 if(armorpiece==1)
     		 {
-	         this.iconIndex = iconRegister.registerIcon("MysticAdditions:CSteel Chest");
+	         this.itemIcon = iconRegister.registerIcon("MysticAdditions:CSteel Chest");
     		 }
     		 if(armorpiece==2)
     		 {
-	         this.iconIndex = iconRegister.registerIcon("MysticAdditions:CSteel Legs");
+	         this.itemIcon = iconRegister.registerIcon("MysticAdditions:CSteel Legs");
     		 }
     		 if(armorpiece==3)
     		 {
-	         this.iconIndex = iconRegister.registerIcon("MysticAdditions:CSteel Boots");
+	         this.itemIcon = iconRegister.registerIcon("MysticAdditions:CSteel Boots");
     		 }
 	}
 

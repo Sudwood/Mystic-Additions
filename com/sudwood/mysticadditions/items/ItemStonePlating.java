@@ -17,9 +17,9 @@ public class ItemStonePlating extends Item
 		
 	}
 	@Override
-	public void updateIcons(IconRegister iconRegister)
+	public void registerIcons(IconRegister iconRegister)
 	{
-	         this.iconIndex = iconRegister.registerIcon("MysticAdditions:stoneplating");
+	         this.itemIcon = iconRegister.registerIcon("MysticAdditions:stoneplating");
 	}
 
 	

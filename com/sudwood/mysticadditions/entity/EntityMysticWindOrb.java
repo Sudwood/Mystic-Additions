@@ -7,7 +7,7 @@ package com.sudwood.mysticadditions.entity;
 import java.util.List;
 import java.util.Random;
 
-import com.sudwood.mysticadditions.mod_MysticAdditions;
+import com.sudwood.mysticadditions.MysticAdditions;
 import com.sudwood.mysticadditions.items.MysticModItems;
 
 import net.minecraft.block.Block;
@@ -214,7 +214,7 @@ public class EntityMysticWindOrb extends Entity
         }
         if(inGround)
         {
-        	if(mod_MysticAdditions.areAnimations)
+        	if(MysticAdditions.areAnimations)
         	{
         		this.spinAngleX+=0.15F;
         		this.spinAngleY+=0.15F;

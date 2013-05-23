@@ -8,7 +8,7 @@ import com.sudwood.mysticadditions.MysticERegistration;
 import com.sudwood.mysticadditions.MysticEnergy;
 
 
-import com.sudwood.mysticadditions.mod_MysticAdditions;
+import com.sudwood.mysticadditions.MysticAdditions;
 import com.sudwood.mysticadditions.items.MysticModItems;
 import com.sudwood.mysticadditions.items.energy.ItemWarpedPowerConnector;
 import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedGenerator;
@@ -109,7 +109,7 @@ int[] coords = {42,42,42};
 	@Override
 	public TileEntity createNewTileEntity(World var1) {
 		// TODO Auto-generated method stub
-		return new TileEntityMysticRedGenerator();
+		return new TileEntityMysticRedGenerator(4000);
 	}
 	public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
     {
@@ -136,7 +136,7 @@ int[] coords = {42,42,42};
 				tag.setInteger("zCoord", par4);
 				tag.setBoolean("isSet", true);
 				par5EntityPlayer.setCurrentItemOrArmor(0, tempStack);
-				par5EntityPlayer.sendChatToPlayer("im ggetting acalled");
+				par5EntityPlayer.sendChatToPlayer("Link Started");
 				return true;
 				
 			}
@@ -149,7 +149,7 @@ int[] coords = {42,42,42};
 				tag.setInteger("zCoord", par4);
 				tag.setBoolean("isSet", true);
 				par5EntityPlayer.setCurrentItemOrArmor(0, tempStack);
-				par5EntityPlayer.sendChatToPlayer("im ggetting acalled");
+				par5EntityPlayer.sendChatToPlayer("Link Started");
 				return true;
 				
 			}
@@ -162,7 +162,7 @@ int[] coords = {42,42,42};
 				tag.setInteger("zCoord", par4);
 				tag.setBoolean("isSet", true);
 				par5EntityPlayer.setCurrentItemOrArmor(0, tempStack);
-				par5EntityPlayer.sendChatToPlayer("im ggetting acalled");
+				par5EntityPlayer.sendChatToPlayer("Link Started");
 				return true;
 				
 			}
@@ -175,12 +175,12 @@ int[] coords = {42,42,42};
 				tag.setInteger("zCoord", par4);
 				tag.setBoolean("isSet", true);
 				par5EntityPlayer.setCurrentItemOrArmor(0, tempStack);
-				par5EntityPlayer.sendChatToPlayer("im ggetting acalled");
+				par5EntityPlayer.sendChatToPlayer("Link Started");
 				return true;
 				
 			}
 			
-			par5EntityPlayer.openGui(mod_MysticAdditions.instance, 3, par1World, par2, par3, par4);
+			par5EntityPlayer.openGui(MysticAdditions.instance, 3, par1World, par2, par3, par4);
 		}
 			return true;
 		}

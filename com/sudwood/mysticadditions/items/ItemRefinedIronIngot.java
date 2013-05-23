@@ -15,8 +15,8 @@ public class ItemRefinedIronIngot extends Item
 		maxStackSize = 64;		
 	}
 	@Override
-	public void updateIcons(IconRegister iconRegister)
+	public void registerIcons(IconRegister iconRegister)
 	{
-	         this.iconIndex = iconRegister.registerIcon("MysticAdditions:refinedironingot");
+	         this.itemIcon = iconRegister.registerIcon("MysticAdditions:refinedironingot");
 	}
 }

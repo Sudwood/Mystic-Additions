@@ -101,7 +101,7 @@ public class MysticAdditions
 	public static MysticAdditions instance;
 	
 	@SidedProxy(clientSide="client.sudwood.mysticadditions.MysticClientProxy", serverSide="com.sudwood.mysticadditions.MysticCommonProxy" )
-	public static MysticCommonProxy proxy = new MysticCommonProxy();
+	public static MysticCommonProxy proxy;
 	
 	public static int DimID;
 	private GuiHandlerMystic guiHandler = new GuiHandlerMystic();
@@ -492,7 +492,7 @@ public void load(FMLInitializationEvent event)
 	OreDictionary.registerOre("ingotRefinedIron", new ItemStack(MysticModItems.refinedIronIngot));
 	OreDictionary.registerOre("ingotSteel", new ItemStack(MysticModItems.cSteelIngot));
 	OreDictionary.registerOre("ingotMystic", new ItemStack(MysticModItems.mysticIngot));
-	proxy.registerTickHandlers();
+	proxy.registerServerTickHandlers();
 	
 		
 	//potion

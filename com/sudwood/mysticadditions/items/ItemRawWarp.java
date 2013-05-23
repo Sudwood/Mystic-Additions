@@ -13,9 +13,9 @@ public class ItemRawWarp extends Item {
 		// TODO Auto-generated constructor stub
 	}
 	@Override
-	public void updateIcons(IconRegister iconRegister)
+	public void registerIcons(IconRegister iconRegister)
 	{
-	         this.iconIndex = iconRegister.registerIcon("MysticAdditions:rawwarp");
+	         this.itemIcon = iconRegister.registerIcon("MysticAdditions:rawwarp");
 	}
 
 }
