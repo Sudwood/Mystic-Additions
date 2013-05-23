@@ -16,9 +16,9 @@ public class ItemSpadeMysticNonSpecial extends ItemSpade
     }
     
     @Override
-   	public void registerIcons(IconRegister iconRegister)
+   	public void updateIcons(IconRegister iconRegister)
    	{
-   		this.itemIcon = iconRegister.registerIcon("MysticAdditions:CSteel Shovel");
+   		this.iconIndex = iconRegister.registerIcon("MysticAdditions:CSteel Shovel");
    	}
 
 }

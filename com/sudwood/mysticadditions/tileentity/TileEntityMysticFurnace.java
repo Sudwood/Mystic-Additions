@@ -359,7 +359,7 @@ public class TileEntityMysticFurnace extends TileEntity implements IInventory
             {
                 Block var3 = Block.blocksList[var1];
 
-                if (var3 == Block.blockRedstone)
+                if (var3 == MysticModBlocks.compressedRedstone)
                 {
                     return 14400;
                 }

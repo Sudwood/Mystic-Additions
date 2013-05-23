@@ -17,9 +17,9 @@ public class ItemMysticTeleArrowhead extends Item
 		
 	}
 	@Override
-	public void registerIcons(IconRegister iconRegister)
+	public void updateIcons(IconRegister iconRegister)
 	{
-		this.itemIcon = iconRegister.registerIcon("MysticAdditions:dimensionalarrowheads");
+		this.iconIndex = iconRegister.registerIcon("MysticAdditions:dimensionalarrowheads");
 	}
 
 	

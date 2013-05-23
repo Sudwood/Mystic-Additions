@@ -17,9 +17,9 @@ public class ItemMysticIngot extends Item
 		
 	}
 	@Override
-	public void registerIcons(IconRegister iconRegister)
+	public void updateIcons(IconRegister iconRegister)
 	{
-	         this.itemIcon = iconRegister.registerIcon("MysticAdditions:mysticingot");
+	         this.iconIndex = iconRegister.registerIcon("MysticAdditions:mysticingot");
 	}
 
 	

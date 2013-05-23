@@ -5,7 +5,7 @@ import client.sudwood.mysticadditions.MysticClientProxy;
 import com.sudwood.mysticadditions.MysticERegistration;
 import com.sudwood.mysticadditions.MysticEnergy;
 
-import com.sudwood.mysticadditions.MysticAdditions;
+import com.sudwood.mysticadditions.mod_MysticAdditions;
 import com.sudwood.mysticadditions.items.MysticModItems;
 import com.sudwood.mysticadditions.items.energy.ItemWarpedPowerConnector;
 import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedGenerator;
@@ -84,16 +84,12 @@ int[] coords = {42,42,42};
 	@Override
 	public TileEntity createNewTileEntity(World var1) {
 		// TODO Auto-generated method stub
-		return new TileEntityMysticRedGrinder(4000);
+		return new TileEntityMysticRedGrinder();
 	}
 	public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
     {
-		if(par5EntityPlayer.getCurrentEquippedItem()!=null&&par5EntityPlayer.getCurrentEquippedItem().itemID==MysticModItems.csteelDust.itemID)
-		{
-			par5EntityPlayer.openGui(MysticAdditions.instance, 8, par1World, par2, par3, par4);
-			return true;
-		}
-		
+		if (par1World.isRemote)
+		return true;
 		TileEntityMysticRedGrinder tile =(TileEntityMysticRedGrinder) par1World.getBlockTileEntity(par2, par3, par4);
 		if(par5EntityPlayer.getCurrentEquippedItem()!=null&&par5EntityPlayer.getCurrentEquippedItem().itemID==MysticModItems.warpedPowerConnector.itemID)
 		{
@@ -102,21 +98,25 @@ int[] coords = {42,42,42};
 			if(tag.getBoolean("isSet"))
 			{
 				int[] tempArray = {tag.getInteger("xCoord"), tag.getInteger("yCoord"), tag.getInteger("zCoord")};
-				tile.setTeleportPowerCoords(tempArray, 4);
-				
+				tile.setTeleportPowerCoords(tempArray);
+				tile.efficiencyLevel = 4;
 				tile.setIsGettingTeleportedPower(true);
-
+				TileEntity tile2 = par1World.getBlockTileEntity(tempArray[0], tempArray[1], tempArray[2]);
+				
+				if(tile2 instanceof TileEntityMysticRedStorage)
+				{
+					((TileEntityMysticRedStorage) tile2).numberDrawing++;
+				}
 				tag.setInteger("xCoord", 0);
 				tag.setInteger("yCoord", 0);
 				tag.setInteger("zCoord", 0);
 				tag.setBoolean("isSet", false);
 				par5EntityPlayer.setCurrentItemOrArmor(0, tempStack);
-				par5EntityPlayer.sendChatToPlayer("Link Created");
 				return true;
 			}
 			if(!tag.getBoolean("isSet"))
 			{
-				par5EntityPlayer.sendChatToPlayer("No Current Link");
+		
 				return true;
 			}
 			
@@ -129,21 +129,25 @@ int[] coords = {42,42,42};
 			if(tag.getBoolean("isSet"))
 			{
 				int[] tempArray = {tag.getInteger("xCoord"), tag.getInteger("yCoord"), tag.getInteger("zCoord")};
-				tile.setTeleportPowerCoords(tempArray, 2);
-				
+				tile.setTeleportPowerCoords(tempArray);
+				tile.efficiencyLevel = 2;
 				tile.setIsGettingTeleportedPower(true);
-			
+				TileEntity tile2 = par1World.getBlockTileEntity(tempArray[0], tempArray[1], tempArray[2]);
+				
+				if(tile2 instanceof TileEntityMysticRedStorage)
+				{
+					((TileEntityMysticRedStorage) tile2).numberDrawing++;
+				}
 				tag.setInteger("xCoord", 0);
 				tag.setInteger("yCoord", 0);
 				tag.setInteger("zCoord", 0);
 				tag.setBoolean("isSet", false);
 				par5EntityPlayer.setCurrentItemOrArmor(0, tempStack);
-				par5EntityPlayer.sendChatToPlayer("Link Created");
 				return true;
 			}
 			if(!tag.getBoolean("isSet"))
 			{
-				par5EntityPlayer.sendChatToPlayer("No Current Link");
+				
 				return true;
 			}
 			
@@ -156,21 +160,25 @@ int[] coords = {42,42,42};
 			if(tag.getBoolean("isSet"))
 			{
 				int[] tempArray = {tag.getInteger("xCoord"), tag.getInteger("yCoord"), tag.getInteger("zCoord")};
-				tile.setTeleportPowerCoords(tempArray, 1.33);
-				
+				tile.setTeleportPowerCoords(tempArray);
+				tile.efficiencyLevel = 1.33;
 				tile.setIsGettingTeleportedPower(true);
-			
+				TileEntity tile2 = par1World.getBlockTileEntity(tempArray[0], tempArray[1], tempArray[2]);
+				
+				if(tile2 instanceof TileEntityMysticRedStorage)
+				{
+					((TileEntityMysticRedStorage) tile2).numberDrawing++;
+				}
 				tag.setInteger("xCoord", 0);
 				tag.setInteger("yCoord", 0);
 				tag.setInteger("zCoord", 0);
 				tag.setBoolean("isSet", false);
 				par5EntityPlayer.setCurrentItemOrArmor(0, tempStack);
-				par5EntityPlayer.sendChatToPlayer("Link Created");
 				return true;
 			}
 			if(!tag.getBoolean("isSet"))
 			{
-				par5EntityPlayer.sendChatToPlayer("No Current Link");
+				
 				return true;
 			}
 			
@@ -183,21 +191,25 @@ int[] coords = {42,42,42};
 			if(tag.getBoolean("isSet"))
 			{
 				int[] tempArray = {tag.getInteger("xCoord"), tag.getInteger("yCoord"), tag.getInteger("zCoord")};
-				tile.setTeleportPowerCoords(tempArray, 1);
-				
+				tile.setTeleportPowerCoords(tempArray);
+				tile.efficiencyLevel = 1;
 				tile.setIsGettingTeleportedPower(true);
+				TileEntity tile2 = par1World.getBlockTileEntity(tempArray[0], tempArray[1], tempArray[2]);
 				
+				if(tile2 instanceof TileEntityMysticRedStorage)
+				{
+					((TileEntityMysticRedStorage) tile2).numberDrawing++;
+				}
 				tag.setInteger("xCoord", 0);
 				tag.setInteger("yCoord", 0);
 				tag.setInteger("zCoord", 0);
 				tag.setBoolean("isSet", false);
 				par5EntityPlayer.setCurrentItemOrArmor(0, tempStack);
-				par5EntityPlayer.sendChatToPlayer("Link Created");
 				return true;
 			}
 			if(!tag.getBoolean("isSet"))
 			{
-				par5EntityPlayer.sendChatToPlayer("No Current Link");
+				
 				return true;
 			}
 			
@@ -206,7 +218,7 @@ int[] coords = {42,42,42};
 		
 		
 			
-			par5EntityPlayer.openGui(MysticAdditions.instance, 5, par1World, par2, par3, par4);
+			par5EntityPlayer.openGui(mod_MysticAdditions.instance, 5, par1World, par2, par3, par4);
 			return true;
 	
     }

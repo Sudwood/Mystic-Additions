@@ -19,9 +19,9 @@ public class ItemMysticExplosiveArrowhead extends Item
 		
 	}
 	@Override
-	public void registerIcons(IconRegister iconRegister)
+	public void updateIcons(IconRegister iconRegister)
 	{
-		this.itemIcon = iconRegister.registerIcon("MysticAdditions:explosivearrowheads");
+		this.iconIndex = iconRegister.registerIcon("MysticAdditions:explosivearrowheads");
 	}
 
 

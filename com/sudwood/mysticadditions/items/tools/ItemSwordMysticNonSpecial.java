@@ -16,9 +16,9 @@ public class ItemSwordMysticNonSpecial extends ItemSword
     }
    
     @Override
-   	public void registerIcons(IconRegister iconRegister)
+   	public void updateIcons(IconRegister iconRegister)
    	{
-   		this.itemIcon = iconRegister.registerIcon("MysticAdditions:CSteel Sword");
+   		this.iconIndex = iconRegister.registerIcon("MysticAdditions:CSteel Sword");
    	}
     
 

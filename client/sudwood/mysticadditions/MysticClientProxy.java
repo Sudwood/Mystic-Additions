@@ -4,7 +4,6 @@ import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraftforge.client.MinecraftForgeClient;
 
 import client.sudwood.mysticadditions.renderers.RenderMysticArrow;
-import client.sudwood.mysticadditions.renderers.RenderMysticCrystalGenerator;
 import client.sudwood.mysticadditions.renderers.RenderMysticECapacitorBase;
 import client.sudwood.mysticadditions.renderers.RenderMysticExplosiveArrow;
 import client.sudwood.mysticadditions.renderers.RenderMysticFireArrow;
@@ -14,7 +13,6 @@ import client.sudwood.mysticadditions.renderers.RenderMysticLightningArrow;
 import client.sudwood.mysticadditions.renderers.RenderMysticMagicOrb;
 import client.sudwood.mysticadditions.renderers.RenderMysticRedGeneratorHelper;
 import client.sudwood.mysticadditions.renderers.RenderMysticRedGrinder;
-import client.sudwood.mysticadditions.renderers.RenderMysticRedStorageMrk2;
 import client.sudwood.mysticadditions.renderers.RenderMysticTeleArrow;
 import client.sudwood.mysticadditions.renderers.RenderSteelShuriken;
 
@@ -24,11 +22,9 @@ import com.sudwood.mysticadditions.entity.EntityFireMiniBoss;
 import com.sudwood.mysticadditions.entity.EntityMysticWaterOrb;
 import com.sudwood.mysticadditions.entity.EntityMysticWindOrb;
 import com.sudwood.mysticadditions.entity.EntityWaterMiniBoss;
-import com.sudwood.mysticadditions.tileentity.TileEntityMysticCrystalGenerator;
 import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedGenerator;
 import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedGrinder;
 import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedStorage;
-import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedStorageMrk2;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -37,8 +33,6 @@ public class MysticClientProxy extends com.sudwood.mysticadditions.MysticCommonP
 	public static int MysticCapacitorRenderId;
 	public static int MysticGeneratorRenderId;
 	public static int MysticRedGrinderid;
-	public static int MysticCrystalGeneratorRenderId;
-	public static int MysticCapacitormrk2RenderID;
 	@Override
 	public void registerRenderInformation() 
 	  {  
@@ -70,16 +64,9 @@ public class MysticClientProxy extends com.sudwood.mysticadditions.MysticCommonP
 		MysticGeneratorRenderId = RenderingRegistry.getNextAvailableRenderId();
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMysticRedGenerator.class, new RenderMysticGenerator());
-		
-		MysticCrystalGeneratorRenderId = RenderingRegistry.getNextAvailableRenderId();
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMysticCrystalGenerator.class, new RenderMysticCrystalGenerator());
 		RenderingRegistry.registerBlockHandler(MysticGeneratorRenderId, new RenderMysticRedGeneratorHelper());
 		MysticRedGrinderid = RenderingRegistry.getNextAvailableRenderId();
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMysticRedGrinder.class, new RenderMysticRedGrinder());
-		
-		MysticCapacitormrk2RenderID = RenderingRegistry.getNextAvailableRenderId();
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMysticRedStorageMrk2.class, new RenderMysticRedStorageMrk2());
-		
 }
 	@Override
 	public int addArmor(String armor)

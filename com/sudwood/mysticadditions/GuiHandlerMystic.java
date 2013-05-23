@@ -4,26 +4,20 @@ import com.sudwood.mysticadditions.container.ContainerMysticFurnace;
 import com.sudwood.mysticadditions.container.ContainerMysticRedGenerator;
 import com.sudwood.mysticadditions.container.ContainerMysticRedGrinder;
 import com.sudwood.mysticadditions.container.ContainerMysticRedStorage;
-import com.sudwood.mysticadditions.container.ContainerMysticRedStorageMrk2;
 import com.sudwood.mysticadditions.container.ContainerPoweredFurnace;
 import com.sudwood.mysticadditions.container.ContainerPoweredMysticFurnace;
-import com.sudwood.mysticadditions.tileentity.TileEntityMysticEnergy;
 import com.sudwood.mysticadditions.tileentity.TileEntityMysticFurnace;
 import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedGenerator;
 import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedGrinder;
 import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedStorage;
-import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedStorageMrk2;
 import com.sudwood.mysticadditions.tileentity.TileEntityPoweredFurnace;
 import com.sudwood.mysticadditions.tileentity.TileEntityPoweredMysticFurnace;
 
 import client.sudwood.mysticadditions.gui.GuiMysticBud;
-import client.sudwood.mysticadditions.gui.GuiMysticEnergyConfiguration;
 import client.sudwood.mysticadditions.gui.GuiMysticFurnace;
 import client.sudwood.mysticadditions.gui.GuiMysticRedGenerator;
 import client.sudwood.mysticadditions.gui.GuiMysticRedGrinder;
 import client.sudwood.mysticadditions.gui.GuiMysticRedStorage;
-import client.sudwood.mysticadditions.gui.GuiMysticRedStorageMrk2;
-
 import client.sudwood.mysticadditions.gui.GuiPoweredFurnace;
 import client.sudwood.mysticadditions.gui.GuiPoweredMysticFurnace;
 import net.minecraft.entity.player.EntityPlayer;
@@ -79,17 +73,7 @@ public class GuiHandlerMystic implements IGuiHandler {
 			return new ContainerPoweredMysticFurnace(player.inventory, (TileEntityPoweredMysticFurnace)tileEntity);
 			}
 		}
-		if (id==8)
-		{
-			
-		}
-		if (id==9){
-			TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
-			if(tileEntity instanceof TileEntityMysticRedStorageMrk2){
-			return new ContainerMysticRedStorageMrk2(player.inventory, (TileEntityMysticRedStorageMrk2)tileEntity);
-			}
-		}
-	
+		
 		return null;
 	}
 @Override	
@@ -145,21 +129,6 @@ public class GuiHandlerMystic implements IGuiHandler {
 		return new GuiPoweredMysticFurnace(player.inventory, (TileEntityPoweredMysticFurnace)tileEntity);
 		}
 	}
-	if (id==8)
-	{
-		TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
-		if(tileEntity instanceof TileEntityMysticEnergy){
-		return new GuiMysticEnergyConfiguration((TileEntityMysticEnergy)tileEntity);
-		}
-	}
-	if (id==9)
-	{
-		TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
-		if(tileEntity instanceof TileEntityMysticRedStorageMrk2){
-		return new GuiMysticRedStorageMrk2(player.inventory, (TileEntityMysticRedStorageMrk2)tileEntity);
-		}
-	}
-	
     return null;
 }
 	

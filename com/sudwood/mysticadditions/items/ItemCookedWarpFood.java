@@ -19,12 +19,11 @@ public class ItemCookedWarpFood extends ItemFood {
 	}
 
 	@Override
-	public void registerIcons(IconRegister iconRegister)
+	public void updateIcons(IconRegister iconRegister)
 	{
-	         this.itemIcon = iconRegister.registerIcon("MysticAdditions:cookedwarpfood");
+	         this.iconIndex = iconRegister.registerIcon("MysticAdditions:cookedwarpfood");
 	}
-	@Override
-	protected void onFoodEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
+	protected void func_77849_c(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
            if (!par2World.isRemote)
             {

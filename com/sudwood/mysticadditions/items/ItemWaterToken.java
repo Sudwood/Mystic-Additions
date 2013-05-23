@@ -21,9 +21,9 @@ public class ItemWaterToken extends Item
 		
 	}
 	@Override
-	public void registerIcons(IconRegister iconRegister)
+	public void updateIcons(IconRegister iconRegister)
 	{
-	         this.itemIcon = iconRegister.registerIcon("MysticAdditions:watertoken");
+	         this.iconIndex = iconRegister.registerIcon("MysticAdditions:watertoken");
 	}
 
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) 

@@ -35,9 +35,9 @@ public class ItemMysticKnightEgg extends Item
        	return itemstack;
     }
 	@Override
-	public void registerIcons(IconRegister iconRegister)
+	public void updateIcons(IconRegister iconRegister)
 	{
-	         this.itemIcon = iconRegister.registerIcon("MysticAdditions:mysticknightspawnegg");
+	         this.iconIndex = iconRegister.registerIcon("MysticAdditions:mysticknightspawnegg");
 	}
 
 

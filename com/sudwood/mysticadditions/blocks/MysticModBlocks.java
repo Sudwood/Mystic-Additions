@@ -4,13 +4,10 @@ import com.sudwood.mysticadditions.CraftingManagerMystic;
 import com.sudwood.mysticadditions.FurnaceRecipesMystic;
 import com.sudwood.mysticadditions.GrinderRecipesMystic;
 import com.sudwood.mysticadditions.ItemBlockMysticSlabs;
-import com.sudwood.mysticadditions.MysticAdditions;
-import com.sudwood.mysticadditions.blocks.energy.BlockCrystalGeneratorBase;
-import com.sudwood.mysticadditions.blocks.energy.BlockMysticCrystalGenerator;
+import com.sudwood.mysticadditions.mod_MysticAdditions;
 import com.sudwood.mysticadditions.blocks.energy.BlockMysticRedGenerator;
 import com.sudwood.mysticadditions.blocks.energy.BlockMysticRedGrinder;
 import com.sudwood.mysticadditions.blocks.energy.BlockMysticRedStorage;
-import com.sudwood.mysticadditions.blocks.energy.BlockMysticRedStoragemrk2;
 import com.sudwood.mysticadditions.blocks.energy.BlockPoweredFurnace;
 import com.sudwood.mysticadditions.blocks.energy.BlockPoweredMysticFurnace;
 import com.sudwood.mysticadditions.items.MysticModItems;
@@ -26,7 +23,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.src.ModLoader;
-import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -36,6 +32,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class MysticModBlocks {
 	public static  Block compressedCoal;
+	public static  Block compressedRedstone;
 	public static  Block refinedCarbon;
 	public static  Block refinedRedstone;
 	public static Block refinedIronBlock;
@@ -85,9 +82,9 @@ public class MysticModBlocks {
 	public static  Block mysticRedGrinder;
 	public static  Block poweredFurnace;
 	public static  Block poweredMysticFurnace;
-	public static  Block crystalGenerator;
-	public static  Block crystalGeneratorBase;
-	public static  Block mysticRedStorageMrk2;
+	
+	
+
 	//blocksounds
 	public static final StepSound soundPowderFootstep = new StepSound("stone", 1.0F, 1.0F);
     public static final StepSound soundWoodFootstep = new StepSound("wood", 1.0F, 1.0F);
@@ -106,59 +103,57 @@ public class MysticModBlocks {
     public static void init() {
 		
 		//blocks =
-		compressedCoal = new BlockCompressedCoal(MysticAdditions.compressedcoalid).setHardness(1F).setUnlocalizedName("CompressedCoal").setCreativeTab(MysticAdditions.mysticTab);
-		refinedCarbon = new BlockRefinedCarbon(MysticAdditions.refinedcarbonid).setHardness(1F).setUnlocalizedName("RefinedCarbon").setCreativeTab(MysticAdditions.mysticTab);
-		refinedRedstone = new BlockRefinedRedstone(MysticAdditions.refinedredstoneid).setHardness(1F).setUnlocalizedName("RefinedRedstone").setLightValue(0.7F).setCreativeTab(MysticAdditions.mysticTab);
-		refinedIronBlock = new BlockFixedIronBlock(MysticAdditions.refinedironblockid).setHardness(1F).setUnlocalizedName("RefinedIronBlock").setCreativeTab(MysticAdditions.mysticTab);
-		cSteelBlock = new BlockCSteelBlock(MysticAdditions.csteelblockid).setHardness(1F).setUnlocalizedName("cSteelBlock").setCreativeTab(MysticAdditions.mysticTab);
-		mysticGlass = new BlockMysticGlass(MysticAdditions.mysticglassid, Material.glass, false).setHardness(0.2F).setUnlocalizedName("MysticGlass").setCreativeTab(MysticAdditions.mysticTab);
-		mysticglowGlass = new BlockMysticGlowGlass(MysticAdditions.mysticglowglassid, Material.glass, false).setHardness(0.2F).setUnlocalizedName("MysticGlowGlass").setLightValue(0.8F).setCreativeTab(MysticAdditions.mysticTab);
-		mysticspeedGlass = new BlockMysticSpeedGlass(MysticAdditions.mysticspeedglassid).setHardness(0.2F).setUnlocalizedName("MysticSpeedGlass").setCreativeTab(MysticAdditions.mysticTab);
-		mysticlandmineGlass = new BlockMysticLandmineGlass(MysticAdditions.mysticlandmineglassid, Material.glass, false).setHardness(0.2F).setUnlocalizedName("MysticLandmineGlass").setCreativeTab(MysticAdditions.mysticTab);
-		mysticfireGlass = new BlockMysticFireGlass(MysticAdditions.mysticfireglassid, Material.glass, false).setHardness(0.2F).setUnlocalizedName("MysticFireGlass").setCreativeTab(MysticAdditions.mysticTab);
-		redLog = new BlockRedLog(MysticAdditions.redlogid).setHardness(2.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("redlog").setCreativeTab(MysticAdditions.mysticTab);
-		redPlanks = new BlockRedPlanks(MysticAdditions.redplanksid).setHardness(2.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("redplanks").setCreativeTab(MysticAdditions.mysticTab);
-		ironLog = new BlockIronLog(MysticAdditions.ironlogid).setHardness(2.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("ironlog").setCreativeTab(MysticAdditions.mysticTab);
-		ironPlanks = new BlockIronPlanks(MysticAdditions.ironplanksid).setHardness(2.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("ironplanks").setCreativeTab(MysticAdditions.mysticTab);
-		redSapling = new BlockRedSapling(MysticAdditions.redsaplingid).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("redsapling");
-		ironSapling = new BlockIronSapling(MysticAdditions.ironsaplingid).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("ironsapling");
-		redLeaves = new BlockRedLeaves(MysticAdditions.redleavesid).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("redleaves").setCreativeTab(MysticAdditions.mysticTab);
-		ironLeaves = new BlockIronLeaves(MysticAdditions.ironleavesid).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("lironleaves").setCreativeTab(MysticAdditions.mysticTab);
-		mysticDirt = (new BlockMysticDirt(MysticAdditions.mysticdirtid)).setHardness(0.5F).setStepSound(soundGravelFootstep).setUnlocalizedName("mysticdirt").setCreativeTab(MysticAdditions.mysticTab);
-		mysticGrass = (new BlockMysticGrass(MysticAdditions.mysticgrassid)).setHardness(0.6F).setStepSound(soundGravelFootstep).setUnlocalizedName("mysticgrass").setCreativeTab(MysticAdditions.mysticTab);
-		mysticgenStone = (new BlockMysticgenStone(MysticAdditions.mysticgenstoneid)).setHardness(1.5F).setResistance(10.0F).setUnlocalizedName("mysticgenstone").setCreativeTab(MysticAdditions.mysticTab);
-		mysticCobblestone = (new BlockMysticCobblestone(MysticAdditions.mysticcobblestoneid).setHardness(2.0F).setResistance(10.0F).setUnlocalizedName("mysticcobble").setCreativeTab(CreativeTabs.tabBlock));
-		mysticPortal = (new BlockMysticPortal(MysticAdditions.mysticportalid)).setHardness(-1F).setStepSound(soundGlassFootstep).setUnlocalizedName("mysticPortal");
-		Elevator = (new BlockElevator(MysticAdditions.elevatorid, Material.glass, false)).setHardness(0.1F).setUnlocalizedName("elevator").setCreativeTab(MysticAdditions.mysticTab);
-		Stopper = (new BlockStopper(MysticAdditions.stopperid, Material.glass, false)).setHardness(0.1F).setUnlocalizedName("stopper").setCreativeTab(MysticAdditions.mysticTab);
-		Dropper = (new BlockDropper(MysticAdditions.dropperid, Material.glass, false)).setHardness(0.1F).setUnlocalizedName("dropper").setCreativeTab(MysticAdditions.mysticTab);
-		mysticBricks = (new BlockMysticBricks(MysticAdditions.mysticbricksid)).setHardness(9.5F).setUnlocalizedName("mysticBricks").setCreativeTab(MysticAdditions.mysticTab);
-		mysticportalBlock = (new BlockMysticPortalBlock(MysticAdditions.mysticportalblockid)).setHardness(10.5F).setUnlocalizedName("mysticportalblock").setCreativeTab(MysticAdditions.mysticTab);
-		mysticportalSpawner = (new BlockMysticPortalSpawner(MysticAdditions.mysticportalspawnerid)).setHardness(2.5F).setUnlocalizedName("mysticportalspawner").setCreativeTab(MysticAdditions.mysticTab);
-		mysticingotBlock = new BlockMysticIngotBlock(MysticAdditions.mysticingotblockid).setHardness(10F).setUnlocalizedName("mysticingotblock").setResistance(20F).setCreativeTab(MysticAdditions.mysticTab);
-		mysticFurnace = new BlockMysticFurnace(MysticAdditions.mysticfurnaceid, false).setHardness(10F).setUnlocalizedName("MysticFurnace").setResistance(20F).setCreativeTab(MysticAdditions.mysticTab);
+		compressedCoal = new BlockCompressedCoal(mod_MysticAdditions.compressedcoalid).setHardness(1F).setUnlocalizedName("CompressedCoal").setCreativeTab(mod_MysticAdditions.mysticTab);
+		compressedRedstone = new BlockCompressedRedstone(mod_MysticAdditions.compressedredstoneid).setHardness(1F).setUnlocalizedName("CompressedRedstone").setLightValue(0.5F).setCreativeTab(mod_MysticAdditions.mysticTab);
+		refinedCarbon = new BlockRefinedCarbon(mod_MysticAdditions.refinedcarbonid).setHardness(1F).setUnlocalizedName("RefinedCarbon").setCreativeTab(mod_MysticAdditions.mysticTab);
+		refinedRedstone = new BlockRefinedRedstone(mod_MysticAdditions.refinedredstoneid).setHardness(1F).setUnlocalizedName("RefinedRedstone").setLightValue(0.7F).setCreativeTab(mod_MysticAdditions.mysticTab);
+		refinedIronBlock = new BlockFixedIronBlock(mod_MysticAdditions.refinedironblockid).setHardness(1F).setUnlocalizedName("RefinedIronBlock").setCreativeTab(mod_MysticAdditions.mysticTab);
+		cSteelBlock = new BlockCSteelBlock(mod_MysticAdditions.csteelblockid).setHardness(1F).setUnlocalizedName("cSteelBlock").setCreativeTab(mod_MysticAdditions.mysticTab);
+		mysticGlass = new BlockMysticGlass(mod_MysticAdditions.mysticglassid, Material.glass, false).setHardness(0.2F).setUnlocalizedName("MysticGlass").setCreativeTab(mod_MysticAdditions.mysticTab);
+		mysticglowGlass = new BlockMysticGlowGlass(mod_MysticAdditions.mysticglowglassid, Material.glass, false).setHardness(0.2F).setUnlocalizedName("MysticGlowGlass").setLightValue(0.8F).setCreativeTab(mod_MysticAdditions.mysticTab);
+		mysticspeedGlass = new BlockMysticSpeedGlass(mod_MysticAdditions.mysticspeedglassid).setHardness(0.2F).setUnlocalizedName("MysticSpeedGlass").setCreativeTab(mod_MysticAdditions.mysticTab);
+		mysticlandmineGlass = new BlockMysticLandmineGlass(mod_MysticAdditions.mysticlandmineglassid, Material.glass, false).setHardness(0.2F).setUnlocalizedName("MysticLandmineGlass").setCreativeTab(mod_MysticAdditions.mysticTab);
+		mysticfireGlass = new BlockMysticFireGlass(mod_MysticAdditions.mysticfireglassid, Material.glass, false).setHardness(0.2F).setUnlocalizedName("MysticFireGlass").setCreativeTab(mod_MysticAdditions.mysticTab);
+		redLog = new BlockRedLog(mod_MysticAdditions.redlogid).setHardness(2.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("redlog").setCreativeTab(mod_MysticAdditions.mysticTab);
+		redPlanks = new BlockRedPlanks(mod_MysticAdditions.redplanksid).setHardness(2.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("redplanks").setCreativeTab(mod_MysticAdditions.mysticTab);
+		ironLog = new BlockIronLog(mod_MysticAdditions.ironlogid).setHardness(2.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("ironlog").setCreativeTab(mod_MysticAdditions.mysticTab);
+		ironPlanks = new BlockIronPlanks(mod_MysticAdditions.ironplanksid).setHardness(2.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("ironplanks").setCreativeTab(mod_MysticAdditions.mysticTab);
+		redSapling = new BlockRedSapling(mod_MysticAdditions.redsaplingid).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("redsapling");
+		ironSapling = new BlockIronSapling(mod_MysticAdditions.ironsaplingid).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("ironsapling");
+		redLeaves = new BlockRedLeaves(mod_MysticAdditions.redleavesid).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("redleaves").setCreativeTab(mod_MysticAdditions.mysticTab);
+		ironLeaves = new BlockIronLeaves(mod_MysticAdditions.ironleavesid).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("lironleaves").setCreativeTab(mod_MysticAdditions.mysticTab);
+		mysticDirt = (new BlockMysticDirt(mod_MysticAdditions.mysticdirtid)).setHardness(0.5F).setStepSound(soundGravelFootstep).setUnlocalizedName("mysticdirt").setCreativeTab(mod_MysticAdditions.mysticTab);
+		mysticGrass = (new BlockMysticGrass(mod_MysticAdditions.mysticgrassid)).setHardness(0.6F).setStepSound(soundGravelFootstep).setUnlocalizedName("mysticgrass").setCreativeTab(mod_MysticAdditions.mysticTab);
+		mysticgenStone = (new BlockMysticgenStone(mod_MysticAdditions.mysticgenstoneid)).setHardness(1.5F).setResistance(10.0F).setUnlocalizedName("mysticgenstone").setCreativeTab(mod_MysticAdditions.mysticTab);
+		mysticCobblestone = (new BlockMysticCobblestone(mod_MysticAdditions.mysticcobblestoneid).setHardness(2.0F).setResistance(10.0F).setUnlocalizedName("mysticcobble").setCreativeTab(CreativeTabs.tabBlock));
+		mysticPortal = (new BlockMysticPortal(mod_MysticAdditions.mysticportalid)).setHardness(-1F).setStepSound(soundGlassFootstep).setUnlocalizedName("mysticPortal");
+		Elevator = (new BlockElevator(mod_MysticAdditions.elevatorid, Material.glass, false)).setHardness(0.1F).setUnlocalizedName("elevator").setCreativeTab(mod_MysticAdditions.mysticTab);
+		Stopper = (new BlockStopper(mod_MysticAdditions.stopperid, Material.glass, false)).setHardness(0.1F).setUnlocalizedName("stopper").setCreativeTab(mod_MysticAdditions.mysticTab);
+		Dropper = (new BlockDropper(mod_MysticAdditions.dropperid, Material.glass, false)).setHardness(0.1F).setUnlocalizedName("dropper").setCreativeTab(mod_MysticAdditions.mysticTab);
+		mysticBricks = (new BlockMysticBricks(mod_MysticAdditions.mysticbricksid)).setHardness(9.5F).setUnlocalizedName("mysticBricks").setCreativeTab(mod_MysticAdditions.mysticTab);
+		mysticportalBlock = (new BlockMysticPortalBlock(mod_MysticAdditions.mysticportalblockid)).setHardness(10.5F).setUnlocalizedName("mysticportalblock").setCreativeTab(mod_MysticAdditions.mysticTab);
+		mysticportalSpawner = (new BlockMysticPortalSpawner(mod_MysticAdditions.mysticportalspawnerid)).setHardness(2.5F).setUnlocalizedName("mysticportalspawner").setCreativeTab(mod_MysticAdditions.mysticTab);
+		mysticingotBlock = new BlockMysticIngotBlock(mod_MysticAdditions.mysticingotblockid).setHardness(10F).setUnlocalizedName("mysticingotblock").setResistance(20F).setCreativeTab(mod_MysticAdditions.mysticTab);
+		mysticFurnace = new BlockMysticFurnace(mod_MysticAdditions.mysticfurnaceid, false).setHardness(10F).setUnlocalizedName("MysticFurnace").setResistance(20F).setCreativeTab(mod_MysticAdditions.mysticTab);
 	//	mysticCraftingTable = new BlockMysticCraftingTable(mod_MysticAdditions.mysticcraftingtableid).setHardness(10F).setUnlocalizedName("MysticCraftingTable").setResistance(20F).setCreativeTabs(mod_MysticAdditions.mysticTab);
-		inertGrass = new BlockMysticInertGrass(MysticAdditions.inertmysticgrassid).setHardness(0.6F).setStepSound(soundGravelFootstep).setUnlocalizedName("inertmysticgrass");
-		inertDirt = (new BlockMysticInertDirt(MysticAdditions.inertmysticdirtid)).setHardness(0.5F).setStepSound(soundGravelFootstep).setUnlocalizedName("inertmysticdirt");
-		inertStone = (new BlockMysticInertgenStone(MysticAdditions.inertmysticgenstoneid)).setHardness(1.5F).setResistance(10.0F).setUnlocalizedName("inertmysticgenstone");
-		inertCobble = (new BlockMysticInertCobblestone(MysticAdditions.inertmysticcobblestoneid).setHardness(2.0F).setResistance(10.0F).setUnlocalizedName("inertmysticcobble"));
-		mysticBUD = new BlockMysticBudSwitch(MysticAdditions.mysticbudswitchid).setHardness(10F).setStepSound(soundStoneFootstep).setUnlocalizedName("mysticbudswitch").setCreativeTab(MysticAdditions.mysticTab);
-		mysticRedStorage = new BlockMysticRedStorage(MysticAdditions.mysticredstorageid, Material.circuits).setHardness(1.5F).setResistance(100F).setStepSound(soundStoneFootstep).setUnlocalizedName("mysticredstorage").setCreativeTab(MysticAdditions.mysticTab);
-		mysticRedGenerator = new BlockMysticRedGenerator(MysticAdditions.mysticredgeneratorid, Material.circuits).setHardness(1.5F).setResistance(100F).setStepSound(soundStoneFootstep).setUnlocalizedName("mysticredgenerator").setCreativeTab(MysticAdditions.mysticTab);
-		mysticCobbleStairs = new BlockMysticStairs(MysticAdditions.mysticcobblestairsid, mysticCobblestone, 0).setHardness(1.5F).setResistance(10.0F).setUnlocalizedName("mysticcobblestairs").setCreativeTab(MysticAdditions.mysticTab);
-		mysticSlabSingle = (BlockHalfSlab) new BlockMysticSlab(MysticAdditions.mysticslabssingleid, false).setHardness(1.5F).setResistance(10.0F).setUnlocalizedName("mysticSlabs").setCreativeTab(MysticAdditions.mysticTab);
-		mysticSlabDouble = (BlockHalfSlab) new BlockMysticSlab(MysticAdditions.mysticslabsdoubleid, true).setHardness(1.5F).setResistance(10.0F).setUnlocalizedName("mysticSlabs");
-		mysticStoneStairs = new BlockMysticStairs(MysticAdditions.mysticstonestairsid, mysticgenStone, 0).setHardness(1.5F).setResistance(10.0F).setUnlocalizedName("mysticstonestairs").setCreativeTab(MysticAdditions.mysticTab);
-		mysticBrickStairs = new BlockMysticStairs(MysticAdditions.mysticbrickstairsid, mysticBricks, 0).setHardness(1.5F).setResistance(10.0F).setUnlocalizedName("mysticbrickstairs").setCreativeTab(MysticAdditions.mysticTab);
-		mysticRedPlankStairs = new BlockMysticStairs(MysticAdditions.mysticredplankstairsid, redPlanks, 0).setHardness(1.5F).setResistance(10.0F).setUnlocalizedName("mysticredplankstairs").setCreativeTab(MysticAdditions.mysticTab);
-		mysticIronPlankStairs = new BlockMysticStairs(MysticAdditions.mysticironplankstairsid, ironPlanks, 0).setHardness(1.5F).setResistance(10.0F).setUnlocalizedName("mysticironplankstairs").setCreativeTab(MysticAdditions.mysticTab);
-		markBlock = new BlockMarkBlock(MysticAdditions.markblockid).setHardness(200F).setResistance(200F);
-		mysticRedGrinder = new BlockMysticRedGrinder(MysticAdditions.mysticredgrinderid).setHardness(1.5F).setResistance(100F).setUnlocalizedName("mysticredgrinder").setCreativeTab(MysticAdditions.mysticTab);
-		poweredFurnace = new BlockPoweredFurnace(MysticAdditions.poweredfurnaceid).setHardness(1.5F).setResistance(100F).setUnlocalizedName("poweredfurnace").setCreativeTab(MysticAdditions.mysticTab);
-		poweredMysticFurnace = new BlockPoweredMysticFurnace(MysticAdditions.poweredmysticfurnaceid).setHardness(1.5F).setResistance(100F).setUnlocalizedName("poweredmysticfurnace").setCreativeTab(MysticAdditions.mysticTab);
-		crystalGenerator = new BlockMysticCrystalGenerator(MysticAdditions.crystalgeneratorid, Material.ice).setHardness(1.5F).setResistance(100F).setUnlocalizedName("crystalgenerator").setCreativeTab(MysticAdditions.mysticTab);
-		crystalGeneratorBase = new BlockCrystalGeneratorBase(MysticAdditions.crystalgeneratorbaseid, Material.ice).setHardness(1.5F).setResistance(100F).setUnlocalizedName("MysticAdditions:crystalgenbase").setCreativeTab(MysticAdditions.mysticTab);
-		mysticRedStorageMrk2 = new BlockMysticRedStoragemrk2(MysticAdditions.mrk2mysticredstorageid, Material.circuits).setHardness(1.5F).setResistance(100F).setUnlocalizedName("MysticAdditions:mysticredstoragemrk2").setCreativeTab(MysticAdditions.mysticTab);
+		inertGrass = new BlockMysticInertGrass(mod_MysticAdditions.inertmysticgrassid).setHardness(0.6F).setStepSound(soundGravelFootstep).setUnlocalizedName("inertmysticgrass");
+		inertDirt = (new BlockMysticInertDirt(mod_MysticAdditions.inertmysticdirtid)).setHardness(0.5F).setStepSound(soundGravelFootstep).setUnlocalizedName("inertmysticdirt");
+		inertStone = (new BlockMysticInertgenStone(mod_MysticAdditions.inertmysticgenstoneid)).setHardness(1.5F).setResistance(10.0F).setUnlocalizedName("inertmysticgenstone");
+		inertCobble = (new BlockMysticInertCobblestone(mod_MysticAdditions.inertmysticcobblestoneid).setHardness(2.0F).setResistance(10.0F).setUnlocalizedName("inertmysticcobble"));
+		mysticBUD = new BlockMysticBudSwitch(mod_MysticAdditions.mysticbudswitchid).setHardness(10F).setStepSound(soundStoneFootstep).setUnlocalizedName("mysticbudswitch").setCreativeTab(mod_MysticAdditions.mysticTab);
+		mysticRedStorage = new BlockMysticRedStorage(mod_MysticAdditions.mysticredstorageid, Material.circuits).setHardness(10F).setStepSound(soundStoneFootstep).setUnlocalizedName("mysticredstorage").setCreativeTab(mod_MysticAdditions.mysticTab);
+		mysticRedGenerator = new BlockMysticRedGenerator(mod_MysticAdditions.mysticredgeneratorid, Material.circuits).setHardness(10F).setStepSound(soundStoneFootstep).setUnlocalizedName("mysticredgenerator").setCreativeTab(mod_MysticAdditions.mysticTab);
+		mysticCobbleStairs = new BlockMysticStairs(mod_MysticAdditions.mysticcobblestairsid, mysticCobblestone, 0).setHardness(1.5F).setResistance(10.0F).setUnlocalizedName("mysticcobblestairs").setCreativeTab(mod_MysticAdditions.mysticTab);
+		mysticSlabSingle = (BlockHalfSlab) new BlockMysticSlab(mod_MysticAdditions.mysticslabssingleid, false).setHardness(1.5F).setResistance(10.0F).setUnlocalizedName("mysticSlabs").setCreativeTab(mod_MysticAdditions.mysticTab);
+		mysticSlabDouble = (BlockHalfSlab) new BlockMysticSlab(mod_MysticAdditions.mysticslabsdoubleid, true).setHardness(1.5F).setResistance(10.0F).setUnlocalizedName("mysticSlabs");
+		mysticStoneStairs = new BlockMysticStairs(mod_MysticAdditions.mysticstonestairsid, mysticgenStone, 0).setHardness(1.5F).setResistance(10.0F).setUnlocalizedName("mysticstonestairs").setCreativeTab(mod_MysticAdditions.mysticTab);
+		mysticBrickStairs = new BlockMysticStairs(mod_MysticAdditions.mysticbrickstairsid, mysticBricks, 0).setHardness(1.5F).setResistance(10.0F).setUnlocalizedName("mysticbrickstairs").setCreativeTab(mod_MysticAdditions.mysticTab);
+		mysticRedPlankStairs = new BlockMysticStairs(mod_MysticAdditions.mysticredplankstairsid, redPlanks, 0).setHardness(1.5F).setResistance(10.0F).setUnlocalizedName("mysticredplankstairs").setCreativeTab(mod_MysticAdditions.mysticTab);
+		mysticIronPlankStairs = new BlockMysticStairs(mod_MysticAdditions.mysticironplankstairsid, ironPlanks, 0).setHardness(1.5F).setResistance(10.0F).setUnlocalizedName("mysticironplankstairs").setCreativeTab(mod_MysticAdditions.mysticTab);
+		markBlock = new BlockMarkBlock(mod_MysticAdditions.markblockid).setHardness(200F).setResistance(200F);
+		mysticRedGrinder = new BlockMysticRedGrinder(mod_MysticAdditions.mysticredgrinderid).setHardness(1.5F).setResistance(100F).setUnlocalizedName("mysticredgrinder").setCreativeTab(mod_MysticAdditions.mysticTab);
+		poweredFurnace = new BlockPoweredFurnace(mod_MysticAdditions.poweredfurnaceid).setHardness(1.5F).setResistance(100F).setUnlocalizedName("poweredfurnace").setCreativeTab(mod_MysticAdditions.mysticTab);
+		poweredMysticFurnace = new BlockPoweredMysticFurnace(mod_MysticAdditions.poweredmysticfurnaceid).setHardness(1.5F).setResistance(100F).setUnlocalizedName("poweredmysticfurnace").setCreativeTab(mod_MysticAdditions.mysticTab);
 		//block registration
 		//dimension stuff
 		
@@ -178,76 +173,78 @@ public class MysticModBlocks {
 		
 		
 		
-	
+		//compressed redstone
+		GameRegistry.registerBlock(compressedRedstone, "Compressed Redstone");
+	LanguageRegistry.addName(compressedRedstone, "Compressed Redstone");
 		
 		
 		
 		
 		//refined carbon
 		GameRegistry.registerBlock(refinedCarbon, "Refined Carbon");
-		LanguageRegistry.addName(refinedCarbon, "Refined Carbon");
+	LanguageRegistry.addName(refinedCarbon, "Refined Carbon");
 	
 		
 		
 		//refined Redstone
 		GameRegistry.registerBlock(refinedRedstone, "Refined Redstone");
-		LanguageRegistry.addName(refinedRedstone, "Refined redstone");
+	LanguageRegistry.addName(refinedRedstone, "Refined redstone");
 
 	
 	
 		//refined iron block
-		GameRegistry.registerBlock(refinedIronBlock, "Refined Iron Block");
-		LanguageRegistry.addName(refinedIronBlock, "Refined Iron Block");
+	GameRegistry.registerBlock(refinedIronBlock, "Refined Iron Block");
+	LanguageRegistry.addName(refinedIronBlock, "Refined Iron Block");
 
 	
 	
 		//cSteelBlock
-		GameRegistry.registerBlock(cSteelBlock, "Steel Block");
-		LanguageRegistry.addName(cSteelBlock, "Steel Block");
+	GameRegistry.registerBlock(cSteelBlock, "Steel Block");
+	LanguageRegistry.addName(cSteelBlock, "Steel Block");
 
 	
 	
 	//mystic glass
 	
-		GameRegistry.registerBlock(mysticGlass, "Mystic Glass");
-		LanguageRegistry.addName(mysticGlass, "Mystic Glass");
+	GameRegistry.registerBlock(mysticGlass, "Mystic Glass");
+	LanguageRegistry.addName(mysticGlass, "Mystic Glass");
 	
 	
 	
 	
 	//mystic glow glass
 	
-		GameRegistry.registerBlock(mysticglowGlass, "Mystic Glow Glass");
-		LanguageRegistry.addName(mysticglowGlass, "Mystic Glow Glass");
+	GameRegistry.registerBlock(mysticglowGlass, "Mystic Glow Glass");
+	LanguageRegistry.addName(mysticglowGlass, "Mystic Glow Glass");
 	
 	
 	//mystic speed glass
 	
-		GameRegistry.registerBlock(mysticspeedGlass, "Mystic Speed Strip");
-		LanguageRegistry.addName(mysticspeedGlass, "Mystic Speed Strip");
+	GameRegistry.registerBlock(mysticspeedGlass, "Mystic Speed Strip");
+	LanguageRegistry.addName(mysticspeedGlass, "Mystic Speed Strip");
 	
 	
 	//mystic landmine glass
 	
-		GameRegistry.registerBlock(mysticlandmineGlass, "Mystic Landmine");
-		LanguageRegistry.addName(mysticlandmineGlass, "Mystic Landmine");
+	GameRegistry.registerBlock(mysticlandmineGlass, "Mystic Landmine");
+LanguageRegistry.addName(mysticlandmineGlass, "Mystic Landmine");
 	
 	
 	//mystic fire glass
 	
-		GameRegistry.registerBlock(mysticfireGlass, "Mystic Fire Trap");
-		LanguageRegistry.addName(mysticfireGlass, "Mystic Fire Trap");
+	GameRegistry.registerBlock(mysticfireGlass, "Mystic Fire Trap");
+	LanguageRegistry.addName(mysticfireGlass, "Mystic Fire Trap");
 	
 	
 	//red tree stuff
-		GameRegistry.registerBlock(redLog, "Mystic Log");
-		LanguageRegistry.addName(redLog, "Mystic Log");
-		GameRegistry.registerBlock(redLeaves, "Mystic Leaves");
-		LanguageRegistry.addName(redLeaves, "Mystic Leaves");
-		GameRegistry.registerBlock(redSapling, "Mystic Sapling");
-		LanguageRegistry.addName(redSapling, "Mystic Sapling");
-		GameRegistry.registerBlock(redPlanks, "Mystic Planks");
-		LanguageRegistry.addName(redPlanks, "Mystic Planks");
+	GameRegistry.registerBlock(redLog, "Mystic Log");
+	LanguageRegistry.addName(redLog, "Mystic Log");
+	GameRegistry.registerBlock(redLeaves, "Mystic Leaves");
+	LanguageRegistry.addName(redLeaves, "Mystic Leaves");
+	GameRegistry.registerBlock(redSapling, "Mystic Sapling");
+LanguageRegistry.addName(redSapling, "Mystic Sapling");
+	GameRegistry.registerBlock(redPlanks, "Mystic Planks");
+LanguageRegistry.addName(redPlanks, "Mystic Planks");
 	
 	//iron tree stuff
 	GameRegistry.registerBlock(ironLog, "Ironwood Log");
@@ -323,12 +320,6 @@ LanguageRegistry.addName(mysticCobblestone, "Warped Cobblestone");
 	LanguageRegistry.addName(poweredFurnace, "Powered Furnace");
 	GameRegistry.registerBlock(poweredMysticFurnace, "Powered Mystic Furnace");
 	LanguageRegistry.addName(poweredMysticFurnace, "Powered Mystic Furnace");
-	GameRegistry.registerBlock(crystalGenerator, "Crystal Generator");
-	LanguageRegistry.addName(crystalGenerator, "Crystal Generator");
-	GameRegistry.registerBlock(crystalGeneratorBase, "Crytal Amplifier");
-	LanguageRegistry.addName(crystalGeneratorBase, "Crystal Amplifier");
-	GameRegistry.registerBlock(mysticRedStorageMrk2 ,"Mrk 2 Red Capacitor");
-	LanguageRegistry.addName(mysticRedStorageMrk2 ,"Mrk 2 Red Capacitor");
 	//stairs
 	GameRegistry.registerBlock(mysticCobbleStairs, "mysticcobbleStairs");
 	GameRegistry.registerBlock(mysticStoneStairs, "mysticstoneStairs");
@@ -368,7 +359,6 @@ LanguageRegistry.addName(mysticCobblestone, "Warped Cobblestone");
     	grm.smelting().addSmelting(Block.oreIron.blockID, new ItemStack(MysticModItems.essenceIron, 2), 0.5F);
     	grm.smelting().addSmelting(Block.oreGold.blockID, new ItemStack(MysticModItems.essenceGold, 2), 0.5F);
     	grm.smelting().addSmelting(Block.oreDiamond.blockID, new ItemStack(MysticModItems.essenceDiamond, 2), 0.5F);
-    	grm.smelting().addSmelting(MysticModItems.swordCSteel.itemID, new ItemStack(MysticModItems.cSteelIngot, 1), 0.5F);
     	
     	//smelting recipes
     	frm.smelting().addSmelting(MysticModItems.essenceIron.itemID, new ItemStack(Item.ingotIron, 1), 0.5F);
@@ -382,9 +372,10 @@ LanguageRegistry.addName(mysticCobblestone, "Warped Cobblestone");
 		GameRegistry.addRecipe(new ItemStack(compressedCoal, 1) , new Object[]{
 			"XXX","XXX","XXX", 'X', new ItemStack(Item.coal, 1, 1)});
     	//redstone blocks
-    	frm.smelting().addSmelting(Block.blockRedstone.blockID, new ItemStack(refinedRedstone , 1), 1);
-    	
-    	
+    	frm.smelting().addSmelting(compressedRedstone.blockID, new ItemStack(refinedRedstone , 1), 1);
+    	GameRegistry.addRecipe(new ItemStack(compressedRedstone, 1) , new Object[]{
+			"XXX","XXX","XXX", 'X', Item.redstone});
+    	GameRegistry.addShapelessRecipe(new ItemStack(Item.redstone, 9), new Object[]{compressedRedstone});
     	//metal blocks
     	CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(cSteelBlock, 1) , new Object[]{
     		"XXX","XXX","XXX", 'X', "ingotSteel"}));
@@ -425,7 +416,7 @@ LanguageRegistry.addName(mysticCobblestone, "Warped Cobblestone");
     	//mystic brick uses
     	GameRegistry.addRecipe(new ItemStack(Item.ingotIron, 4) , new Object[]{
     		"XXX","X X","X X", 'X', mysticBricks});
-    	GameRegistry.addRecipe(new ItemStack(Block.blockRedstone, 1) , new Object[]{
+    	GameRegistry.addRecipe(new ItemStack(compressedRedstone, 1) , new Object[]{
     		"X X","X X","XXX", 'X', mysticBricks});
     	//elevator blocks
     	GameRegistry.addRecipe(new ItemStack(Elevator, 8) , new Object[]{
@@ -444,22 +435,15 @@ LanguageRegistry.addName(mysticCobblestone, "Warped Cobblestone");
     	GameRegistry.addRecipe(new ItemStack(mysticFurnace, 1) , new Object[]{
     		"RRR", "IFI", "RRR", Character.valueOf('R'), Item.redstone, Character.valueOf('I'), Item.ingotIron, Character.valueOf('F'), Block.furnaceIdle});
     	GameRegistry.addRecipe(new ItemStack(mysticRedGenerator, 1) , new Object[]{
-    		"RTR", "IFI", "RRR", Character.valueOf('R'), Item.redstone, Character.valueOf('I'), new ItemStack(MysticModItems.crudeMysticBattery,1, OreDictionary.WILDCARD_VALUE), Character.valueOf('F'), MysticModBlocks.mysticFurnace, Character.valueOf('T'), MysticModItems.warpedPowerConnector});
+    		"RTR", "IFI", "RRR", Character.valueOf('R'), Item.redstone, Character.valueOf('I'), new ItemStack(MysticModItems.crudeMysticBattery,1,10), Character.valueOf('F'), MysticModBlocks.mysticFurnace, Character.valueOf('T'), MysticModItems.warpedPowerConnector});
     	GameRegistry.addRecipe(new ItemStack(mysticRedStorage, 1) , new Object[]{
-    		"RTR", "IFI", "RRR", Character.valueOf('R'), new ItemStack(MysticModItems.crudeMysticBattery,1, OreDictionary.WILDCARD_VALUE), Character.valueOf('I'), new ItemStack(MysticModItems.crudeMysticBattery,1, OreDictionary.WILDCARD_VALUE), Character.valueOf('F'), MysticModBlocks.mysticFurnace, Character.valueOf('T'), MysticModItems.warpedPowerConnector});
+    		"RTR", "IFI", "RRR", Character.valueOf('R'), new ItemStack(MysticModItems.crudeMysticBattery,1,10), Character.valueOf('I'), new ItemStack(MysticModItems.crudeMysticBattery,1,10), Character.valueOf('F'), MysticModBlocks.mysticFurnace, Character.valueOf('T'), MysticModItems.warpedPowerConnector});
     	GameRegistry.addRecipe(new ItemStack(mysticRedGrinder, 1) , new Object[]{
-    		"RTR", "IFR", "RRR", Character.valueOf('R'), Item.redstone, Character.valueOf('I'), new ItemStack(MysticModItems.crudeMysticBattery,1, OreDictionary.WILDCARD_VALUE), Character.valueOf('F'), MysticModBlocks.mysticFurnace, Character.valueOf('T'), MysticModItems.warpedPowerConnector});
+    		"RTR", "IFR", "RRR", Character.valueOf('R'), Item.redstone, Character.valueOf('I'), new ItemStack(MysticModItems.crudeMysticBattery,1,10), Character.valueOf('F'), MysticModBlocks.mysticFurnace, Character.valueOf('T'), MysticModItems.warpedPowerConnector});
     	GameRegistry.addRecipe(new ItemStack(poweredFurnace, 1) , new Object[]{
-    		"PTP", "IFR", "RRR", Character.valueOf('R'), Item.redstone, Character.valueOf('I'), new ItemStack(MysticModItems.crudeMysticBattery,1, OreDictionary.WILDCARD_VALUE), Character.valueOf('F'), MysticModBlocks.mysticFurnace, Character.valueOf('T'), MysticModItems.warpedPowerConnector, 'P', MysticModItems.refinedIronIngot});
+    		"PTP", "IFR", "RRR", Character.valueOf('R'), Item.redstone, Character.valueOf('I'), new ItemStack(MysticModItems.crudeMysticBattery,1,10), Character.valueOf('F'), MysticModBlocks.mysticFurnace, Character.valueOf('T'), MysticModItems.warpedPowerConnector, 'P', MysticModItems.refinedIronIngot});
     	GameRegistry.addRecipe(new ItemStack(poweredMysticFurnace, 1) , new Object[]{
-    		"PTP", "IFR", "RRR", Character.valueOf('R'), Item.redstone, Character.valueOf('I'), new ItemStack(MysticModItems.crudeMysticBattery,1, OreDictionary.WILDCARD_VALUE), Character.valueOf('F'), MysticModBlocks.mysticFurnace, Character.valueOf('T'), MysticModItems.warpedPowerConnector,'P', MysticModItems.cSteelIngot});
-    	GameRegistry.addRecipe(new ItemStack(crystalGenerator, 1) , new Object[]{
-    		"BSB", "SRS", "MSP", Character.valueOf('S'), MysticModItems.redstoneShards, Character.valueOf('B'), new ItemStack(MysticModItems.crudeMysticBattery,1, OreDictionary.WILDCARD_VALUE), Character.valueOf('R'), MysticModBlocks.refinedRedstone, Character.valueOf('M'), MysticModItems.warpedPowerConnector,'P', MysticModItems.moltenRedstone});
-    	GameRegistry.addRecipe(new ItemStack(crystalGeneratorBase, 1), new Object[]{
-    		"BSB","SRS","BSB", 'B', new ItemStack(MysticModItems.crudeMysticBattery,1, OreDictionary.WILDCARD_VALUE), 'S', MysticModItems.moltencSteel, 'R', refinedRedstone
-    	});
-    	GameRegistry.addRecipe(new ItemStack(mysticRedStorageMrk2, 1) , new Object[]{
-    		"RTR", "IFI", "RRR", Character.valueOf('R'), new ItemStack(MysticModItems.crudeMysticBattery,1, OreDictionary.WILDCARD_VALUE), Character.valueOf('I'), new ItemStack(MysticModItems.mrk3Battery,1, OreDictionary.WILDCARD_VALUE), Character.valueOf('F'), MysticModBlocks.mysticRedStorage, Character.valueOf('T'), MysticModItems.ePowerConnector});
+    		"PTP", "IFR", "RRR", Character.valueOf('R'), Item.redstone, Character.valueOf('I'), new ItemStack(MysticModItems.crudeMysticBattery,1,10), Character.valueOf('F'), MysticModBlocks.mysticFurnace, Character.valueOf('T'), MysticModItems.warpedPowerConnector,'P', MysticModItems.cSteelIngot});
     	//inert blocks
     	frm.smelting().addSmelting(mysticGrass.blockID, new ItemStack(inertGrass , 1), 1);
     	frm.smelting().addSmelting(mysticDirt.blockID, new ItemStack(inertDirt , 1), 1);

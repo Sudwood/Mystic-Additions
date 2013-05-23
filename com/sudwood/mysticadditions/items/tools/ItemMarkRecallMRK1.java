@@ -3,7 +3,7 @@ package com.sudwood.mysticadditions.items.tools;
 import java.util.List;
 
 import com.sudwood.mysticadditions.MysticCommonProxy;
-import com.sudwood.mysticadditions.MysticAdditions;
+import com.sudwood.mysticadditions.mod_MysticAdditions;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -91,7 +91,7 @@ public class ItemMarkRecallMRK1 extends Item {
 	    		  this.x = (int)par3EntityPlayer.posX;
 	    		  this.y = (int)par3EntityPlayer.posY;
 	    		  this.z = (int)par3EntityPlayer.posZ;
-	    		  par2World.setBlock(x, y, z, MysticAdditions.markblockid);
+	    		  par2World.setBlock(x, y, z, mod_MysticAdditions.markblockid);
 	    		  par3EntityPlayer.inventory.consumeInventoryItem(Item.redstone.itemID);
 	    		  if (par2World.isRemote)
 	    		  {
@@ -107,7 +107,7 @@ public class ItemMarkRecallMRK1 extends Item {
 	    			  this.x = (int)par3EntityPlayer.posX;
 		    		  this.y = (int)par3EntityPlayer.posY;
 		    		  this.z = (int)par3EntityPlayer.posZ;
-		    		  par2World.setBlock(x, y, z, MysticAdditions.markblockid);
+		    		  par2World.setBlock(x, y, z, mod_MysticAdditions.markblockid);
 		    		  par1ItemStack.damageItem(1, par3EntityPlayer);
 		    		  par3EntityPlayer.inventory.consumeInventoryItem(Item.redstone.itemID);
 		    		  if (par2World.isRemote)
@@ -146,9 +146,9 @@ public class ItemMarkRecallMRK1 extends Item {
 		 world.spawnParticle(string, posX, posY, posZ, velx, vely, velz);
 	 }
 	 @Override
-		public void registerIcons(IconRegister iconRegister)
+		public void updateIcons(IconRegister iconRegister)
 		{
-			this.itemIcon = iconRegister.registerIcon("MysticAdditions:markrecallmrk1");
+			this.iconIndex = iconRegister.registerIcon("MysticAdditions:markrecallmrk1");
 		}
 	 
 }

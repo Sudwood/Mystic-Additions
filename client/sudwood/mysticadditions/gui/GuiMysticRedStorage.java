@@ -1,7 +1,6 @@
 package client.sudwood.mysticadditions.gui;
 
 
-import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ContainerFurnace;
@@ -29,14 +28,8 @@ public class GuiMysticRedStorage extends GuiContainer
     {
         super(new ContainerMysticRedStorage(par1InventoryPlayer, par2TileEntityFurnace));
         this.furnaceInventory = par2TileEntityFurnace;
-        
     }
 
- 
-    
-    
-    
-    
     /**
      * Draw the foreground layer for the GuiContainer (everything in front of the items)
      */
@@ -44,7 +37,7 @@ public class GuiMysticRedStorage extends GuiContainer
     {
         this.fontRenderer.drawString(StatCollector.translateToLocal("Mystical Condensator"), 60, 6, 4210752);
         this.fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
-        this.fontRenderer.drawString(furnaceInventory.getEnergyLevel()+" / "+this.furnaceInventory.getMaxEnergy(), 85, 24, 16711680);
+        this.fontRenderer.drawString(furnaceInventory.getEnergyLevel()+"/40000", 105, 24, 16711680);
         
     }//125 34
 

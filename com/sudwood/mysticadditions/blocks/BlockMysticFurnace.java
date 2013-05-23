@@ -4,7 +4,7 @@ package com.sudwood.mysticadditions.blocks;
 import java.util.Random;
 
 import com.sudwood.mysticadditions.MysticCommonProxy;
-import com.sudwood.mysticadditions.MysticAdditions;
+import com.sudwood.mysticadditions.mod_MysticAdditions;
 import com.sudwood.mysticadditions.tileentity.TileEntityMysticFurnace;
 
 import cpw.mods.fml.relauncher.Side;
@@ -198,7 +198,7 @@ public class BlockMysticFurnace extends BlockContainer
 
             if (var10 != null&& var10 instanceof TileEntityMysticFurnace)
             {
-            	par5EntityPlayer.openGui(MysticAdditions.instance, 0, par1World, par2, par3, par4);
+            	par5EntityPlayer.openGui(mod_MysticAdditions.instance, 0, par1World, par2, par3, par4);
             }
 
             return true;

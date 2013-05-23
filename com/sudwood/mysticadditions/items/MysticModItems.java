@@ -3,25 +3,18 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import com.sudwood.mysticadditions.FurnaceRecipesMystic;
 import com.sudwood.mysticadditions.MysticCommonProxy;
-import com.sudwood.mysticadditions.MysticAdditions;
+import com.sudwood.mysticadditions.mod_MysticAdditions;
 import com.sudwood.mysticadditions.blocks.MysticModBlocks;
 import com.sudwood.mysticadditions.entity.EntityMysticArrow;
 import com.sudwood.mysticadditions.entity.EntityMysticExplosiveArrow;
 import com.sudwood.mysticadditions.entity.EntityMysticFireArrow;
 import com.sudwood.mysticadditions.entity.EntityMysticTeleArrow;
 import com.sudwood.mysticadditions.entity.EntitySteelShuriken;
-import com.sudwood.mysticadditions.items.energy.ItemArmorSteelRC;
-import com.sudwood.mysticadditions.items.energy.ItemAxeSteelRC;
 import com.sudwood.mysticadditions.items.energy.ItemCrudeMysticBattery;
 import com.sudwood.mysticadditions.items.energy.ItemDiggingCatalyst;
 import com.sudwood.mysticadditions.items.energy.ItemEPowerConnector;
-import com.sudwood.mysticadditions.items.energy.ItemHoeSteelRC;
 import com.sudwood.mysticadditions.items.energy.ItemMEPowerConnector;
 import com.sudwood.mysticadditions.items.energy.ItemMarkRecallMRK2;
-import com.sudwood.mysticadditions.items.energy.ItemPickaxeSteelRC;
-import com.sudwood.mysticadditions.items.energy.ItemRCTeleThrower;
-import com.sudwood.mysticadditions.items.energy.ItemShovelSteelRC;
-import com.sudwood.mysticadditions.items.energy.ItemSwordSteelRC;
 import com.sudwood.mysticadditions.items.energy.ItemTPowerConnector;
 import com.sudwood.mysticadditions.items.energy.ItemWarpedPowerConnector;
 import com.sudwood.mysticadditions.items.tools.ItemAxeMystic;
@@ -63,7 +56,6 @@ import net.minecraft.src.ModLoader;
 
 import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 public class MysticModItems {
 	public static   Item refinedIronIngot;
@@ -120,20 +112,12 @@ public class MysticModItems {
 	public static   Item essenceGold;
 	public static   Item essenceDiamond;
 	public static   Item diggingCatalyst;
-	public static   Item mrk2Battery;
-	public static   Item rcTeleThrower;
-	public static   Item mrk3Battery;
 	//steel armor
 	static EnumArmorMaterial armorCSTEEL;
 	public static   Item helmCSteel;
 	public static   Item chestCSteel;
 	public static   Item legsCSteel;
 	public static   Item bootsCSteel;
-	//Rechargeable steel armor
-	public static   Item helmSteelRC;
-	public static   Item chestSteelRC;
-	public static   Item legsSteelRC;
-	public static   Item bootsSteelRC;
 	//stone armor
 	static EnumArmorMaterial armorStone;
 	public static   Item helmStone;
@@ -154,13 +138,7 @@ public class MysticModItems {
 	public static   Item swordCSteel;
 	public static   Item hoeCSteel;
 	public static   Item shovelCSteel;
-	public static   Item pickaxeSteelRC;
-	public static   Item axeSteelRC;
-	public static   Item swordSteelRC;
-	public static   Item hoeSteelRC;
-	public static   Item shovelSteelRC;
-	public static   Item mutliSteelRC;
-	//mystic 
+	//mystic
 	static EnumToolMaterial toolMystic;
 	public static   Item pickaxeMystic;
 	public static   Item axeMystic;
@@ -171,65 +149,65 @@ public class MysticModItems {
 	
 	
 	public static void init() {
-	refinedIronIngot = new ItemRefinedIronIngot(MysticAdditions.refinedironingotid).setUnlocalizedName("RefinedIron").setCreativeTab(MysticAdditions.mysticTab);
-	cSteelIngot = new ItemCSteelIngot(MysticAdditions.csteelingotid).setUnlocalizedName("Steel Ingot").setCreativeTab(MysticAdditions.mysticTab);
-	redstoneShards = new ItemRedstoneShards(MysticAdditions.redstoneshardsid).setUnlocalizedName("RedstoneShards").setCreativeTab(MysticAdditions.mysticTab);
-	moltenRedstone = new ItemMoltenRedstone(MysticAdditions.moltenredstoneid).setUnlocalizedName("MoltenRedstone").setCreativeTab(MysticAdditions.mysticTab);
-	mysticPlating = new ItemMysticPlating(MysticAdditions.mysticplatingid).setUnlocalizedName("MysticPlating").setCreativeTab(MysticAdditions.mysticTab);
-	mysticStone = new ItemMysticStone(MysticAdditions.mysticstoneid).setUnlocalizedName("Mysticstone").setCreativeTab(MysticAdditions.mysticTab);
-	mysticBow = new ItemMysticBow(MysticAdditions.mysticbowid).setUnlocalizedName("MysticBow").setCreativeTab(MysticAdditions.mysticTab);
-	mysticArrow = new ItemMysticArrow(MysticAdditions.mysticarrowid).setUnlocalizedName("MysticArrow").setCreativeTab(MysticAdditions.mysticTab);
-	mysticTeleArrowhead = new ItemMysticTeleArrowhead(MysticAdditions.mystictelearrowheadid).setUnlocalizedName("MysticteleArrowhead").setCreativeTab(MysticAdditions.mysticTab);
-	mysticExplosiveArrowhead = new ItemMysticExplosiveArrowhead(MysticAdditions.mysticexplosivearrowheadid).setUnlocalizedName("MysticexplosiveArrowhead").setCreativeTab(MysticAdditions.mysticTab);
-	mysticFireArrowhead = new ItemMysticFireArrowhead(MysticAdditions.mysticfirearrowheadid).setUnlocalizedName("MysticfireArrowhead").setCreativeTab(MysticAdditions.mysticTab);
-	mysticTeleArrow = new ItemMysticTeleArrow(MysticAdditions.mystictelearrowid).setUnlocalizedName("MysticteleArrow").setCreativeTab(MysticAdditions.mysticTab);
-	mysticExplosiveArrow = new ItemMysticExplosiveArrow(MysticAdditions.mysticexplosivearrowid).setUnlocalizedName("MysticexplosiveArrow").setCreativeTab(MysticAdditions.mysticTab);
-	mysticFireArrow = new ItemMysticFireArrow(MysticAdditions.mysticfirearrowid).setUnlocalizedName("MysticfireArrow").setCreativeTab(MysticAdditions.mysticTab);
-	woodenReinforcements = new ItemWoodenReinforcements(MysticAdditions.woodenreinforcementsid).setUnlocalizedName("WoodenReinforcements").setCreativeTab(MysticAdditions.mysticTab);
-	regularArrowChooser = new ItemRegularArrowChooser(MysticAdditions.regulararrowchooserid).setUnlocalizedName("RegularArrowChooser").setCreativeTab(MysticAdditions.mysticTab);
-	stonePlating = new ItemStonePlating(MysticAdditions.stoneplatingid).setUnlocalizedName("StonePlating").setCreativeTab(MysticAdditions.mysticTab);
-	reinforcedStone = new ItemReinforcedStone(MysticAdditions.reinforcedstoneid).setUnlocalizedName("Reinforced Stone").setCreativeTab(MysticAdditions.mysticTab);
-	crudeRedOre = new ItemCrudeRedOre(MysticAdditions.cruderedoreid).setUnlocalizedName("cruderedoreid").setCreativeTab(MysticAdditions.mysticTab);
-	crudeIron = new ItemCrudeIron(MysticAdditions.crudeironid).setUnlocalizedName("crudeironid").setCreativeTab(MysticAdditions.mysticTab);
-	crudeRedstone = new ItemCrudeRedstone(MysticAdditions.cruderedstoneid).setUnlocalizedName("cruderedstoneid").setCreativeTab(MysticAdditions.mysticTab);
-	crudeIronChunk = new ItemCrudeIronChunk(MysticAdditions.crudeironchunkid).setUnlocalizedName("crudeironchunkid").setCreativeTab(MysticAdditions.mysticTab);
-	steelShuriken = new ItemSteelShuriken(MysticAdditions.steelshurikenid).setUnlocalizedName("steelshurikenid").setCreativeTab(MysticAdditions.mysticTab);
+	refinedIronIngot = new ItemRefinedIronIngot(mod_MysticAdditions.refinedironingotid).setUnlocalizedName("RefinedIron").setCreativeTab(mod_MysticAdditions.mysticTab);
+	cSteelIngot = new ItemCSteelIngot(mod_MysticAdditions.csteelingotid).setUnlocalizedName("Steel Ingot").setCreativeTab(mod_MysticAdditions.mysticTab);
+	redstoneShards = new ItemRedstoneShards(mod_MysticAdditions.redstoneshardsid).setUnlocalizedName("RedstoneShards").setCreativeTab(mod_MysticAdditions.mysticTab);
+	moltenRedstone = new ItemMoltenRedstone(mod_MysticAdditions.moltenredstoneid).setUnlocalizedName("MoltenRedstone").setCreativeTab(mod_MysticAdditions.mysticTab);
+	mysticPlating = new ItemMysticPlating(mod_MysticAdditions.mysticplatingid).setUnlocalizedName("MysticPlating").setCreativeTab(mod_MysticAdditions.mysticTab);
+	mysticStone = new ItemMysticStone(mod_MysticAdditions.mysticstoneid).setUnlocalizedName("Mysticstone").setCreativeTab(mod_MysticAdditions.mysticTab);
+	mysticBow = new ItemMysticBow(mod_MysticAdditions.mysticbowid).setUnlocalizedName("MysticBow").setCreativeTab(mod_MysticAdditions.mysticTab);
+	mysticArrow = new ItemMysticArrow(mod_MysticAdditions.mysticarrowid).setUnlocalizedName("MysticArrow").setCreativeTab(mod_MysticAdditions.mysticTab);
+	mysticTeleArrowhead = new ItemMysticTeleArrowhead(mod_MysticAdditions.mystictelearrowheadid).setUnlocalizedName("MysticteleArrowhead").setCreativeTab(mod_MysticAdditions.mysticTab);
+	mysticExplosiveArrowhead = new ItemMysticExplosiveArrowhead(mod_MysticAdditions.mysticexplosivearrowheadid).setUnlocalizedName("MysticexplosiveArrowhead").setCreativeTab(mod_MysticAdditions.mysticTab);
+	mysticFireArrowhead = new ItemMysticFireArrowhead(mod_MysticAdditions.mysticfirearrowheadid).setUnlocalizedName("MysticfireArrowhead").setCreativeTab(mod_MysticAdditions.mysticTab);
+	mysticTeleArrow = new ItemMysticTeleArrow(mod_MysticAdditions.mystictelearrowid).setUnlocalizedName("MysticteleArrow").setCreativeTab(mod_MysticAdditions.mysticTab);
+	mysticExplosiveArrow = new ItemMysticExplosiveArrow(mod_MysticAdditions.mysticexplosivearrowid).setUnlocalizedName("MysticexplosiveArrow").setCreativeTab(mod_MysticAdditions.mysticTab);
+	mysticFireArrow = new ItemMysticFireArrow(mod_MysticAdditions.mysticfirearrowid).setUnlocalizedName("MysticfireArrow").setCreativeTab(mod_MysticAdditions.mysticTab);
+	woodenReinforcements = new ItemWoodenReinforcements(mod_MysticAdditions.woodenreinforcementsid).setUnlocalizedName("WoodenReinforcements").setCreativeTab(mod_MysticAdditions.mysticTab);
+	regularArrowChooser = new ItemRegularArrowChooser(mod_MysticAdditions.regulararrowchooserid).setUnlocalizedName("RegularArrowChooser").setCreativeTab(mod_MysticAdditions.mysticTab);
+	stonePlating = new ItemStonePlating(mod_MysticAdditions.stoneplatingid).setUnlocalizedName("StonePlating").setCreativeTab(mod_MysticAdditions.mysticTab);
+	reinforcedStone = new ItemReinforcedStone(mod_MysticAdditions.reinforcedstoneid).setUnlocalizedName("Reinforced Stone").setCreativeTab(mod_MysticAdditions.mysticTab);
+	crudeRedOre = new ItemCrudeRedOre(mod_MysticAdditions.cruderedoreid).setUnlocalizedName("cruderedoreid").setCreativeTab(mod_MysticAdditions.mysticTab);
+	crudeIron = new ItemCrudeIron(mod_MysticAdditions.crudeironid).setUnlocalizedName("crudeironid").setCreativeTab(mod_MysticAdditions.mysticTab);
+	crudeRedstone = new ItemCrudeRedstone(mod_MysticAdditions.cruderedstoneid).setUnlocalizedName("cruderedstoneid").setCreativeTab(mod_MysticAdditions.mysticTab);
+	crudeIronChunk = new ItemCrudeIronChunk(mod_MysticAdditions.crudeironchunkid).setUnlocalizedName("crudeironchunkid").setCreativeTab(mod_MysticAdditions.mysticTab);
+	steelShuriken = new ItemSteelShuriken(mod_MysticAdditions.steelshurikenid).setUnlocalizedName("steelshurikenid").setCreativeTab(mod_MysticAdditions.mysticTab);
 	//public static   Item mysticShuriken = new ItemMysticShuriken(mysticshurikenid).setUnlocalizedName("mysticshurikenid").setIconCoord(10, 1);
-	enchantedBone = new ItemEchantedBone(MysticAdditions.enchantedboneid).setUnlocalizedName("enchantedboneid").setCreativeTab(MysticAdditions.mysticTab);
-	enchantedBonemeal = new ItemEnchantedBonemeal(MysticAdditions.enchantedbonemealid).setUnlocalizedName("enchantedbonemealid").setCreativeTab(MysticAdditions.mysticTab);
-	csteelDust = new ItemCSteelDust(MysticAdditions.csteeldustid).setUnlocalizedName("csteeldust").setCreativeTab(MysticAdditions.mysticTab);
-	moltencSteel = new ItemMoltenCSteel(MysticAdditions.moltencsteelid).setUnlocalizedName("csteelmolten").setCreativeTab(MysticAdditions.mysticTab);
-	mysticIngot = new ItemMysticIngot(MysticAdditions.mysticingotid).setUnlocalizedName("mysticingot").setCreativeTab(MysticAdditions.mysticTab);
-	moltenmysticAlloy = new ItemMoltenMysticAlloy(MysticAdditions.moltenmysticalloyid).setUnlocalizedName("moltenmysticalloy").setCreativeTab(MysticAdditions.mysticTab);
-	mysticknightEgg = new ItemMysticKnightEgg(MysticAdditions.mysticknighteggid).setUnlocalizedName("mysticknightegg").setCreativeTab(MysticAdditions.mysticTab);
-	markrecallMRK1 = new ItemMarkRecallMRK1(MysticAdditions.markrecallmrk1id).setUnlocalizedName("MRMRK1").setCreativeTab(MysticAdditions.mysticTab);
-	warpShard = new ItemWarpShard(MysticAdditions.warpshardid).setUnlocalizedName("warpshard").setCreativeTab(MysticAdditions.mysticTab);
-	rawWarp = new ItemRawWarp(MysticAdditions.rawwarpid).setUnlocalizedName("rawwarp").setCreativeTab(MysticAdditions.mysticTab);
-	rawWarpFood = new ItemRawWarpFood(MysticAdditions.rawwarpfoodid, 3, 1F, false).setAlwaysEdible().setUnlocalizedName("rawwarpfood").setCreativeTab(MysticAdditions.mysticTab);
-	cookedWarpFood = new ItemCookedWarpFood(MysticAdditions.cookedwarpfoodid, 8, 10F, false).setAlwaysEdible().setUnlocalizedName("cookedwarpfood").setCreativeTab(MysticAdditions.mysticTab);
+	enchantedBone = new ItemEchantedBone(mod_MysticAdditions.enchantedboneid).setUnlocalizedName("enchantedboneid").setCreativeTab(mod_MysticAdditions.mysticTab);
+	enchantedBonemeal = new ItemEnchantedBonemeal(mod_MysticAdditions.enchantedbonemealid).setUnlocalizedName("enchantedbonemealid").setCreativeTab(mod_MysticAdditions.mysticTab);
+	csteelDust = new ItemCSteelDust(mod_MysticAdditions.csteeldustid).setUnlocalizedName("csteeldust").setCreativeTab(mod_MysticAdditions.mysticTab);
+	moltencSteel = new ItemMoltenCSteel(mod_MysticAdditions.moltencsteelid).setUnlocalizedName("csteelmolten").setCreativeTab(mod_MysticAdditions.mysticTab);
+	mysticIngot = new ItemMysticIngot(mod_MysticAdditions.mysticingotid).setUnlocalizedName("mysticingot").setCreativeTab(mod_MysticAdditions.mysticTab);
+	moltenmysticAlloy = new ItemMoltenMysticAlloy(mod_MysticAdditions.moltenmysticalloyid).setUnlocalizedName("moltenmysticalloy").setCreativeTab(mod_MysticAdditions.mysticTab);
+	mysticknightEgg = new ItemMysticKnightEgg(mod_MysticAdditions.mysticknighteggid).setUnlocalizedName("mysticknightegg").setCreativeTab(mod_MysticAdditions.mysticTab);
+	markrecallMRK1 = new ItemMarkRecallMRK1(mod_MysticAdditions.markrecallmrk1id).setUnlocalizedName("MRMRK1").setCreativeTab(mod_MysticAdditions.mysticTab);
+	warpShard = new ItemWarpShard(mod_MysticAdditions.warpshardid).setUnlocalizedName("warpshard").setCreativeTab(mod_MysticAdditions.mysticTab);
+	rawWarp = new ItemRawWarp(mod_MysticAdditions.rawwarpid).setUnlocalizedName("rawwarp").setCreativeTab(mod_MysticAdditions.mysticTab);
+	rawWarpFood = new ItemRawWarpFood(mod_MysticAdditions.rawwarpfoodid, 3, 1F, false).setAlwaysEdible().setUnlocalizedName("rawwarpfood").setCreativeTab(mod_MysticAdditions.mysticTab);
+	cookedWarpFood = new ItemCookedWarpFood(mod_MysticAdditions.cookedwarpfoodid, 8, 10F, false).setAlwaysEdible().setUnlocalizedName("cookedwarpfood").setCreativeTab(mod_MysticAdditions.mysticTab);
 	//warpTarget = new ItemWarpTarget(mod_MysticAdditions.warptargetid).setUnlocalizedName("WarpTarget").setIconCoord(0,0);
-	beefBase = new ItemBeefBase(MysticAdditions.beefbaseid).setUnlocalizedName("beefbase").setCreativeTab(MysticAdditions.mysticTab);
-	warpedPowerConnector = new ItemWarpedPowerConnector(MysticAdditions.powerwarpconnectorid).setUnlocalizedName("WarpPowerConnector").setCreativeTab(MysticAdditions.mysticTab);
-	crudeMysticBattery = new ItemCrudeMysticBattery(MysticAdditions.crudemysticbatteryid, 4000, 1).setUnlocalizedName("crudeBattery").setCreativeTab(MysticAdditions.mysticTab);
-	markRecallMrk2 = new ItemMarkRecallMRK2(MysticAdditions.markrecallmrk2id, 4000, 10).setUnlocalizedName("MarkRecallMRK2").setCreativeTab(MysticAdditions.mysticTab);
-	mePowerConnector = new ItemMEPowerConnector(MysticAdditions.warppowerconnector2id).setUnlocalizedName("MEPowerConnector").setCreativeTab(MysticAdditions.mysticTab);
-	ePowerConnector = new ItemEPowerConnector(MysticAdditions.warppowerconnector3id).setUnlocalizedName("EPowerConnector").setCreativeTab(MysticAdditions.mysticTab);
-	tPowerConnector = new ItemTPowerConnector(MysticAdditions.warppowerconnector4id).setUnlocalizedName("TPowerConnector").setCreativeTab(MysticAdditions.mysticTab);
-	airToken = new ItemAirToken(MysticAdditions.airtokenid).setUnlocalizedName("AirToken").setCreativeTab(MysticAdditions.mysticTab);
-	fireToken = new ItemFireToken(MysticAdditions.firetokenid).setUnlocalizedName("FireToken").setCreativeTab(MysticAdditions.mysticTab);
-	waterToken = new ItemWaterToken(MysticAdditions.watertokenid).setUnlocalizedName("WaterToken").setCreativeTab(MysticAdditions.mysticTab);
-	earthToken = new ItemEarthToken(MysticAdditions.earthtokenid).setUnlocalizedName("EarthToken").setCreativeTab(MysticAdditions.mysticTab);
-	mysticFreezeArrowhead = new ItemMysticFreezeArrowHead(MysticAdditions.mysticfreezearrowheadid).setUnlocalizedName("FreezeArrowHead").setCreativeTab(MysticAdditions.mysticTab);
-	mysticLightningArrowhead = new ItemMysticLightningArrowHead(MysticAdditions.mysticlightningarrowheadid).setUnlocalizedName("LightningArrowHead").setCreativeTab(MysticAdditions.mysticTab);
-	mysticFreezeArrow = new ItemMysticFreezeArrow(MysticAdditions.mysticfreezearrowid).setUnlocalizedName("FreezeArrow").setCreativeTab(MysticAdditions.mysticTab);
-	mysticLightningArrow = new ItemMysticLightningArrow(MysticAdditions.mysticlightningarrowid).setUnlocalizedName("LightningArrow").setCreativeTab(MysticAdditions.mysticTab);
-	essenceIron = new ItemIronEssence(MysticAdditions.ironessenceid).setUnlocalizedName("IronEssence").setCreativeTab(MysticAdditions.mysticTab);
-	essenceGold = new ItemGoldEssence(MysticAdditions.goldessenceid).setUnlocalizedName("goldEssence").setCreativeTab(MysticAdditions.mysticTab);
-	essenceDiamond = new ItemDiamondEssence(MysticAdditions.diamondessenceid).setUnlocalizedName("diamondEssence").setCreativeTab(MysticAdditions.mysticTab);
-	diggingCatalyst = new ItemDiggingCatalyst(MysticAdditions.diggingcatalystid, 16000, 32).setUnlocalizedName("diggingCatalyst").setCreativeTab(MysticAdditions.mysticTab);
-	mrk2Battery = new ItemCrudeMysticBattery(MysticAdditions.mrk2batteryid, 16000, 32).setUnlocalizedName("mrk2Battery").setCreativeTab(MysticAdditions.mysticTab);
-	rcTeleThrower = new ItemRCTeleThrower(MysticAdditions.rctelethrowerid, 8000, 16).setUnlocalizedName("rctelethrower").setCreativeTab(MysticAdditions.mysticTab);
-	mrk3Battery = new ItemCrudeMysticBattery(MysticAdditions.mrk3batteryid, 64000, 128).setUnlocalizedName("mrk3Battery").setCreativeTab(MysticAdditions.mysticTab);
+	beefBase = new ItemBeefBase(mod_MysticAdditions.beefbaseid).setUnlocalizedName("beefbase").setCreativeTab(mod_MysticAdditions.mysticTab);
+	warpedPowerConnector = new ItemWarpedPowerConnector(mod_MysticAdditions.powerwarpconnectorid).setUnlocalizedName("WarpPowerConnector").setCreativeTab(mod_MysticAdditions.mysticTab);
+	crudeMysticBattery = new ItemCrudeMysticBattery(mod_MysticAdditions.crudemysticbatteryid, 4000, 1).setUnlocalizedName("crudeBattery").setCreativeTab(mod_MysticAdditions.mysticTab);
+	markRecallMrk2 = new ItemMarkRecallMRK2(mod_MysticAdditions.markrecallmrk2id, 4000, 10).setUnlocalizedName("MarkRecallMRK2").setCreativeTab(mod_MysticAdditions.mysticTab);
+	mePowerConnector = new ItemMEPowerConnector(mod_MysticAdditions.warppowerconnector2id).setUnlocalizedName("MEPowerConnector").setCreativeTab(mod_MysticAdditions.mysticTab);
+	ePowerConnector = new ItemEPowerConnector(mod_MysticAdditions.warppowerconnector3id).setUnlocalizedName("EPowerConnector").setCreativeTab(mod_MysticAdditions.mysticTab);
+	tPowerConnector = new ItemTPowerConnector(mod_MysticAdditions.warppowerconnector4id).setUnlocalizedName("TPowerConnector").setCreativeTab(mod_MysticAdditions.mysticTab);
+	airToken = new ItemAirToken(mod_MysticAdditions.airtokenid).setUnlocalizedName("AirToken").setCreativeTab(mod_MysticAdditions.mysticTab);
+	fireToken = new ItemFireToken(mod_MysticAdditions.firetokenid).setUnlocalizedName("FireToken").setCreativeTab(mod_MysticAdditions.mysticTab);
+	waterToken = new ItemWaterToken(mod_MysticAdditions.watertokenid).setUnlocalizedName("WaterToken").setCreativeTab(mod_MysticAdditions.mysticTab);
+	earthToken = new ItemEarthToken(mod_MysticAdditions.earthtokenid).setUnlocalizedName("EarthToken").setCreativeTab(mod_MysticAdditions.mysticTab);
+	mysticFreezeArrowhead = new ItemMysticFreezeArrowHead(mod_MysticAdditions.mysticfreezearrowheadid).setUnlocalizedName("FreezeArrowHead").setCreativeTab(mod_MysticAdditions.mysticTab);
+	mysticLightningArrowhead = new ItemMysticLightningArrowHead(mod_MysticAdditions.mysticlightningarrowheadid).setUnlocalizedName("LightningArrowHead").setCreativeTab(mod_MysticAdditions.mysticTab);
+	mysticFreezeArrow = new ItemMysticFreezeArrow(mod_MysticAdditions.mysticfreezearrowid).setUnlocalizedName("FreezeArrow").setCreativeTab(mod_MysticAdditions.mysticTab);
+	mysticLightningArrow = new ItemMysticLightningArrow(mod_MysticAdditions.mysticlightningarrowid).setUnlocalizedName("LightningArrow").setCreativeTab(mod_MysticAdditions.mysticTab);
+	essenceIron = new ItemIronEssence(mod_MysticAdditions.ironessenceid).setUnlocalizedName("IronEssence").setCreativeTab(mod_MysticAdditions.mysticTab);
+	essenceGold = new ItemGoldEssence(mod_MysticAdditions.goldessenceid).setUnlocalizedName("goldEssence").setCreativeTab(mod_MysticAdditions.mysticTab);
+	essenceDiamond = new ItemDiamondEssence(mod_MysticAdditions.diamondessenceid).setUnlocalizedName("diamondEssence").setCreativeTab(mod_MysticAdditions.mysticTab);
+	diggingCatalyst = new ItemDiggingCatalyst(mod_MysticAdditions.diggingcatalystid, 16000, 30).setUnlocalizedName("diggingCatalyst").setCreativeTab(mod_MysticAdditions.mysticTab);
+	
+	
+	
 	
 	FurnaceRecipesMystic frm = new FurnaceRecipesMystic();
 	//MysticClientProxy mcp = new MysticClientProxy();
@@ -238,66 +216,41 @@ public class MysticModItems {
 	armorCSTEEL = EnumHelper.addArmorMaterial("CSTEEL", 23, new int[] {2, 7, 5, 2}, 13);
 	int renderSteelArmor = mcp.addArmor("CSTEEL");
 	
-	helmCSteel = (new ItemArmorMysticsteel(MysticAdditions.csteelhelmid, armorCSTEEL, renderSteelArmor, 0)).setUnlocalizedName("CSteel Helm").setCreativeTab(MysticAdditions.mysticTab);
-	chestCSteel = (new ItemArmorMysticsteel(MysticAdditions.csteelchestid, armorCSTEEL, renderSteelArmor, 1)).setUnlocalizedName("CSteel Chest").setCreativeTab(MysticAdditions.mysticTab);
-	legsCSteel = (new ItemArmorMysticsteel(MysticAdditions.csteellegsid, armorCSTEEL, renderSteelArmor, 2)).setUnlocalizedName("CSteel Legs").setCreativeTab(MysticAdditions.mysticTab);
-	bootsCSteel = (new ItemArmorMysticsteel(MysticAdditions.csteelbootsid, armorCSTEEL, renderSteelArmor, 3)).setUnlocalizedName("CSteel Boots").setCreativeTab(MysticAdditions.mysticTab);
-	
-	//rechargeable steel
-	EnumArmorMaterial armorSTEELRC;
-	armorSTEELRC = EnumHelper.addArmorMaterial("STEELRC", 20, new int[] {5, 5,5,5}, 13);
-	helmSteelRC = (new ItemArmorSteelRC(MysticAdditions.steelhelmrcid, armorSTEELRC, renderSteelArmor, 0, 32000,32)).setUnlocalizedName("Steel Helm RC").setCreativeTab(MysticAdditions.mysticTab);
-	chestSteelRC = (new ItemArmorSteelRC(MysticAdditions.steelchestrcid, armorSTEELRC, renderSteelArmor, 1, 32000,32)).setUnlocalizedName("Steel Chest RC").setCreativeTab(MysticAdditions.mysticTab);
-	legsSteelRC = (new ItemArmorSteelRC(MysticAdditions.steellegsrcid, armorSTEELRC, renderSteelArmor, 2, 32000,32)).setUnlocalizedName("Steel Legs RC").setCreativeTab(MysticAdditions.mysticTab);
-	bootsSteelRC = (new ItemArmorSteelRC(MysticAdditions.steelbootsrcid, armorSTEELRC, renderSteelArmor, 3, 32000,32)).setUnlocalizedName("Steel Boots RC").setCreativeTab(MysticAdditions.mysticTab);
-	
+	helmCSteel = (new ItemArmorMysticsteel(mod_MysticAdditions.csteelhelmid, armorCSTEEL, renderSteelArmor, 0)).setUnlocalizedName("CSteel Helm").setCreativeTab(mod_MysticAdditions.mysticTab);
+	chestCSteel = (new ItemArmorMysticsteel(mod_MysticAdditions.csteelchestid, armorCSTEEL, renderSteelArmor, 1)).setUnlocalizedName("CSteel Chest").setCreativeTab(mod_MysticAdditions.mysticTab);
+	legsCSteel = (new ItemArmorMysticsteel(mod_MysticAdditions.csteellegsid, armorCSTEEL, renderSteelArmor, 2)).setUnlocalizedName("CSteel Legs").setCreativeTab(mod_MysticAdditions.mysticTab);
+	bootsCSteel = (new ItemArmorMysticsteel(mod_MysticAdditions.csteelbootsid, armorCSTEEL, renderSteelArmor, 3)).setUnlocalizedName("CSteel Boots").setCreativeTab(mod_MysticAdditions.mysticTab);
 			//stone
 	int renderStoneArmor = mcp.addArmor("STONE");
 	armorStone = EnumHelper.addArmorMaterial("STONE", 13, new int[] { 2, 4, 3, 3}, 7);
-	helmStone = (new ItemArmorMysticstone(MysticAdditions.stonehelmid, armorStone, renderStoneArmor, 0)).setUnlocalizedName("Stone Helm").setCreativeTab(MysticAdditions.mysticTab);
-	chestStone = (new ItemArmorMysticstone(MysticAdditions.stonechestid, armorStone, renderStoneArmor, 1)).setUnlocalizedName("Stone Chest").setCreativeTab(MysticAdditions.mysticTab);
-	legsStone = (new ItemArmorMysticstone(MysticAdditions.stonelegsid, armorStone, renderStoneArmor, 2)).setUnlocalizedName("Stone Legs").setCreativeTab(MysticAdditions.mysticTab);
-	bootsStone = (new ItemArmorMysticstone(MysticAdditions.stonebootsid, armorStone, renderStoneArmor, 3)).setUnlocalizedName("Stone Boots").setCreativeTab(MysticAdditions.mysticTab);
+	helmStone = (new ItemArmorMysticstone(mod_MysticAdditions.stonehelmid, armorStone, renderStoneArmor, 0)).setUnlocalizedName("Stone Helm").setCreativeTab(mod_MysticAdditions.mysticTab);
+	chestStone = (new ItemArmorMysticstone(mod_MysticAdditions.stonechestid, armorStone, renderStoneArmor, 1)).setUnlocalizedName("Stone Chest").setCreativeTab(mod_MysticAdditions.mysticTab);
+	legsStone = (new ItemArmorMysticstone(mod_MysticAdditions.stonelegsid, armorStone, renderStoneArmor, 2)).setUnlocalizedName("Stone Legs").setCreativeTab(mod_MysticAdditions.mysticTab);
+	bootsStone = (new ItemArmorMysticstone(mod_MysticAdditions.stonebootsid, armorStone, renderStoneArmor, 3)).setUnlocalizedName("Stone Boots").setCreativeTab(mod_MysticAdditions.mysticTab);
 			//mystic
 	int renderMysticArmor = mcp.addArmor("Mystic");
 	armorMystic = EnumHelper.addArmorMaterial("Mystic", 66, new int[] { 6, 11, 9, 6}, 25);
-	helmMystic = (new ItemArmorMystic(MysticAdditions.mystichelmid, armorMystic, renderMysticArmor, 0)).setUnlocalizedName("mystic Helm").setCreativeTab(MysticAdditions.mysticTab);
-	chestMystic = (new ItemArmorMystic(MysticAdditions.mysticchestid, armorMystic, renderMysticArmor, 1)).setUnlocalizedName("mystic Chest").setCreativeTab(MysticAdditions.mysticTab);
-	legsMystic = (new ItemArmorMystic(MysticAdditions.mysticlegsid, armorMystic, renderMysticArmor, 2)).setUnlocalizedName("mystic Legs").setCreativeTab(MysticAdditions.mysticTab);
-	bootsMystic = (new ItemArmorMystic(MysticAdditions.mysticbootsid, armorMystic, renderMysticArmor, 3)).setUnlocalizedName("mystic Boots").setCreativeTab(MysticAdditions.mysticTab);
+	helmMystic = (new ItemArmorMystic(mod_MysticAdditions.mystichelmid, armorMystic, renderMysticArmor, 0)).setUnlocalizedName("mystic Helm").setCreativeTab(mod_MysticAdditions.mysticTab);
+	chestMystic = (new ItemArmorMystic(mod_MysticAdditions.mysticchestid, armorMystic, renderMysticArmor, 1)).setUnlocalizedName("mystic Chest").setCreativeTab(mod_MysticAdditions.mysticTab);
+	legsMystic = (new ItemArmorMystic(mod_MysticAdditions.mysticlegsid, armorMystic, renderMysticArmor, 2)).setUnlocalizedName("mystic Legs").setCreativeTab(mod_MysticAdditions.mysticTab);
+	bootsMystic = (new ItemArmorMystic(mod_MysticAdditions.mysticbootsid, armorMystic, renderMysticArmor, 3)).setUnlocalizedName("mystic Boots").setCreativeTab(mod_MysticAdditions.mysticTab);
 	
 	//tools
 		//csteel
 	toolCSTEEL = EnumHelper.addToolMaterial("CSTEEL", 2, 900, 8F, 3, 12);
-	pickaxeCSteel = (new ItemPickaxeMysticNonSpecial(MysticAdditions.csteelpickid, toolCSTEEL)).setUnlocalizedName("CSteel Pick").setCreativeTab(MysticAdditions.mysticTab);
-	axeCSteel = (new ItemAxeMysticNonSpecial(MysticAdditions.csteelaxeid, toolCSTEEL)).setUnlocalizedName("CSteel Axe").setCreativeTab(MysticAdditions.mysticTab);
-	swordCSteel = (new ItemSwordMysticNonSpecial(MysticAdditions.csteelswordid, toolCSTEEL)).setUnlocalizedName("CSteel Sword").setCreativeTab(MysticAdditions.mysticTab);
-	hoeCSteel = (new ItemHoeMysticNonSpecial(MysticAdditions.csteelhoeid, toolCSTEEL)).setUnlocalizedName("CSteel Hoe").setCreativeTab(MysticAdditions.mysticTab);
-	shovelCSteel = (new ItemSpadeMysticNonSpecial(MysticAdditions.csteelspadeid, toolCSTEEL)).setUnlocalizedName("CSteel Shovel").setCreativeTab(MysticAdditions.mysticTab);
-	
-		//rechargeable steel
-	pickaxeSteelRC = (new ItemPickaxeSteelRC(MysticAdditions.steelpickrcid, toolCSTEEL, 32000, 32)).setUnlocalizedName("Steel Pick RC").setCreativeTab(MysticAdditions.mysticTab);
-	axeSteelRC = (new ItemAxeSteelRC(MysticAdditions.steelaxercid, toolCSTEEL, 32000, 32)).setUnlocalizedName("Steel Axe RC").setCreativeTab(MysticAdditions.mysticTab);
-	swordSteelRC = (new ItemSwordSteelRC(MysticAdditions.steelswordrcid, toolCSTEEL, 32000, 32)).setUnlocalizedName("Steel Sword RC").setCreativeTab(MysticAdditions.mysticTab);
-	hoeSteelRC = (new ItemHoeSteelRC(MysticAdditions.steelhoercid, toolCSTEEL, 32000, 32)).setUnlocalizedName("Steel Hoe RC").setCreativeTab(MysticAdditions.mysticTab);
-	shovelSteelRC = (new ItemShovelSteelRC(MysticAdditions.steelshovelrcid, toolCSTEEL, 32000, 32)).setUnlocalizedName("Steel Shovel RC").setCreativeTab(MysticAdditions.mysticTab);
-	 MinecraftForge.setToolClass(shovelSteelRC, "shovel", 2);
-	 MinecraftForge.setToolClass(pickaxeSteelRC, "pickaxe", 2);
-	 MinecraftForge.setToolClass(axeSteelRC, "axe", 2);
-	LanguageRegistry.addName(pickaxeSteelRC, "Steel Pickaxe RC");
-	LanguageRegistry.addName(axeSteelRC, "Steel Axe RC");
-	LanguageRegistry.addName(swordSteelRC, "Steel Sword RC");
-	LanguageRegistry.addName(hoeSteelRC, "Steel Hoe RC");
-	LanguageRegistry.addName(shovelSteelRC, "Steel Shovel RC");
-	
+	pickaxeCSteel = (new ItemPickaxeMysticNonSpecial(mod_MysticAdditions.csteelpickid, toolCSTEEL)).setUnlocalizedName("CSteel Pick").setCreativeTab(mod_MysticAdditions.mysticTab);
+	axeCSteel = (new ItemAxeMysticNonSpecial(mod_MysticAdditions.csteelaxeid, toolCSTEEL)).setUnlocalizedName("CSteel Axe").setCreativeTab(mod_MysticAdditions.mysticTab);
+	swordCSteel = (new ItemSwordMysticNonSpecial(mod_MysticAdditions.csteelswordid, toolCSTEEL)).setUnlocalizedName("CSteel Sword").setCreativeTab(mod_MysticAdditions.mysticTab);
+	hoeCSteel = (new ItemHoeMysticNonSpecial(mod_MysticAdditions.csteelhoeid, toolCSTEEL)).setUnlocalizedName("CSteel Hoe").setCreativeTab(mod_MysticAdditions.mysticTab);
+	shovelCSteel = (new ItemSpadeMysticNonSpecial(mod_MysticAdditions.csteelspadeid, toolCSTEEL)).setUnlocalizedName("CSteel Shovel").setCreativeTab(mod_MysticAdditions.mysticTab);
 	
 		//mystic
 	toolMystic = EnumHelper.addToolMaterial("MYSTIC", 3, 6000, 30F, 20, 25);
-	pickaxeMystic = (new ItemPickaxeMystic(MysticAdditions.mysticpickid, toolMystic)).setUnlocalizedName("Mystic Pick").setCreativeTab(MysticAdditions.mysticTab);
-	axeMystic = (new ItemAxeMystic(MysticAdditions.mysticaxeid, toolMystic)).setUnlocalizedName("Mystic Axe").setCreativeTab(MysticAdditions.mysticTab);
-	swordMystic = (new ItemSwordMystic(MysticAdditions.mysticswordid, toolMystic)).setUnlocalizedName("Mystic Sword").setCreativeTab(MysticAdditions.mysticTab);
-	hoeMystic = (new ItemHoeMystic(MysticAdditions.mystichoeid, toolMystic)).setUnlocalizedName("Mystic Hoe").setCreativeTab(MysticAdditions.mysticTab);
-	shovelMystic = (new ItemSpadeMystic(MysticAdditions.mysticspadeid, toolMystic)).setUnlocalizedName("Mystic Shovel").setCreativeTab(MysticAdditions.mysticTab);
+	pickaxeMystic = (new ItemPickaxeMystic(mod_MysticAdditions.mysticpickid, toolMystic)).setUnlocalizedName("Mystic Pick").setCreativeTab(mod_MysticAdditions.mysticTab);
+	axeMystic = (new ItemAxeMystic(mod_MysticAdditions.mysticaxeid, toolMystic)).setUnlocalizedName("Mystic Axe").setCreativeTab(mod_MysticAdditions.mysticTab);
+	swordMystic = (new ItemSwordMystic(mod_MysticAdditions.mysticswordid, toolMystic)).setUnlocalizedName("Mystic Sword").setCreativeTab(mod_MysticAdditions.mysticTab);
+	hoeMystic = (new ItemHoeMystic(mod_MysticAdditions.mystichoeid, toolMystic)).setUnlocalizedName("Mystic Hoe").setCreativeTab(mod_MysticAdditions.mysticTab);
+	shovelMystic = (new ItemSpadeMystic(mod_MysticAdditions.mysticspadeid, toolMystic)).setUnlocalizedName("Mystic Shovel").setCreativeTab(mod_MysticAdditions.mysticTab);
 	
 	MinecraftForge.setToolClass(pickaxeCSteel, "pickaxe", 2);
     MinecraftForge.setToolClass(shovelCSteel, "shovel", 2);
@@ -305,8 +258,6 @@ public class MysticModItems {
     MinecraftForge.setToolClass(pickaxeMystic, "pickaxe", 2);
     MinecraftForge.setToolClass(shovelMystic, "shovel", 2);
     MinecraftForge.setToolClass(axeMystic, "axe", 2);
-   
-    		
 	
 	//refined iron ingot
 	LanguageRegistry.addName(refinedIronIngot, "Refined Iron Ingot");
@@ -594,11 +545,11 @@ public class MysticModItems {
     //Warp items
     LanguageRegistry.addName(rawWarp, "Raw Warp");
     LanguageRegistry.addName(warpShard, "Warp Shard");
-    frm.smelting().addSmelting(MysticAdditions.inertmysticdirtid, new ItemStack(rawWarp, 1), 0);
-    frm.smelting().addSmelting(MysticAdditions.inertmysticgrassid, new ItemStack(rawWarp, 1), 0);
-    frm.smelting().addSmelting(MysticAdditions.inertmysticgenstoneid, new ItemStack(rawWarp, 1), 0);
-    frm.smelting().addSmelting(MysticAdditions.inertmysticcobblestoneid, new ItemStack(rawWarp, 1), 0);
-    frm.smelting().addSmelting(MysticAdditions.mysticbricksid, new ItemStack(rawWarp, 1), 0);
+    frm.smelting().addSmelting(mod_MysticAdditions.inertmysticdirtid, new ItemStack(rawWarp, 1), 0);
+    frm.smelting().addSmelting(mod_MysticAdditions.inertmysticgrassid, new ItemStack(rawWarp, 1), 0);
+    frm.smelting().addSmelting(mod_MysticAdditions.inertmysticgenstoneid, new ItemStack(rawWarp, 1), 0);
+    frm.smelting().addSmelting(mod_MysticAdditions.inertmysticcobblestoneid, new ItemStack(rawWarp, 1), 0);
+    frm.smelting().addSmelting(mod_MysticAdditions.mysticbricksid, new ItemStack(rawWarp, 1), 0);
     GameRegistry.addRecipe(new ItemStack(warpShard, 1), new Object[]{
     	"XXX","XYX","XXX", 'X', rawWarp, 'Y', redstoneShards
     });
@@ -626,68 +577,32 @@ public class MysticModItems {
     LanguageRegistry.addName(ePowerConnector, "Efficient Power Connector");
     LanguageRegistry.addName(tPowerConnector, "True Power Connector");
     LanguageRegistry.addName(diggingCatalyst, "Digging Catalyst");
-    LanguageRegistry.addName(mrk2Battery, "Mark 2 Battery");
-    LanguageRegistry.addName(rcTeleThrower, "RC Tele Thrower");
-    LanguageRegistry.addName(mrk3Battery, "Mark 3 Battery");
-    	//armor
-    		LanguageRegistry.addName(helmSteelRC, "Steel Helm RC");
-    		LanguageRegistry.addName(chestSteelRC, "Steel Chest RC");
-    		LanguageRegistry.addName(legsSteelRC, "Steel Legs RC");
-    		LanguageRegistry.addName(bootsSteelRC, "Steel Boots RC");
-    		GameRegistry.addShapelessRecipe(new ItemStack(helmSteelRC, 1), new Object[] {
-    			helmCSteel, new ItemStack( mrk2Battery,1, OreDictionary.WILDCARD_VALUE), new ItemStack( mrk2Battery,1, OreDictionary.WILDCARD_VALUE), moltenRedstone,moltenRedstone,moltenRedstone,moltenRedstone});
-    		GameRegistry.addShapelessRecipe(new ItemStack(chestSteelRC, 1), new Object[] {
-    			chestCSteel, new ItemStack( mrk2Battery,1, OreDictionary.WILDCARD_VALUE), new ItemStack( mrk2Battery,1, OreDictionary.WILDCARD_VALUE), moltenRedstone,moltenRedstone,moltenRedstone,moltenRedstone});
-    		GameRegistry.addShapelessRecipe(new ItemStack(legsSteelRC, 1), new Object[] {
-    			legsCSteel, new ItemStack( mrk2Battery,1, OreDictionary.WILDCARD_VALUE), new ItemStack( mrk2Battery,1, OreDictionary.WILDCARD_VALUE), moltenRedstone,moltenRedstone,moltenRedstone,moltenRedstone});
-    		GameRegistry.addShapelessRecipe(new ItemStack(bootsSteelRC, 1), new Object[] {
-    			bootsCSteel, new ItemStack( mrk2Battery,1, OreDictionary.WILDCARD_VALUE), new ItemStack( mrk2Battery,1, OreDictionary.WILDCARD_VALUE), moltenRedstone,moltenRedstone,moltenRedstone,moltenRedstone});
-    	//tools	
-    		GameRegistry.addShapelessRecipe(new ItemStack(pickaxeSteelRC, 1), new Object[] {
-    			pickaxeCSteel, new ItemStack( mrk2Battery,1, OreDictionary.WILDCARD_VALUE), new ItemStack( mrk2Battery,1, OreDictionary.WILDCARD_VALUE), moltenRedstone,moltenRedstone,moltenRedstone,moltenRedstone});
-    		GameRegistry.addShapelessRecipe(new ItemStack(swordSteelRC, 1), new Object[] {
-    			swordCSteel, new ItemStack( mrk2Battery,1, OreDictionary.WILDCARD_VALUE), new ItemStack( mrk2Battery,1, OreDictionary.WILDCARD_VALUE), moltenRedstone,moltenRedstone,moltenRedstone,moltenRedstone});
-    		GameRegistry.addShapelessRecipe(new ItemStack(axeSteelRC, 1), new Object[] {
-    			axeCSteel, new ItemStack( mrk2Battery,1, OreDictionary.WILDCARD_VALUE), new ItemStack( mrk2Battery,1, OreDictionary.WILDCARD_VALUE), moltenRedstone,moltenRedstone,moltenRedstone,moltenRedstone});
-    		GameRegistry.addShapelessRecipe(new ItemStack(hoeSteelRC, 1), new Object[] {
-    			hoeCSteel, new ItemStack( mrk2Battery,1, OreDictionary.WILDCARD_VALUE), new ItemStack( mrk2Battery,1, OreDictionary.WILDCARD_VALUE), moltenRedstone,moltenRedstone,moltenRedstone,moltenRedstone});
-    		GameRegistry.addShapelessRecipe(new ItemStack(shovelSteelRC, 1), new Object[] {
-    			shovelCSteel, new ItemStack( mrk2Battery,1, OreDictionary.WILDCARD_VALUE), new ItemStack( mrk2Battery,1, OreDictionary.WILDCARD_VALUE), moltenRedstone,moltenRedstone,moltenRedstone,moltenRedstone});
-    		
-    		
-    		
-    		
+    
+    
+    
     GameRegistry.addRecipe(new ItemStack(crudeMysticBattery, 1, 10), new Object[]{
     	" X ","XZX","XZX", 'X', Block.stone, 'Z', Item.redstone
     });
-    GameRegistry.addShapelessRecipe(new ItemStack(warpedPowerConnector, 1), new Object[]{
-    	Item.ingotIron,Item.ingotIron,Item.ingotIron,Item.ingotIron, new ItemStack(MysticModItems.crudeMysticBattery,1,OreDictionary.WILDCARD_VALUE)
+    GameRegistry.addRecipe(new ItemStack(warpedPowerConnector, 1), new Object[]{
+    	"X","XYX","X", 'X', Item.ingotIron, 'Y', new ItemStack(MysticModItems.crudeMysticBattery,1,10)
     });
-    GameRegistry.addShapelessRecipe(new ItemStack(MysticModItems.mePowerConnector, 1), new Object[]{
-    	MysticModItems.refinedIronIngot,MysticModItems.refinedIronIngot,MysticModItems.refinedIronIngot,MysticModItems.refinedIronIngot, new ItemStack(MysticModItems.crudeMysticBattery,1,OreDictionary.WILDCARD_VALUE)
+    GameRegistry.addRecipe(new ItemStack(warpedPowerConnector, 1), new Object[]{
+    	"X","XYX","X", 'X', MysticModItems.refinedIronIngot, 'Y', new ItemStack(MysticModItems.crudeMysticBattery,1,10)
     });
-    GameRegistry.addShapelessRecipe(new ItemStack(MysticModItems.ePowerConnector, 1), new Object[]{
-    	MysticModItems.cSteelIngot,MysticModItems.cSteelIngot,MysticModItems.cSteelIngot,MysticModItems.cSteelIngot,  new ItemStack(MysticModItems.mrk2Battery,1,OreDictionary.WILDCARD_VALUE)
+    GameRegistry.addRecipe(new ItemStack(warpedPowerConnector, 1), new Object[]{
+    	"X","XYX","X", 'X', MysticModItems.cSteelIngot, 'Y', new ItemStack(MysticModItems.crudeMysticBattery,1,10)
     });
-    GameRegistry.addShapelessRecipe(new ItemStack(MysticModItems.tPowerConnector, 1), new Object[]{
-    	MysticModItems.mysticIngot,MysticModItems.mysticIngot,MysticModItems.mysticIngot,MysticModItems.mysticIngot, new ItemStack(MysticModItems.mrk3Battery,1,OreDictionary.WILDCARD_VALUE)
+    GameRegistry.addRecipe(new ItemStack(warpedPowerConnector, 1), new Object[]{
+    	"X","XYX","X", 'X', MysticModItems.mysticIngot, 'Y', new ItemStack(MysticModItems.crudeMysticBattery,1,10)
     });
     GameRegistry.addRecipe(new ItemStack(markRecallMrk2, 1), new Object[]{
-    	"ZXZ","XYX","ZXZ", 'Y', MysticModItems.markrecallMRK1, 'X', new ItemStack(MysticModItems.crudeMysticBattery,1,OreDictionary.WILDCARD_VALUE), 'Z', MysticModItems.moltenRedstone
+    	"ZXZ","XYX","ZXZ", 'Y', MysticModItems.markrecallMRK1, 'X', new ItemStack(MysticModItems.crudeMysticBattery,1,10), 'Z', MysticModItems.moltenRedstone
     });
     GameRegistry.addRecipe(new ItemStack(diggingCatalyst, 1), new Object[]{
-    	"ZXZ","XYX","ZXZ", 'Y', MysticModItems.pickaxeCSteel, 'X', new ItemStack(MysticModItems.crudeMysticBattery,1,OreDictionary.WILDCARD_VALUE), 'Z', MysticModItems.moltenRedstone
-    });
-    GameRegistry.addRecipe(new ItemStack(mrk2Battery, 1), new Object[]{
-    	"ZXZ","XYX","ZXZ", 'Y', MysticModBlocks.refinedRedstone, 'X', new ItemStack(MysticModItems.crudeMysticBattery,1,OreDictionary.WILDCARD_VALUE), 'Z', MysticModItems.moltencSteel
-    });
-    GameRegistry.addRecipe(new ItemStack(rcTeleThrower, 1), new Object[]{
-    	"ZXZ","XYX","VXV", 'Y', MysticModBlocks.refinedRedstone, 'X', Item.enderPearl, 'Z', MysticModItems.moltenRedstone, 'V', new ItemStack( mrk2Battery,1, OreDictionary.WILDCARD_VALUE)
+    	"ZXZ","XYX","ZXZ", 'Y', MysticModItems.pickaxeCSteel, 'X', new ItemStack(MysticModItems.crudeMysticBattery,1,10), 'Z', MysticModItems.moltenRedstone
     });
     
-    GameRegistry.addRecipe(new ItemStack(mrk3Battery, 1), new Object[]{
-    	"ZXZ","XYX","ZXZ", 'Y', MysticModBlocks.refinedRedstone, 'X', new ItemStack(MysticModItems.mrk3Battery,1, OreDictionary.WILDCARD_VALUE), 'Z', MysticModItems.moltencSteel
-    });
+    
     
     //dusts
     LanguageRegistry.addName(essenceIron, "Iron Essence");

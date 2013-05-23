@@ -4,7 +4,7 @@ package com.sudwood.mysticadditions.blocks;
 import java.util.Random;
 
 import com.sudwood.mysticadditions.MysticCommonProxy;
-import com.sudwood.mysticadditions.MysticAdditions;
+import com.sudwood.mysticadditions.mod_MysticAdditions;
 import com.sudwood.mysticadditions.dimensions.TeleporterMystic;
 import com.sudwood.mysticadditions.items.MysticModItems;
 
@@ -292,7 +292,7 @@ public class BlockMysticPortal extends BlockBreakable
    
        if(player.timeUntilPortal==0)
        {
-       MinecraftServer.getServer().getConfigurationManager().transferPlayerToDimension((EntityPlayerMP)player, MysticAdditions.DimID, new TeleporterMystic(((EntityPlayerMP) player).getServerForPlayer()) );
+       MinecraftServer.getServer().getConfigurationManager().transferPlayerToDimension((EntityPlayerMP)player, mod_MysticAdditions.DimID, new TeleporterMystic(((EntityPlayerMP) player).getServerForPlayer()) );
     	}
        }
     	if (entity.dimension == 0)
@@ -300,12 +300,12 @@ public class BlockMysticPortal extends BlockBreakable
     		
     		if(player.timeUntilPortal==0)
     	       {
-      MinecraftServer.getServer().getConfigurationManager().transferPlayerToDimension((EntityPlayerMP)player, MysticAdditions.DimID, new TeleporterMystic(((EntityPlayerMP) player).getServerForPlayer()) );
+      MinecraftServer.getServer().getConfigurationManager().transferPlayerToDimension((EntityPlayerMP)player, mod_MysticAdditions.DimID, new TeleporterMystic(((EntityPlayerMP) player).getServerForPlayer()) );
       System.out.println("Going to warp");
       
     	       }
     	       }
-    	if (entity.dimension == MysticAdditions.DimID)
+    	if (entity.dimension == mod_MysticAdditions.DimID)
     	{
     		
     		if(player.timeUntilPortal==0)

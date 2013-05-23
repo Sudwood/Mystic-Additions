@@ -3,7 +3,7 @@ package com.sudwood.mysticadditions.items.energy;
 import java.util.List;
 
 import com.sudwood.mysticadditions.MysticCommonProxy;
-import com.sudwood.mysticadditions.MysticAdditions;
+import com.sudwood.mysticadditions.mod_MysticAdditions;
 import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedGenerator;
 import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedStorage;
 
@@ -43,9 +43,9 @@ public class ItemMEPowerConnector extends Item {
 		}
     }
 	@Override
-	public void registerIcons(IconRegister iconRegister)
+	public void updateIcons(IconRegister iconRegister)
 	{
-		this.itemIcon = iconRegister.registerIcon("MysticAdditions:moderatlyefficientpowerconnector");
+		this.iconIndex = iconRegister.registerIcon("MysticAdditions:moderatlyefficientpowerconnector");
 	}
 	
 

@@ -17,9 +17,9 @@ public class ItemMysticLightningArrowHead extends Item
 		
 	}
 	@Override
-	public void registerIcons(IconRegister iconRegister)
+	public void updateIcons(IconRegister iconRegister)
 	{
-		this.itemIcon = iconRegister.registerIcon("MysticAdditions:lightningarrowheads");
+		this.iconIndex = iconRegister.registerIcon("MysticAdditions:lightningarrowheads");
 	}
 	
 }

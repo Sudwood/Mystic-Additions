@@ -29,9 +29,9 @@ public class ItemHoeMystic extends ItemHoe
     	return EnumRarity.epic;
     }
     @Override
-	public void registerIcons(IconRegister iconRegister)
+	public void updateIcons(IconRegister iconRegister)
 	{
-		this.itemIcon = iconRegister.registerIcon("MysticAdditions:mystichoe");
+		this.iconIndex = iconRegister.registerIcon("MysticAdditions:mystichoe");
 	}
 
 }

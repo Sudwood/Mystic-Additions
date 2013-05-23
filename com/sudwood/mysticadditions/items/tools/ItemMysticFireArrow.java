@@ -9,7 +9,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 
 import com.sudwood.mysticadditions.MysticCommonProxy;
-import com.sudwood.mysticadditions.MysticAdditions;
+import com.sudwood.mysticadditions.mod_MysticAdditions;
 
 
 public class ItemMysticFireArrow extends Item 
@@ -21,9 +21,9 @@ public class ItemMysticFireArrow extends Item
         maxStackSize = 64;
     }
 	@Override
-	public void registerIcons(IconRegister iconRegister)
+	public void updateIcons(IconRegister iconRegister)
 	{
-		this.itemIcon = iconRegister.registerIcon("MysticAdditions:firearrow");
+		this.iconIndex = iconRegister.registerIcon("MysticAdditions:firearrow");
 	}
 	 public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer entityplayer)
 	    {

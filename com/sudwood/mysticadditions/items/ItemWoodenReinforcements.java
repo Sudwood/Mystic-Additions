@@ -17,9 +17,9 @@ public class ItemWoodenReinforcements extends Item
 		
 	}
 	@Override
-	public void registerIcons(IconRegister iconRegister)
+	public void updateIcons(IconRegister iconRegister)
 	{
-	         this.itemIcon = iconRegister.registerIcon("MysticAdditions:woodenreinforcements");
+	         this.iconIndex = iconRegister.registerIcon("MysticAdditions:woodenreinforcements");
 	}
 
 

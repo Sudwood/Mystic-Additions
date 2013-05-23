@@ -30,9 +30,9 @@ public class ItemSpadeMystic extends ItemSpade
     }
     
     @Override
-	public void registerIcons(IconRegister iconRegister)
+	public void updateIcons(IconRegister iconRegister)
 	{
-		this.itemIcon = iconRegister.registerIcon("MysticAdditions:mysticshovel");
+		this.iconIndex = iconRegister.registerIcon("MysticAdditions:mysticshovel");
 	}
 
 }

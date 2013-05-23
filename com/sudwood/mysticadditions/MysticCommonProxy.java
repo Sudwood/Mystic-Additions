@@ -37,12 +37,10 @@ public class MysticCommonProxy implements IGuiHandler{
 	    return 0;  //server doesn't care what the number is
 	}
 	
-	public void registerServerTickHandlers()
+	public void registerTickHandlers()
 	{
 		TickRegistry.registerTickHandler(new PlayerTickHandler(), Side.SERVER);
 		TickRegistry.registerTickHandler(new ClientTickHandler(), Side.CLIENT);
 	}
-	
-	
 	
 }

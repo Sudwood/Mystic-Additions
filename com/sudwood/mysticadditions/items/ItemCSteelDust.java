@@ -17,9 +17,9 @@ public class ItemCSteelDust extends Item
 		
 	}
 	@Override
-	public void registerIcons(IconRegister iconRegister)
+	public void updateIcons(IconRegister iconRegister)
 	{
-	         this.itemIcon = iconRegister.registerIcon("MysticAdditions:steeldust");
+	         this.iconIndex = iconRegister.registerIcon("MysticAdditions:steeldust");
 	}
 
 

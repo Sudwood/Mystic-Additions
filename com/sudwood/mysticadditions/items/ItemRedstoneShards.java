@@ -15,8 +15,8 @@ public class ItemRedstoneShards extends Item
 		maxStackSize = 64;		
 	}
 	@Override
-	public void registerIcons(IconRegister iconRegister)
+	public void updateIcons(IconRegister iconRegister)
 	{
-	         this.itemIcon = iconRegister.registerIcon("MysticAdditions:redstoneshards");
+	         this.iconIndex = iconRegister.registerIcon("MysticAdditions:redstoneshards");
 	}
 }

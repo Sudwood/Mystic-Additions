@@ -42,9 +42,9 @@ public class ItemMysticStone extends Item
     	return EnumRarity.rare;
     }
 	@Override
-	public void registerIcons(IconRegister iconRegister)
+	public void updateIcons(IconRegister iconRegister)
 	{
-	         this.itemIcon = iconRegister.registerIcon("MysticAdditions:mysticstone");
+	         this.iconIndex = iconRegister.registerIcon("MysticAdditions:mysticstone");
 	}
 	  @Override 
 	  public boolean doesContainerItemLeaveCraftingGrid(ItemStack itemstack) {

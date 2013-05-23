@@ -16,9 +16,9 @@ public class ItemCrudeIron extends Item {
 		
 	}
 	@Override
-	public void registerIcons(IconRegister iconRegister)
+	public void updateIcons(IconRegister iconRegister)
 	{
-	         this.itemIcon = iconRegister.registerIcon("MysticAdditions:crudeiron");
+	         this.iconIndex = iconRegister.registerIcon("MysticAdditions:crudeiron");
 	}
 
 

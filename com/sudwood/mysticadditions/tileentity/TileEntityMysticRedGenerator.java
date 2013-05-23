@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.sudwood.mysticadditions.MysticEnergy;
-import com.sudwood.mysticadditions.MysticAdditions;
+import com.sudwood.mysticadditions.mod_MysticAdditions;
 import com.sudwood.mysticadditions.blocks.BlockMysticFurnace;
 import com.sudwood.mysticadditions.blocks.MysticModBlocks;
 
@@ -27,10 +27,11 @@ import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.ISidedInventory;
 
-public class TileEntityMysticRedGenerator extends TileEntityMysticEnergy implements MysticEnergy, IInventory{
+public class TileEntityMysticRedGenerator extends TileEntity implements MysticEnergy, IInventory{
 	private int[] coords = {42,42,42};
 	private int[] connectors = {42,42,42,42,42,42};
-	
+	private final int maxEnergyLevel = 4000;
+	public int energyLevel = 0;
 	public static int numberDrawing = 0;
 	private boolean isFull = false;
 	private ItemStack[] furnaceItemStacks = new ItemStack[1];
@@ -43,13 +44,9 @@ public class TileEntityMysticRedGenerator extends TileEntityMysticEnergy impleme
     public float spinAngle = 0F;
     public float upDownLocation = 2F;
     private boolean upDown = false;
-	public TileEntityMysticRedGenerator(int maxEnergy)
-	{
-		super(maxEnergy);
-	}
 	public TileEntityMysticRedGenerator()
 	{
-		super(4000);
+		
 	}
 	public boolean canUpdate(){
 		   return true;
@@ -99,7 +96,10 @@ public class TileEntityMysticRedGenerator extends TileEntityMysticEnergy impleme
 	{
 		connectors = connector;
 	}
-	
+	public void setEnergyLevel(int el){
+		
+		energyLevel = el;
+	}
 	public int getEnergyLevel()
 	{
 		return energyLevel;
@@ -298,7 +298,7 @@ public class TileEntityMysticRedGenerator extends TileEntityMysticEnergy impleme
 	        {
 	            this.onInventoryChanged();
 	        }
-	        if (MysticAdditions.areAnimations&&this.currentItemBurnTime>0&&this.energyLevel<this.maxEnergyLevel)
+	        if (mod_MysticAdditions.areAnimations&&this.currentItemBurnTime>0&&this.energyLevel<this.maxEnergyLevel)
 			 {
 			 if (this.upDownLocation<12&&!upDown)
 			  {

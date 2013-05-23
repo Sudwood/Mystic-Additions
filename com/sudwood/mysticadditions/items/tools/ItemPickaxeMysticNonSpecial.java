@@ -16,9 +16,9 @@ public class ItemPickaxeMysticNonSpecial extends ItemPickaxe
     }
    
     @Override
-   	public void registerIcons(IconRegister iconRegister)
+   	public void updateIcons(IconRegister iconRegister)
    	{
-   		this.itemIcon = iconRegister.registerIcon("MysticAdditions:CSteel Pick");
+   		this.iconIndex = iconRegister.registerIcon("MysticAdditions:CSteel Pick");
    	}
 
 }

@@ -21,9 +21,9 @@ public class ItemEarthToken extends Item
 		
 	}
 	@Override
-	public void registerIcons(IconRegister iconRegister)
+	public void updateIcons(IconRegister iconRegister)
 	{
-	         this.itemIcon = iconRegister.registerIcon("MysticAdditions:earthtoken");
+	         this.iconIndex = iconRegister.registerIcon("MysticAdditions:earthtoken");
 	}
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) 
 	{

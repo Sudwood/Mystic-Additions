@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.lwjgl.input.Keyboard;
 
-import com.sudwood.mysticadditions.MysticAdditions;
+import com.sudwood.mysticadditions.mod_MysticAdditions;
 
 import net.java.games.input.Component.Identifier.Key;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -65,10 +65,8 @@ public class ItemMarkRecallMRK2 extends IItemMysticRechargeable {
 		if (!par2World.isRemote)
 		 {
 		 if(par1ItemStack.getTagCompound() == null) par1ItemStack.setTagCompound(new NBTTagCompound());
-		 
 	 dimensionIn = par2World.getWorldInfo().getDimension();
      NBTTagCompound tag = par1ItemStack.getTagCompound();
-     this.currentCharge = tag.getInteger("CurrentCharge");
      state = tag.getBoolean("state");
      isSet = tag.getBoolean("isSet");
      x = tag.getInteger("posX");
@@ -114,11 +112,10 @@ public class ItemMarkRecallMRK2 extends IItemMysticRechargeable {
     			  this.x = (int)par3EntityPlayer.posX;
 	    		  this.y = (int)par3EntityPlayer.posY;
 	    		  this.z = (int)par3EntityPlayer.posZ;
-	    		  par2World.setBlock(x, y, z, MysticAdditions.markblockid);
+	    		  par2World.setBlock(x, y, z, mod_MysticAdditions.markblockid);
 	    		  this.currentCharge-=100;
 	    		  
 	    		  tag.setInteger("CurrentCharge", this.currentCharge);
-	    		  
 	    		
     		  }
     		  if (isSet==false)
@@ -128,7 +125,7 @@ public class ItemMarkRecallMRK2 extends IItemMysticRechargeable {
     		  this.x = (int)par3EntityPlayer.posX;
     		  this.y = (int)par3EntityPlayer.posY;
     		  this.z = (int)par3EntityPlayer.posZ;
-    		  par2World.setBlock(x, y, z, MysticAdditions.markblockid);
+    		  par2World.setBlock(x, y, z, mod_MysticAdditions.markblockid);
     		  this.currentCharge-=100;
     		  
     		  tag.setInteger("CurrentCharge", this.currentCharge);
@@ -141,7 +138,6 @@ public class ItemMarkRecallMRK2 extends IItemMysticRechargeable {
     		  tag.setInteger("posX", x);
     		  tag.setInteger("posY", y);
     		  tag.setInteger("posZ", z);
-    		  this.setItemDamageByCharge(par1ItemStack);
     		  return par1ItemStack;
     		  
     	  }
@@ -156,7 +152,6 @@ public class ItemMarkRecallMRK2 extends IItemMysticRechargeable {
 	    		 this.currentCharge-=100;
 	    		 
 	   		  tag.setInteger("CurrentCharge", this.currentCharge);
-	   		this.setItemDamageByCharge(par1ItemStack);
 	   		return par1ItemStack;
 	    	 }
     	 
@@ -176,7 +171,7 @@ public class ItemMarkRecallMRK2 extends IItemMysticRechargeable {
 		{
 			this.hasCharged = false;
 		}
-		
+		this.setItemDamageByCharge(par1ItemStack);
 	}
 	
 	
@@ -244,7 +239,7 @@ public class ItemMarkRecallMRK2 extends IItemMysticRechargeable {
 		  }
 	}
 	@Override
-	public void registerIcons(IconRegister iconRegister)
+	public void updateIcons(IconRegister iconRegister)
 	{
 	         this.iconList[0] = iconRegister.registerIcon("MysticAdditions:markrecallmrk2-0");
 	         this.iconList[1] = iconRegister.registerIcon("MysticAdditions:markrecallmrk2-1");

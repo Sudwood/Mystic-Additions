@@ -16,9 +16,9 @@ public class ItemReinforcedStone extends Item {
 		
 	}
 	@Override
-	public void registerIcons(IconRegister iconRegister)
+	public void updateIcons(IconRegister iconRegister)
 	{
-	         this.itemIcon = iconRegister.registerIcon("MysticAdditions:reinforcedstoneplating");
+	         this.iconIndex = iconRegister.registerIcon("MysticAdditions:reinforcedstoneplating");
 	}
 
 

@@ -1,6 +1,6 @@
 package com.sudwood.mysticadditions.dimensions;
 
-import com.sudwood.mysticadditions.MysticAdditions;
+import com.sudwood.mysticadditions.mod_MysticAdditions;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -19,10 +19,10 @@ public class WorldProviderMystic extends WorldProvider
      */
     public void registerWorldChunkManager()
     {
-        this.worldChunkMgr = new WorldChunkManagerHell(MysticAdditions.Mysticbiome, 1.0F, 0.0F);
+        this.worldChunkMgr = new WorldChunkManagerHell(mod_MysticAdditions.Mysticbiome, 1.0F, 0.0F);
         this.isHellWorld = false;
         this.hasNoSky = false;
-        this.dimensionId = MysticAdditions.DimID;
+        this.dimensionId = mod_MysticAdditions.DimID;
     }
 
     @SideOnly(Side.CLIENT)

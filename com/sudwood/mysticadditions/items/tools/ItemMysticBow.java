@@ -22,7 +22,7 @@ import net.minecraft.world.World;
 
 
 import com.sudwood.mysticadditions.MysticCommonProxy;
-import com.sudwood.mysticadditions.MysticAdditions;
+import com.sudwood.mysticadditions.mod_MysticAdditions;
 import com.sudwood.mysticadditions.entity.EntityMysticArrow;
 import com.sudwood.mysticadditions.entity.EntityMysticExplosiveArrow;
 import com.sudwood.mysticadditions.entity.EntityMysticFireArrow;
@@ -272,8 +272,8 @@ public class ItemMysticBow extends ItemBow
 
     	
     @Override
-	public void registerIcons(IconRegister iconRegister)
+	public void updateIcons(IconRegister iconRegister)
 	{
-		this.itemIcon = iconRegister.registerIcon("MysticAdditions:mysticbow");
+		this.iconIndex = iconRegister.registerIcon("MysticAdditions:mysticbow");
 	}
 }

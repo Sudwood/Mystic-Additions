@@ -10,7 +10,6 @@ import java.lang.reflect.Modifier;
 import com.sudwood.mysticadditions.blocks.MysticModBlocks;
 import com.sudwood.mysticadditions.dimensions.BiomeGenMystic;
 import com.sudwood.mysticadditions.dimensions.WorldProviderMystic;
-import com.sudwood.mysticadditions.enchantments.EnchantmentRegister;
 import com.sudwood.mysticadditions.entity.EntityEarthMiniBoss;
 import com.sudwood.mysticadditions.entity.EntityFireMiniBoss;
 import com.sudwood.mysticadditions.entity.EntityMysticArcher;
@@ -37,8 +36,6 @@ import com.sudwood.mysticadditions.items.MysticModItems;
 import com.sudwood.mysticadditions.items.potions.MysticModPotions;
 import com.sudwood.mysticadditions.items.potions.PotionFreeze;
 import com.sudwood.mysticadditions.tileentity.TileEntityMysticBud;
-import com.sudwood.mysticadditions.tileentity.TileEntityMysticCrystalGenerator;
-import com.sudwood.mysticadditions.tileentity.TileEntityMysticEnergy;
 import com.sudwood.mysticadditions.tileentity.TileEntityMysticFurnace;
 import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedGenerator;
 import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedGrinder;
@@ -52,7 +49,6 @@ import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.EnumHelper;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
@@ -91,17 +87,17 @@ import cpw.mods.fml.relauncher.Side;
 
 
 
-@Mod( modid = "MysticAdditions", name="Mystic Additions", version="1.5.1")
-@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels={"MysticER", "MysticIMS"}, packetHandler = MysticPacketHandler.class)
-public class MysticAdditions 
+@Mod( modid = "MysticAdditions", name="Mystic Additions", version="1.4.7")
+@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels=("MysticFurnace"), packetHandler = MysticPacketHandler.class)
+public class mod_MysticAdditions 
 {
 	
 	public static BiomeGenBase Mysticbiome;
 	@Instance("MysticAdditions")
-	public static MysticAdditions instance;
+	public static mod_MysticAdditions instance;
 	
 	@SidedProxy(clientSide="client.sudwood.mysticadditions.MysticClientProxy", serverSide="com.sudwood.mysticadditions.MysticCommonProxy" )
-	public static MysticCommonProxy proxy = new MysticCommonProxy();
+	public static MysticCommonProxy proxy;
 	
 	public static int DimID;
 	private GuiHandlerMystic guiHandler = new GuiHandlerMystic();
@@ -161,9 +157,7 @@ public class MysticAdditions
 		 public static int mysticredgrinderid;
 		 public static int poweredfurnaceid;
 		 public static int poweredmysticfurnaceid;
-		 public static int crystalgeneratorid;
-		 public static int crystalgeneratorbaseid;
-		 public static int mrk2mysticredstorageid;
+		 
 		//item ids
 		 public static int refinedironingotid;
 		 public static int csteelingotid;
@@ -222,9 +216,6 @@ public class MysticAdditions
 		 public static int earthtokenid;
 		 public static int watertokenid;
 		 public static int diggingcatalystid;
-		 public static int mrk2batteryid;
-		 public static int rctelethrowerid;
-		 public static int mrk3batteryid;
 
 			//tool ids
 		 public static int csteelpickid;
@@ -232,12 +223,6 @@ public class MysticAdditions
 		 public static int csteelswordid;
 		 public static int csteelhoeid;
 		 public static int csteelspadeid;
-		 public static int steelpickrcid;
-		 public static int steelaxercid;
-		 public static int steelswordrcid;
-		 public static int steelshovelrcid;
-		 public static int steelhoercid;
-		 public static int smtrcid;
 		//mystic tool ids
 		 public static int mysticpickid;
 		 public static int mysticaxeid;
@@ -257,10 +242,6 @@ public class MysticAdditions
 		 public static int mystichelmid;
 		 public static int mysticlegsid;
 		 public static int mysticbootsid;
-		 public static int steelhelmrcid;
-		 public static int steelchestrcid;
-		 public static int steellegsrcid;
-		 public static int steelbootsrcid;
 		
 	//creative tab
 		 public static CreativeTabs mysticTab = new MysticAdditionsTab("mysticTab");
@@ -274,7 +255,7 @@ public class MysticAdditions
 	
 @PreInit
 public void preInit(FMLPreInitializationEvent event){
-	System.out.println("Loading Version 1.1.0 of Mystic Additions");
+	System.out.println("Loading Version 1.0.5 of Mystic Additions");
 	
 		Potion[] potionTypes = null;
 
@@ -358,9 +339,6 @@ public void preInit(FMLPreInitializationEvent event){
 	     mysticredgrinderid = config.getBlock("ConteroEssence", 2219).getInt();
 	     poweredfurnaceid = config.getBlock("PoweredFurnace", 2220).getInt();
 	     poweredmysticfurnaceid = config.getBlock("PoweredMysticFurnace", 2221).getInt();
-	     crystalgeneratorid = config.getBlock("Crystal Generator", 2222).getInt();
-	     crystalgeneratorbaseid = config.getBlock("CrystalGeneratorBase", 2223).getInt();
-	     mrk2mysticredstorageid = config.getBlock("Mrk2RedCapacitor", 2224).getInt();
 	//item ids
 	     refinedironingotid = config.getItem("RefinedIronIngot", 31000).getInt();
 	     csteelingotid = config.getItem("SteelIngot", 31001).getInt();
@@ -417,22 +395,12 @@ public void preInit(FMLPreInitializationEvent event){
 	     earthtokenid = config.getItem("EarthToken", 31073).getInt();
 	     diamondessenceid = config.getItem("DiamondEssence", 31074).getInt();
 	     diggingcatalystid = config.getItem("DiggingCatalyst", 31075).getInt();
-	     mrk2batteryid = config.getItem("Mark2Battery", 31076).getInt();
-	     rctelethrowerid = config.getItem("RC Tele Thrower", 31087).getInt();
-	     mrk3batteryid = config.getItem("Mark3Battery", 31088).getInt();
-	     //last item id 31087
 		//tool ids
 	     csteelpickid = config.getItem("SteelPickaxe", 31031).getInt();
 	     csteelaxeid = config.getItem("SteelAxe", 31032).getInt();
 	     csteelswordid = config.getItem("SteelSword", 31033).getInt();
 	     csteelhoeid = config.getItem("SteelHoe", 31034).getInt();
 	     csteelspadeid = config.getItem("SteelShovel", 31035).getInt();
-	     steelpickrcid = config.getItem("SteelPickRC", 31077).getInt();
-	     steelaxercid = config.getItem("SteelAxeRC", 31078).getInt();
-	     steelswordrcid = config.getItem("SteelSwordRC", 31079).getInt();
-	     steelshovelrcid = config.getItem("SteelShovelRC", 31080).getInt();
-	     steelhoercid = config.getItem("SteelHoeRC", 31081).getInt();
-	     smtrcid = config.getItem("SteelMultiToolRC", 31082).getInt();
 	//mystic tool ids
 	     mysticpickid = config.getItem("MysticPickaxe", 31036).getInt();
 	     mysticaxeid = config.getItem("MysticAxe", 31037).getInt();
@@ -452,10 +420,6 @@ public void preInit(FMLPreInitializationEvent event){
 	     mystichelmid = config.getItem("MysticHelm", 31050).getInt();
 	     mysticlegsid = config.getItem("MysticLegs", 31051).getInt();
 	     mysticbootsid = config.getItem("MysticBoots", 31052).getInt();
-	     steelhelmrcid = config.getItem("Steel Helm RC", 31083).getInt();
-	     steelchestrcid = config.getItem("Steel Chest RC", 31084).getInt();
-	     steellegsrcid = config.getItem("Steel Legs RC", 31085).getInt();
-	     steelbootsrcid = config.getItem("Steel Boots RC", 31086).getInt();
 	     
 	     //options
 	     areAnimations = config.get(config.CATEGORY_GENERAL, "Are animations enabled", true).getBoolean(true);
@@ -483,18 +447,11 @@ public void load(FMLInitializationEvent event)
 	MysticModBlocks.init();
 	MysticModItems.init();
 	MysticModBlocks.initBlockRecipes();
-	
-	//enchantments
-	EnchantmentRegister reg = new EnchantmentRegister();
-	reg.registerEnchantments();
-	
-	
 	OreDictionary.registerOre("ingotRefinedIron", new ItemStack(MysticModItems.refinedIronIngot));
 	OreDictionary.registerOre("ingotSteel", new ItemStack(MysticModItems.cSteelIngot));
 	OreDictionary.registerOre("ingotMystic", new ItemStack(MysticModItems.mysticIngot));
-	proxy.registerTickHandlers();
-	
-		
+	//Tick Handlers
+		//TickRegistry.registerTickHandler(new ArmorTickHandler(), Side.SERVER);
 	//potion
 	MysticModPotions.init();
 	//creative tab
@@ -517,11 +474,10 @@ public void load(FMLInitializationEvent event)
 	 EntityRegistry.registerModEntity(EntityEarthMiniBoss.class, "EarthMiniBoss", 12, this, 30, 1, true);
 	 EntityRegistry.registerModEntity(EntityMysticFreezeArrow.class, "MysticFreezeArrow", 1, this, 250, 20, true);
 	 EntityRegistry.registerModEntity(EntityMysticLightningArrow.class, "MysticLightningArrow", 1, this, 250, 20, true);
-	
-	 MinecraftForge.EVENT_BUS.register(new ArmorTickHandler());
+	// TickRegistry.registerTickHandler(new ArmorTickHandler(), Side.SERVER);
 	//biome stuff
 			Mysticbiome = new BiomeGenMystic(50);
-			
+		//	GameRegistry.registerWorldGenerator(new MysticWorldGenerator());
 	 DimensionManager.registerProviderType(14, WorldProviderMystic.class, false);
 	 DimID = DimensionManager.getNextFreeDimId();
 
@@ -541,8 +497,6 @@ public void load(FMLInitializationEvent event)
 			 GameRegistry.registerTileEntity(TileEntityMysticRedGrinder.class, "MysticRedGrinder");
 			 GameRegistry.registerTileEntity(TileEntityPoweredFurnace.class, "PoweredFurnace");
 			 GameRegistry.registerTileEntity(TileEntityPoweredMysticFurnace.class, "Powered Mystic Furnace");
-			 GameRegistry.registerTileEntity(TileEntityMysticCrystalGenerator.class, "Mystic crystal gernator");
-			 GameRegistry.registerTileEntity(TileEntityMysticEnergy.class, "Mystic Energy");
 			 NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 			
 
@@ -554,9 +508,48 @@ public void load(FMLInitializationEvent event)
 		
 		
 		
+		
 
 		
-		
+		/*
+	BiomeGenBase biome = world.getWorldChunkManager().getBiomeGenAt(baseX, baseZ); 
+	        WorldGenRedTree tree = new WorldGenRedTree(true); 
+	        if((biome instanceof BiomeForest))
+	        { 
+	        	for(int x = 0; x < 2; x++)
+	        	{
+	        		int Xcoord = baseX + rand.nextInt(16); 
+	        		int Zcoord = baseZ + rand.nextInt(16); 
+	        		int i = world.getHeightValue(Xcoord, Zcoord); 
+	        		tree.generate(world, rand, Xcoord, i, Zcoord); 
+	        	}
+	        } 		
+	        for(int a = 0; a < 2; a++)
+            {
+             int RandPosX = baseX + rand.nextInt(16);
+             int RandPosY = rand.nextInt(150);
+             int RandPosZ = baseZ + rand.nextInt(16);
+             (new WorldGenTowerBoss()).generate(world, rand, RandPosX, RandPosY, RandPosZ);
+            }
+	        for(int b = 0; b < 2; b++)
+            {
+             int RandPosX = baseX + rand.nextInt(16);
+             int RandPosY = rand.nextInt(150);
+             int RandPosZ = baseZ + rand.nextInt(16);
+             (new WorldGenJumpTower()).generate(world, rand, RandPosX, RandPosY, RandPosZ);
+            }
+	        WorldGenIronTree tree1 = new WorldGenIronTree(true); 
+	        if((biome instanceof BiomeGenMystic))
+	        { 
+	        	for(int x = 0; x < 2; x++)
+	        	{
+	        		int Xcoord = baseX + rand.nextInt(16); 
+	        		int Zcoord = baseZ + rand.nextInt(16); 
+	        		int i = world.getHeightValue(Xcoord, Zcoord); 
+	        		tree1.generate(world, rand, Xcoord, i, Zcoord); 
+	        	}
+	        } 
+	        */		
 	
 	public String getVersion()
 	{

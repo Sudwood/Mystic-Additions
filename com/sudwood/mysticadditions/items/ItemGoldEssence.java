@@ -17,9 +17,9 @@ public class ItemGoldEssence extends Item
 		
 	}
 	@Override
-	public void registerIcons(IconRegister iconRegister)
+	public void updateIcons(IconRegister iconRegister)
 	{
-	         this.itemIcon = iconRegister.registerIcon("MysticAdditions:goldessence");
+	         this.iconIndex = iconRegister.registerIcon("MysticAdditions:goldessence");
 	}
 
 	

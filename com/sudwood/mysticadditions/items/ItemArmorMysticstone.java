@@ -20,23 +20,23 @@ public class ItemArmorMysticstone extends ItemArmor
     
  
     @Override
-   	public void registerIcons(IconRegister iconRegister)
+   	public void updateIcons(IconRegister iconRegister)
    	{
        		 if(armorpiece==0)
        		 {
-   	         this.itemIcon = iconRegister.registerIcon("MysticAdditions:Stone Helm");
+   	         this.iconIndex = iconRegister.registerIcon("MysticAdditions:Stone Helm");
        		 }
        		 if(armorpiece==1)
        		 {
-   	         this.itemIcon = iconRegister.registerIcon("MysticAdditions:Stone Chest");
+   	         this.iconIndex = iconRegister.registerIcon("MysticAdditions:Stone Chest");
        		 }
        		 if(armorpiece==2)
        		 {
-   	         this.itemIcon = iconRegister.registerIcon("MysticAdditions:Stone Legs");
+   	         this.iconIndex = iconRegister.registerIcon("MysticAdditions:Stone Legs");
        		 }
        		 if(armorpiece==3)
        		 {
-   	         this.itemIcon = iconRegister.registerIcon("MysticAdditions:Stone Boots");
+   	         this.iconIndex = iconRegister.registerIcon("MysticAdditions:Stone Boots");
        		 }
    	}
 

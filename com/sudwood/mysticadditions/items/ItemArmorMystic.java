@@ -2,7 +2,7 @@ package com.sudwood.mysticadditions.items;
 
 
 import com.sudwood.mysticadditions.MysticCommonProxy;
-import com.sudwood.mysticadditions.MysticAdditions;
+import com.sudwood.mysticadditions.mod_MysticAdditions;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -56,23 +56,23 @@ public class ItemArmorMystic extends ItemArmor
     
     
     @Override
-   	public void registerIcons(IconRegister iconRegister)
+   	public void updateIcons(IconRegister iconRegister)
    	{
        		 if(armorpiece==0)
        		 {
-   	         this.itemIcon = iconRegister.registerIcon("MysticAdditions:mystic Helm");
+   	         this.iconIndex = iconRegister.registerIcon("MysticAdditions:mystic Helm");
        		 }
        		 if(armorpiece==1)
        		 {
-   	         this.itemIcon = iconRegister.registerIcon("MysticAdditions:mystic Chest");
+   	         this.iconIndex = iconRegister.registerIcon("MysticAdditions:mystic Chest");
        		 }
        		 if(armorpiece==2)
        		 {
-   	         this.itemIcon = iconRegister.registerIcon("MysticAdditions:mysticlegs");
+   	         this.iconIndex = iconRegister.registerIcon("MysticAdditions:mysticlegs");
        		 }
        		 if(armorpiece==3)
        		 {
-   	         this.itemIcon = iconRegister.registerIcon("MysticAdditions:mystic Boots");
+   	         this.iconIndex = iconRegister.registerIcon("MysticAdditions:mystic Boots");
        		 }
    	}
 
@@ -117,7 +117,6 @@ public class ItemArmorMystic extends ItemArmor
 		
 		player.addPotionEffect(new PotionEffect(Potion.jump.id, 200,5));
 		   }
-		
 	    if(legs!=null&&legs.getItem()==MysticModItems.legsMystic&&player.isSprinting())
 	    {
 	    	player.landMovementFactor = 0.45F;
@@ -132,7 +131,7 @@ public class ItemArmorMystic extends ItemArmor
 	    		player.capabilities.allowFlying = true;
 	    		player.capabilities.isFlying = true;
 	    	}
-	    	else if(!player.isInWater()&&!player.capabilities.isCreativeMode)
+	    	else if(!player.isInWater())
 	    	{
 	    		player.capabilities.allowFlying = false;
 	    		player.capabilities.isFlying = false;
@@ -143,14 +142,10 @@ public class ItemArmorMystic extends ItemArmor
 	    if(helmet!=null&&helmet.getItem()==MysticModItems.helmMystic)
 	    {
 	    	player.setAir(100);
-	    	if(player.isInWater())
+	    	if(player.isInWater()&&player.getActivePotionEffect(Potion.nightVision)==null)
 	    	{
 	    		
 	    		player.addPotionEffect(new PotionEffect(Potion.nightVision.id, 2000,0));
-	    	}
-	    	if(!player.isInWater())
-	    	{
-	    		player.removePotionEffect(Potion.nightVision.id);
 	    	}
 	    	
 	    }

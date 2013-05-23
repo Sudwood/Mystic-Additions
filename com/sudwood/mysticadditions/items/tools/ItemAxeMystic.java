@@ -28,9 +28,9 @@ public class ItemAxeMystic extends ItemAxe
     	return EnumRarity.epic;
     }
     @Override
-	public void registerIcons(IconRegister iconRegister)
+	public void updateIcons(IconRegister iconRegister)
 	{
-		this.itemIcon = iconRegister.registerIcon("MysticAdditions:mysticaxe");
+		this.iconIndex = iconRegister.registerIcon("MysticAdditions:mysticaxe");
 	}
 
 }

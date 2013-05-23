@@ -16,7 +16,7 @@ public class MysticRedGeneratorItemRendererHelper
     public static MysticRedGeneratorItemRendererHelper instance = new MysticRedGeneratorItemRendererHelper();
 
     /** Instance of Chest's Tile Entity. */
-    private TileEntityMysticRedGenerator theGenerator = new TileEntityMysticRedGenerator(4000);
+    private TileEntityMysticRedGenerator theGenerator = new TileEntityMysticRedGenerator();
 
  
 

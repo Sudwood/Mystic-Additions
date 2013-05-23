@@ -16,9 +16,9 @@ public class ItemAxeMysticNonSpecial extends ItemAxe
     }
     
     @Override
-   	public void registerIcons(IconRegister iconRegister)
+   	public void updateIcons(IconRegister iconRegister)
    	{
-   		this.itemIcon = iconRegister.registerIcon("MysticAdditions:CSteel Axe");
+   		this.iconIndex = iconRegister.registerIcon("MysticAdditions:CSteel Axe");
    	}
 
 }

@@ -17,9 +17,9 @@ public class ItemDiamondEssence extends Item
 		
 	}
 	@Override
-	public void registerIcons(IconRegister iconRegister)
+	public void updateIcons(IconRegister iconRegister)
 	{
-	         this.itemIcon = iconRegister.registerIcon("MysticAdditions:diamondessence");
+	         this.iconIndex = iconRegister.registerIcon("MysticAdditions:diamondessence");
 	}
 
 	
