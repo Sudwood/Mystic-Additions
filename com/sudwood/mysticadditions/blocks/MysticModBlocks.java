@@ -1,12 +1,22 @@
 package com.sudwood.mysticadditions.blocks;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockHalfSlab;
+import net.minecraft.block.StepSound;
+import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
+import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+
 import com.sudwood.mysticadditions.CraftingManagerMystic;
 import com.sudwood.mysticadditions.FurnaceRecipesMystic;
 import com.sudwood.mysticadditions.GrinderRecipesMystic;
 import com.sudwood.mysticadditions.ItemBlockMysticSlabs;
 import com.sudwood.mysticadditions.MysticAdditions;
 import com.sudwood.mysticadditions.blocks.energy.BlockCrystalGeneratorBase;
-import com.sudwood.mysticadditions.blocks.energy.BlockLiquidStorage;
 import com.sudwood.mysticadditions.blocks.energy.BlockMysticCrystalGenerator;
 import com.sudwood.mysticadditions.blocks.energy.BlockMysticRedGenerator;
 import com.sudwood.mysticadditions.blocks.energy.BlockMysticRedGrinder;
@@ -15,20 +25,6 @@ import com.sudwood.mysticadditions.blocks.energy.BlockMysticRedStoragemrk2;
 import com.sudwood.mysticadditions.blocks.energy.BlockPoweredFurnace;
 import com.sudwood.mysticadditions.blocks.energy.BlockPoweredMysticFurnace;
 import com.sudwood.mysticadditions.items.MysticModItems;
-
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockHalfSlab;
-import net.minecraft.block.BlockMobSpawner;
-
-import net.minecraft.block.StepSound;
-import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
-import net.minecraft.src.ModLoader;
-import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -90,6 +86,7 @@ public class MysticModBlocks {
 	public static  Block crystalGeneratorBase;
 	public static  Block mysticRedStorageMrk2;
 	public static  Block liquidStorage;
+	public static  Block camoBlock;
 	//blocksounds
 	public static final StepSound soundPowderFootstep = new StepSound("stone", 1.0F, 1.0F);
     public static final StepSound soundWoodFootstep = new StepSound("wood", 1.0F, 1.0F);
@@ -161,11 +158,10 @@ public class MysticModBlocks {
 		crystalGenerator = new BlockMysticCrystalGenerator(MysticAdditions.crystalgeneratorid, Material.ice).setHardness(1.5F).setResistance(100F).setUnlocalizedName("crystalgenerator").setCreativeTab(MysticAdditions.mysticTab);
 		crystalGeneratorBase = new BlockCrystalGeneratorBase(MysticAdditions.crystalgeneratorbaseid, Material.ice).setHardness(1.5F).setResistance(100F).setUnlocalizedName("MysticAdditions:crystalgenbase").setCreativeTab(MysticAdditions.mysticTab);
 		mysticRedStorageMrk2 = new BlockMysticRedStoragemrk2(MysticAdditions.mrk2mysticredstorageid, Material.circuits).setHardness(1.5F).setResistance(100F).setUnlocalizedName("MysticAdditions:mysticredstoragemrk2").setCreativeTab(MysticAdditions.mysticTab);
-		liquidStorage = new BlockLiquidStorage(MysticAdditions.liquidstorageblockid, Material.circuits).setHardness(1.5F).setResistance(100F).setUnlocalizedName("MysticAdditions:liquidstorage").setCreativeTab(MysticAdditions.mysticTab);
+		//liquidStorage = new BlockLiquidStorage(MysticAdditions.liquidstorageblockid, Material.circuits).setHardness(1.5F).setResistance(100F).setUnlocalizedName("MysticAdditions:liquidstorage").setCreativeTab(MysticAdditions.mysticTab);
+		//camoBlock = new BlockCamoBlock(MysticAdditions.camoblockid, Material.rock).setHardness(1.5F).setResistance(100F).setUnlocalizedName("MysticAdditions:camoblock").setCreativeTab(MysticAdditions.mysticTab);
 		//block registration
 		//dimension stuff
-		
-		
 		
 		GameRegistry.registerBlock(mysticPortal, "? ? ? ?");
 		GameRegistry.registerBlock(mysticportalBlock, "Mystical Stabilizer");
@@ -173,75 +169,46 @@ public class MysticModBlocks {
 		LanguageRegistry.addName(mysticportalSpawner, "Mystical Rift Creator");
 		LanguageRegistry.addName(mysticportalBlock, "Mystical Stabilizer");
 		LanguageRegistry.addName(mysticPortal, "? ? ? ?");
-	
-		
 		//compressed coal
 		GameRegistry.registerBlock(compressedCoal, "Compressed Coal");
 		LanguageRegistry.addName(compressedCoal, "Compressed Coal");
-		
-		
-		
-	
-		
-		
-		
 		
 		//refined carbon
 		GameRegistry.registerBlock(refinedCarbon, "Refined Carbon");
 		LanguageRegistry.addName(refinedCarbon, "Refined Carbon");
 	
-		
-		
 		//refined Redstone
 		GameRegistry.registerBlock(refinedRedstone, "Refined Redstone");
 		LanguageRegistry.addName(refinedRedstone, "Refined redstone");
 
-	
-	
 		//refined iron block
 		GameRegistry.registerBlock(refinedIronBlock, "Refined Iron Block");
 		LanguageRegistry.addName(refinedIronBlock, "Refined Iron Block");
 
-	
-	
 		//cSteelBlock
 		GameRegistry.registerBlock(cSteelBlock, "Steel Block");
 		LanguageRegistry.addName(cSteelBlock, "Steel Block");
 
-	
-	
 	//mystic glass
-	
 		GameRegistry.registerBlock(mysticGlass, "Mystic Glass");
 		LanguageRegistry.addName(mysticGlass, "Mystic Glass");
 	
-	
-	
-	
 	//mystic glow glass
-	
 		GameRegistry.registerBlock(mysticglowGlass, "Mystic Glow Glass");
 		LanguageRegistry.addName(mysticglowGlass, "Mystic Glow Glass");
 	
-	
 	//mystic speed glass
-	
 		GameRegistry.registerBlock(mysticspeedGlass, "Mystic Speed Strip");
 		LanguageRegistry.addName(mysticspeedGlass, "Mystic Speed Strip");
 	
-	
 	//mystic landmine glass
-	
 		GameRegistry.registerBlock(mysticlandmineGlass, "Mystic Landmine");
 		LanguageRegistry.addName(mysticlandmineGlass, "Mystic Landmine");
-	
-	
+		
 	//mystic fire glass
-	
 		GameRegistry.registerBlock(mysticfireGlass, "Mystic Fire Trap");
 		LanguageRegistry.addName(mysticfireGlass, "Mystic Fire Trap");
-	
-	
+		
 	//red tree stuff
 		GameRegistry.registerBlock(redLog, "Mystic Log");
 		LanguageRegistry.addName(redLog, "Mystic Log");
@@ -261,36 +228,28 @@ public class MysticModBlocks {
 	LanguageRegistry.addName(ironSapling, "Iron Sapling");
 	GameRegistry.registerBlock(ironPlanks, "Ironwood Planks");
 	LanguageRegistry.addName(ironPlanks, "Ironwood Planks");
-	
-	
+		
 	//Dimension Blocks
 	GameRegistry.registerBlock(mysticDirt, "Warped Dirt");
-LanguageRegistry.addName(mysticDirt, "Warped Dirt");
-
+	LanguageRegistry.addName(mysticDirt, "Warped Dirt");
 	GameRegistry.registerBlock(mysticGrass, "Warped Grass");
-LanguageRegistry.addName(mysticGrass, "Warped Grass");
+	LanguageRegistry.addName(mysticGrass, "Warped Grass");
 	GameRegistry.registerBlock(mysticgenStone, "Warped Stone");
-	
 	LanguageRegistry.addName(mysticgenStone, "Warped Stone");
 	GameRegistry.registerBlock(mysticCobblestone, "Warped Cobblestone");
-LanguageRegistry.addName(mysticCobblestone, "Warped Cobblestone");
+	LanguageRegistry.addName(mysticCobblestone, "Warped Cobblestone");
 	GameRegistry.registerBlock(mysticBricks, "Warped Bricks");
 	LanguageRegistry.addName(mysticBricks, "Warped Bricks");
-	
 	GameRegistry.registerBlock(inertGrass, "Inert Grass");
 	LanguageRegistry.addName(inertGrass, "Inert Grass");	
-	
 	GameRegistry.registerBlock(inertDirt, "Inert Dirt");
 	LanguageRegistry.addName(inertDirt, "Inert Dirt");
-	
 	GameRegistry.registerBlock(inertStone, "Inert Stone");
 	LanguageRegistry.addName(inertStone, "Inert Stone");
-	
 	GameRegistry.registerBlock(inertCobble, "Inert Cobblestone");
 	LanguageRegistry.addName(inertCobble, "Inert Cobblestone");
 	
 	//Elevator block
-	
 	GameRegistry.registerBlock(Elevator, "Elevator");
 	GameRegistry.registerBlock(Stopper, "Stopper");
 	GameRegistry.registerBlock(Dropper, "Dropper");
@@ -332,8 +291,8 @@ LanguageRegistry.addName(mysticCobblestone, "Warped Cobblestone");
 	LanguageRegistry.addName(crystalGeneratorBase, "Crystal Amplifier");
 	GameRegistry.registerBlock(mysticRedStorageMrk2 ,"Mrk 2 Red Capacitor");
 	LanguageRegistry.addName(mysticRedStorageMrk2 ,"Mrk 2 Red Capacitor");
-	GameRegistry.registerBlock(liquidStorage ,"liquidStorage");
-	LanguageRegistry.addName(liquidStorage, "Liquid Rift");
+//	GameRegistry.registerBlock(liquidStorage ,"liquidStorage");
+//	LanguageRegistry.addName(liquidStorage, "Liquid Rift");
 	//stairs
 	GameRegistry.registerBlock(mysticCobbleStairs, "mysticcobbleStairs");
 	GameRegistry.registerBlock(mysticStoneStairs, "mysticstoneStairs");
@@ -354,7 +313,9 @@ LanguageRegistry.addName(mysticCobblestone, "Warped Cobblestone");
 	GameRegistry.registerBlock(markBlock, "markBlock");
 	LanguageRegistry.addName(markBlock, "Warp Locator");
 	
-	
+	//camoblock
+//	GameRegistry.registerBlock(camoBlock, "camoBlock");
+//	LanguageRegistry.addName(camoBlock, "Camo Block");
 	
 	
 	}

@@ -51,7 +51,7 @@ public class ItemMarkRecallMRK1 extends Item {
 		 if (!par2World.isRemote)
 		 {
 			 if(par1ItemStack.getTagCompound() == null) par1ItemStack.setTagCompound(new NBTTagCompound());
-		 dimension = par2World.getWorldInfo().getDimension();
+		 dimension = par2World.provider.dimensionId;
 	     NBTTagCompound tag = par1ItemStack.getTagCompound();
 	     state = tag.getBoolean("state");
 	     isSet = tag.getBoolean("isSet");
@@ -64,14 +64,14 @@ public class ItemMarkRecallMRK1 extends Item {
 	    	  if (state == false)
 	    	  {
 	    		  
-	    		  par3EntityPlayer.sendChatToPlayer("Recall Mode Activated");
+	    		  par3EntityPlayer.addChatMessage("Recall Mode Activated");
 	    		  state = true;
 	    		  tag.setBoolean("state", state);
 	    		  return par1ItemStack;
 	    	  }
 	    	  if (state==true)
 	    	  {
-	    		  par3EntityPlayer.sendChatToPlayer("Mark Mode Activated");
+	    		  par3EntityPlayer.addChatMessage("Mark Mode Activated");
 	    		  state = false;
 	    		  tag.setBoolean("state", state);
 	    		  return par1ItemStack;

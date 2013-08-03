@@ -1,16 +1,10 @@
 package com.sudwood.mysticadditions.tileentity;
 
-import com.sudwood.mysticadditions.MysticAdditions;
-
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.ForgeDirection;
-import net.minecraftforge.liquids.ILiquidTank;
-import net.minecraftforge.liquids.ITankContainer;
-import net.minecraftforge.liquids.LiquidContainerRegistry;
-import net.minecraftforge.liquids.LiquidStack;
-import net.minecraftforge.liquids.LiquidTank;
+
+import com.sudwood.mysticadditions.MysticAdditions;
 
 public class TileEntityLiquidStorage extends TileEntityMysticEnergy implements ITankContainer{
 

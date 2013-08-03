@@ -111,12 +111,12 @@ int[] coords = {42,42,42};
 				tag.setInteger("zCoord", 0);
 				tag.setBoolean("isSet", false);
 				par5EntityPlayer.setCurrentItemOrArmor(0, tempStack);
-				par5EntityPlayer.sendChatToPlayer("Link Created");
+				par5EntityPlayer.addChatMessage("Link Created");
 				return true;
 			}
 			if(!tag.getBoolean("isSet"))
 			{
-				par5EntityPlayer.sendChatToPlayer("No Current Link");
+				par5EntityPlayer.addChatMessage("No Current Link");
 				return true;
 			}
 			
@@ -138,12 +138,12 @@ int[] coords = {42,42,42};
 				tag.setInteger("zCoord", 0);
 				tag.setBoolean("isSet", false);
 				par5EntityPlayer.setCurrentItemOrArmor(0, tempStack);
-				par5EntityPlayer.sendChatToPlayer("Link Created");
+				par5EntityPlayer.addChatMessage("Link Created");
 				return true;
 			}
 			if(!tag.getBoolean("isSet"))
 			{
-				par5EntityPlayer.sendChatToPlayer("No Current Link");
+				par5EntityPlayer.addChatMessage("No Current Link");
 				return true;
 			}
 			
@@ -165,12 +165,12 @@ int[] coords = {42,42,42};
 				tag.setInteger("zCoord", 0);
 				tag.setBoolean("isSet", false);
 				par5EntityPlayer.setCurrentItemOrArmor(0, tempStack);
-				par5EntityPlayer.sendChatToPlayer("Link Created");
+				par5EntityPlayer.addChatMessage("Link Created");
 				return true;
 			}
 			if(!tag.getBoolean("isSet"))
 			{
-				par5EntityPlayer.sendChatToPlayer("No Current Link");
+				par5EntityPlayer.addChatMessage("No Current Link");
 				return true;
 			}
 			
@@ -192,12 +192,12 @@ int[] coords = {42,42,42};
 				tag.setInteger("zCoord", 0);
 				tag.setBoolean("isSet", false);
 				par5EntityPlayer.setCurrentItemOrArmor(0, tempStack);
-				par5EntityPlayer.sendChatToPlayer("Link Created");
+				par5EntityPlayer.addChatMessage("Link Created");
 				return true;
 			}
 			if(!tag.getBoolean("isSet"))
 			{
-				par5EntityPlayer.sendChatToPlayer("No Current Link");
+				par5EntityPlayer.addChatMessage("No Current Link");
 				return true;
 			}
 			

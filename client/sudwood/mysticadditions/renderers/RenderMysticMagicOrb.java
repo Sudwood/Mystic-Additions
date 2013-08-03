@@ -9,6 +9,7 @@ import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedGrinder;
 
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.ResourceLocation;
 
 public class RenderMysticMagicOrb extends Render{
 	ModelEnergyBall model = new ModelEnergyBall();
@@ -26,6 +27,11 @@ public class RenderMysticMagicOrb extends Render{
 		  model.render(0.0625F);  
 		  GL11.glPopMatrix();
 		
+	}
+	@Override
+	protected ResourceLocation func_110775_a(Entity entity) {
+		// TODO Auto-generated method stub
+		return new ResourceLocation("mysticadditions","/textures/blockMysticCapacitor.png");
 	}
 
 }

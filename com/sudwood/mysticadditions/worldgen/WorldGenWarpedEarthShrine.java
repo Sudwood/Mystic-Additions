@@ -173,7 +173,7 @@ public class WorldGenWarpedEarthShrine extends WorldGenerator
 		world.setBlock(i + 5, j + 1, k + 0, MysticModBlocks.inertDirt.blockID);
 		world.setBlock(i + 5, j + 1, k + 5, Block.mobSpawner.blockID);
 		TileEntityMobSpawner tile2 = (TileEntityMobSpawner) world.getBlockTileEntity(i+5, j+1, k+5);
-		tile2.func_98049_a().setMobID("MysticAdditions.EarthMiniBoss");
+		tile2.getSpawnerLogic().setMobID("MysticAdditions.EarthMiniBoss");
 		world.setBlock(i + 5, j + 2, k + 1, MysticModBlocks.inertDirt.blockID);
 		world.setBlock(i + 5, j + 3, k + 2, MysticModBlocks.inertDirt.blockID);
 		world.setBlock(i + 5, j + 3, k + 8, MysticModBlocks.inertDirt.blockID);

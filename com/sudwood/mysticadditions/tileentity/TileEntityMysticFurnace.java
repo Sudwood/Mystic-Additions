@@ -1,35 +1,31 @@
 package com.sudwood.mysticadditions.tileentity;
 
+import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.tileentity.TileEntity;
+
 import com.sudwood.mysticadditions.FurnaceRecipesMystic;
 import com.sudwood.mysticadditions.blocks.BlockMysticFurnace;
 import com.sudwood.mysticadditions.blocks.MysticModBlocks;
 import com.sudwood.mysticadditions.items.MysticModItems;
 
-
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockFurnace;
-import net.minecraft.block.material.Material;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemHoe;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemSword;
-import net.minecraft.item.ItemTool;
-import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntity;
-
-import net.minecraftforge.common.ForgeDirection;
-import net.minecraftforge.common.ISidedInventory;
 
 public class TileEntityMysticFurnace extends TileEntity implements IInventory
 {
+	public TileEntityMysticFurnace()
+	{
+		
+	}
+	
     /**
      * The ItemStacks that hold the items currently being used in the furnace
      */
@@ -374,7 +370,7 @@ public class TileEntityMysticFurnace extends TileEntity implements IInventory
                 
             }
             if (var1 == Item.redstone.itemID) return 800;
-            if (var1 == Item.lightStoneDust.itemID) return 1600;
+            if (var1 == Item.glowstone.itemID) return 1600;
             if (var1 == Item.blazeRod.itemID) return 1200;
             if (var1 == Item.magmaCream.itemID) return 500;
             if (var1 == Item.diamond.itemID) return 1250;
@@ -412,7 +408,7 @@ public class TileEntityMysticFurnace extends TileEntity implements IInventory
 	}
 
 	@Override
-	public boolean isStackValidForSlot(int i, ItemStack itemstack) {
+	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		// TODO Auto-generated method stub
 		if (i==0||i==1)
 			return true;

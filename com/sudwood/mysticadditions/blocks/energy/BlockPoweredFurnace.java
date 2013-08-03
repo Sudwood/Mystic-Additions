@@ -153,12 +153,12 @@ public class BlockPoweredFurnace extends BlockContainer {
 				tag.setInteger("zCoord", 0);
 				tag.setBoolean("isSet", false);
 				par5EntityPlayer.setCurrentItemOrArmor(0, tempStack);
-				par5EntityPlayer.sendChatToPlayer("Link Created");
+				par5EntityPlayer.addChatMessage("Link Created");
 				return true;
 			}
 			if(!tag.getBoolean("isSet"))
 			{
-				par5EntityPlayer.sendChatToPlayer("No Current Link");
+				par5EntityPlayer.addChatMessage("No Current Link");
 				return true;
 			}
 			
@@ -180,12 +180,12 @@ public class BlockPoweredFurnace extends BlockContainer {
 				tag.setInteger("zCoord", 0);
 				tag.setBoolean("isSet", false);
 				par5EntityPlayer.setCurrentItemOrArmor(0, tempStack);
-				par5EntityPlayer.sendChatToPlayer("Link Created");
+				par5EntityPlayer.addChatMessage("Link Created");
 				return true;
 			}
 			if(!tag.getBoolean("isSet"))
 			{
-				par5EntityPlayer.sendChatToPlayer("No Current Link");
+				par5EntityPlayer.addChatMessage("No Current Link");
 				return true;
 			}
 			
@@ -207,12 +207,12 @@ public class BlockPoweredFurnace extends BlockContainer {
 				tag.setInteger("zCoord", 0);
 				tag.setBoolean("isSet", false);
 				par5EntityPlayer.setCurrentItemOrArmor(0, tempStack);
-				par5EntityPlayer.sendChatToPlayer("Link Created");
+				par5EntityPlayer.addChatMessage("Link Created");
 				return true;
 			}
 			if(!tag.getBoolean("isSet"))
 			{
-				par5EntityPlayer.sendChatToPlayer("No Current Link");
+				par5EntityPlayer.addChatMessage("No Current Link");
 				return true;
 			}
 			
@@ -234,12 +234,12 @@ public class BlockPoweredFurnace extends BlockContainer {
 				tag.setInteger("zCoord", 0);
 				tag.setBoolean("isSet", false);
 				par5EntityPlayer.setCurrentItemOrArmor(0, tempStack);
-				par5EntityPlayer.sendChatToPlayer("Link Created");
+				par5EntityPlayer.addChatMessage("Link Created");
 				return true;
 			}
 			if(!tag.getBoolean("isSet"))
 			{
-				par5EntityPlayer.sendChatToPlayer("No Current Link");
+				par5EntityPlayer.addChatMessage("No Current Link");
 				return true;
 			}
 			
@@ -325,7 +325,7 @@ public class BlockPoweredFurnace extends BlockContainer {
      * Returns the block texture based on the side being looked at.  Args: side
      */
 
-    public Icon getBlockTextureFromSideAndMetadata(int par1, int par2)
+    public Icon getIcon(int par1, int par2)
     {
     	
             return par1 == 1 ? this.iconList[2] : (par1 == 0 ? this.iconList[1] : (par1 == 3 ? this.iconList[0] : this.iconList[1]));

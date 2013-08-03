@@ -116,7 +116,7 @@ int[] generatorCoords = {0,0,0};
 			if(tag.getBoolean("isSet"))
 			{
 				int[] tempArray = {tag.getInteger("xCoord"), tag.getInteger("yCoord"), tag.getInteger("zCoord")};
-				par5EntityPlayer.sendChatToPlayer(tile.setTeleportPowerCoords(tempArray,4));
+				par5EntityPlayer.addChatMessage(tile.setTeleportPowerCoords(tempArray,4));
 				
 				tile.setIsGettingTeleportedPower(true);
 				
@@ -136,7 +136,7 @@ int[] generatorCoords = {0,0,0};
 				tag.setInteger("zCoord", par4);
 				tag.setBoolean("isSet", true);
 				par5EntityPlayer.setCurrentItemOrArmor(0, tempStack);
-				par5EntityPlayer.sendChatToPlayer("Link Started");
+				par5EntityPlayer.addChatMessage("Link Started");
 				return true;
 			}
 			
@@ -149,7 +149,7 @@ int[] generatorCoords = {0,0,0};
 			if(tag.getBoolean("isSet"))
 			{
 				int[] tempArray = {tag.getInteger("xCoord"), tag.getInteger("yCoord"), tag.getInteger("zCoord")};
-				par5EntityPlayer.sendChatToPlayer(tile.setTeleportPowerCoords(tempArray,2));
+				par5EntityPlayer.addChatMessage(tile.setTeleportPowerCoords(tempArray,2));
 			
 				tile.setIsGettingTeleportedPower(true);
 				
@@ -168,7 +168,7 @@ int[] generatorCoords = {0,0,0};
 				tag.setInteger("zCoord", par4);
 				tag.setBoolean("isSet", true);
 				par5EntityPlayer.setCurrentItemOrArmor(0, tempStack);
-				par5EntityPlayer.sendChatToPlayer("Link Started");
+				par5EntityPlayer.addChatMessage("Link Started");
 				return true;
 			}
 			
@@ -181,7 +181,7 @@ int[] generatorCoords = {0,0,0};
 			if(tag.getBoolean("isSet"))
 			{
 				int[] tempArray = {tag.getInteger("xCoord"), tag.getInteger("yCoord"), tag.getInteger("zCoord")};
-				par5EntityPlayer.sendChatToPlayer(tile.setTeleportPowerCoords(tempArray, 1.33));
+				par5EntityPlayer.addChatMessage(tile.setTeleportPowerCoords(tempArray, 1.33));
 				
 				tile.setIsGettingTeleportedPower(true);
 				
@@ -200,7 +200,7 @@ int[] generatorCoords = {0,0,0};
 				tag.setInteger("zCoord", par4);
 				tag.setBoolean("isSet", true);
 				par5EntityPlayer.setCurrentItemOrArmor(0, tempStack);
-				par5EntityPlayer.sendChatToPlayer("Link Started");
+				par5EntityPlayer.addChatMessage("Link Started");
 				return true;
 			}
 			
@@ -233,7 +233,7 @@ int[] generatorCoords = {0,0,0};
 				tag.setInteger("zCoord", par4);
 				tag.setBoolean("isSet", true);
 				par5EntityPlayer.setCurrentItemOrArmor(0, tempStack);
-				par5EntityPlayer.sendChatToPlayer("Link Started");
+				par5EntityPlayer.addChatMessage("Link Started");
 				return true;
 			}
 			

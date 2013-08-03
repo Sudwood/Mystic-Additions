@@ -219,7 +219,7 @@ public class WorldGenWarpedAirShrine extends WorldGenerator
 		tile.setInventorySlotContents(0, new ItemStack(MysticModItems.airToken, 1));
 		world.setBlock(i + 11, j + 3, k + 10, Block.mobSpawner.blockID);
 		TileEntityMobSpawner tile2 = (TileEntityMobSpawner) world.getBlockTileEntity(i+11, j+3, k+10);
-		tile2.func_98049_a().setMobID("MysticAdditions.WindMiniBoss");
+		tile2.getSpawnerLogic().setMobID("MysticAdditions.WindMiniBoss");
 		
 		world.setBlock(i + 12, j + 0, k + 6, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 12, j + 0, k + 7, MysticModBlocks.mysticBricks.blockID);

@@ -2,28 +2,26 @@ package com.sudwood.mysticadditions.entity;
 
 import java.util.List;
 
-import com.sudwood.mysticadditions.items.MysticModItems;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
-
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSourceIndirect;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+
+import com.sudwood.mysticadditions.items.MysticModItems;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityMysticExplosiveArrow extends Entity implements IProjectile
 {
@@ -66,7 +64,7 @@ public class EntityMysticExplosiveArrow extends Entity implements IProjectile
         this.yOffset = 0.0F;
     }
 
-    public EntityMysticExplosiveArrow(World par1World, EntityLiving par2EntityLiving, EntityLiving par3EntityLiving, float par4, float par5)
+    public EntityMysticExplosiveArrow(World par1World, EntityLivingBase par2EntityLiving, EntityLiving par3EntityLiving, float par4, float par5)
     {
     	super(par1World);
     	worldexplosion = par1World;
@@ -96,7 +94,7 @@ public class EntityMysticExplosiveArrow extends Entity implements IProjectile
         }
     }
 
-    public EntityMysticExplosiveArrow(World par1World, EntityLiving par2EntityLiving, float par3)
+    public EntityMysticExplosiveArrow(World par1World, EntityLivingBase par2EntityLiving, float par3)
     {
         super(par1World);
         this.shootingEntity = par2EntityLiving;

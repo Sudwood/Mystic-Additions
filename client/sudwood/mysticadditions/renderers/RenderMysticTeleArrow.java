@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
@@ -27,7 +28,7 @@ public class RenderMysticTeleArrow extends Render
     public void renderArrow(EntityMysticTeleArrow entityarrow, double d, double d1, double d2, 
             float f, float f1)
     {
-        loadTexture("/mods/MysticAdditions/textures/mystictelearrow.png");
+        
         GL11.glPushMatrix();
         GL11.glTranslatef((float)d, (float)d1, (float)d2);
         GL11.glRotatef((entityarrow.prevRotationYaw + (entityarrow.rotationYaw - entityarrow.prevRotationYaw) * f1) - 90F, 0.0F, 1.0F, 0.0F);
@@ -88,4 +89,10 @@ public class RenderMysticTeleArrow extends Render
     {
         renderArrow((EntityMysticTeleArrow)entity, d, d1, d2, f, f1);
     }
+
+	@Override
+	protected ResourceLocation func_110775_a(Entity entity) {
+		// TODO Auto-generated method stub
+		return new ResourceLocation("mysticadditions","/textures/mystictelearrow.png");
+	}
 }

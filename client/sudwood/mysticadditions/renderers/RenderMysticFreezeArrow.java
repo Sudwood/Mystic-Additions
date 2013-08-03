@@ -10,6 +10,8 @@ import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
@@ -18,7 +20,7 @@ public class RenderMysticFreezeArrow extends Render
 {
     public void renderMysticArrow(EntityMysticArrow par1Entity, double par2, double par4, double par6, float par8, float par9)
     {
-        this.loadTexture("/mods/MysticAdditions/textures/mysticfreezearrow.png");
+       
         GL11.glPushMatrix();
         GL11.glTranslatef((float)par2, (float)par4, (float)par6);
         GL11.glRotatef(par1Entity.prevRotationYaw + (par1Entity.rotationYaw - par1Entity.prevRotationYaw) * par9 - 90.0F, 0.0F, 1.0F, 0.0F);
@@ -87,4 +89,10 @@ public class RenderMysticFreezeArrow extends Render
     {
         this.renderMysticArrow((EntityMysticArrow)par1Entity, par2, par4, par6, par8, par9);
     }
+
+	@Override
+	protected ResourceLocation func_110775_a(Entity entity) {
+		// TODO Auto-generated method stub
+		return new ResourceLocation("mysticadditions","/textures/mysticfreezearrow.png");
+	}
 }

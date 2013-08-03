@@ -1,13 +1,10 @@
 package com.sudwood.mysticadditions.items;
 
-import com.sudwood.mysticadditions.MysticCommonProxy;
-
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.common.IArmorTextureProvider;
 
 public class ItemArmorMysticstone extends ItemArmor 
 {

@@ -3,15 +3,12 @@ package client.sudwood.mysticadditions.gui;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.ContainerFurnace;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntityFurnace;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
+
 import org.lwjgl.opengl.GL11;
 
-import com.sudwood.mysticadditions.container.ContainerMysticFurnace;
 import com.sudwood.mysticadditions.container.ContainerMysticRedGenerator;
-import com.sudwood.mysticadditions.tileentity.TileEntityMysticFurnace;
 import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedGenerator;
 
 import cpw.mods.fml.relauncher.Side;
@@ -44,9 +41,9 @@ public class GuiMysticRedGenerator extends GuiContainer
      */
     protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
     {
-        String var4 = "/mods/MysticAdditions/textures/mysticgeneratorred.png";
+        ResourceLocation var4 = new ResourceLocation("mysticadditions","/textures/mysticgeneratorred.png");
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.renderEngine.bindTexture(var4);
+        this.mc.func_110434_K().func_110577_a(var4);
         int var5 = (this.width - this.xSize) / 2;
         int var6 = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(var5, var6, 0, 0, this.xSize, this.ySize);

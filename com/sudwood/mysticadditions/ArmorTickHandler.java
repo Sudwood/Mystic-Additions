@@ -1,26 +1,14 @@
 package com.sudwood.mysticadditions;
 
-import java.util.EnumSet;
-
-import com.sudwood.mysticadditions.items.MysticModItems;
-import com.sudwood.mysticadditions.items.energy.IItemMysticRechargeableArmor;
-
-import net.minecraft.block.Block;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.event.ForgeSubscribe;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.common.ITickHandler;
-import cpw.mods.fml.common.TickType;
-import cpw.mods.fml.server.FMLServerHandler;
+import com.sudwood.mysticadditions.items.energy.IItemMysticRechargeableArmor;
 
 public class ArmorTickHandler {
 	
@@ -36,7 +24,7 @@ public class ArmorTickHandler {
 	@ForgeSubscribe
 	public void entityAttacked(LivingAttackEvent event)
 	{
-		EntityLiving attackedEnt = event.entityLiving;
+		EntityLivingBase attackedEnt = event.entityLiving;
 		DamageSource attackSource = event.source;
 		if(attackedEnt instanceof EntityPlayer)
 		{
@@ -64,7 +52,7 @@ public class ArmorTickHandler {
 					 if(charge<event.ammount*48)
 					 {
 						
-						 int damageDone = event.ammount-charge/48;
+						 float damageDone = (int) (event.ammount-charge/48);
 						 charge = 0;
 						 tag.setInteger("CurrentCharge", charge);
 						 attackedEnt.attackEntityFrom(DamageSource.magic, damageDone);
@@ -75,8 +63,8 @@ public class ArmorTickHandler {
 						
 						 charge -= event.ammount*48;
 						 tag.setInteger("CurrentCharge", charge);
-						 if(charge< tag.getInteger("MaxStorage")/25)
-						 ((EntityPlayer) attackedEnt).sendChatToPlayer("Boots Below 25% charge!");
+						 if(charge< tag.getInteger("MaxStorage")/4)
+						 ((EntityPlayer) attackedEnt).addChatMessage("Boots Below 25% charge!");
 						 event.setCanceled(true);
 						 
 					 }
@@ -99,7 +87,7 @@ public class ArmorTickHandler {
 					 int charge = tag.getInteger("CurrentCharge");
 					 if(charge<event.ammount*48)
 					 {
-						 int damageDone = event.ammount-charge/48;
+						 float damageDone = event.ammount-charge/48;
 						 charge = 0;
 						 tag.setInteger("CurrentCharge", charge);
 						 attackedEnt.attackEntityFrom(DamageSource.magic, damageDone);
@@ -109,8 +97,8 @@ public class ArmorTickHandler {
 					 {
 						 charge -= event.ammount*48;
 						 tag.setInteger("CurrentCharge", charge);
-						 if(charge< tag.getInteger("MaxStorage")/25)
-							 ((EntityPlayer) attackedEnt).sendChatToPlayer("Helm Below 25% charge!");
+						 if(charge< tag.getInteger("MaxStorage")/4)
+							 ((EntityPlayer) attackedEnt).addChatMessage("Helm Below 25% charge!");
 						 event.setCanceled(true);
 						 
 					 }
@@ -158,13 +146,13 @@ public class ArmorTickHandler {
 					if(helmCharge>(event.ammount*48)/number)
 					{
 						helmCharge-=((event.ammount*48)/number);
-						if(helmCharge< tag.getInteger("MaxStorage")/25)
-							 ((EntityPlayer) attackedEnt).sendChatToPlayer("helm Below 25% charge!");
+						if(helmCharge< tag.getInteger("MaxStorage")/4)
+							 ((EntityPlayer) attackedEnt).addChatMessage("helm Below 25% charge!");
 						event.setCanceled(true);
 					}
 					if(helmCharge<(event.ammount*48)/number)
 					{
-						int damageDone = (((event.ammount*48)/number) - helmCharge)/4;
+						float damageDone = (((event.ammount*48)/number) - helmCharge)/4;
 						attackedEnt.attackEntityFrom(DamageSource.magic, damageDone);
 						helmCharge =0;
 						event.setCanceled(true);
@@ -183,13 +171,13 @@ public class ArmorTickHandler {
 					if(chestCharge>(event.ammount*48)/number)
 					{
 						chestCharge-=((event.ammount*48)/number);
-						if(chestCharge< tag.getInteger("MaxStorage")/25)
-							 ((EntityPlayer) attackedEnt).sendChatToPlayer("Chest Below 25% charge!");
+						if(chestCharge< tag.getInteger("MaxStorage")/4)
+							 ((EntityPlayer) attackedEnt).addChatMessage("Chest Below 25% charge!");
 						event.setCanceled(true);
 					}
 					if(chestCharge<(event.ammount*48)/number)
 					{
-						int damageDone = (((event.ammount*48)/number) - chestCharge)/4;
+						float damageDone = (((event.ammount*48)/number) - chestCharge)/4;
 						attackedEnt.attackEntityFrom(DamageSource.magic, damageDone);
 						chestCharge =0;
 						event.setCanceled(true);
@@ -208,13 +196,13 @@ public class ArmorTickHandler {
 					if(legsCharge>(event.ammount*48)/number)
 					{
 						legsCharge-=((event.ammount*48)/number);
-						if(legsCharge< tag.getInteger("MaxStorage")/25)
-							 ((EntityPlayer) attackedEnt).sendChatToPlayer("Legs Below 25% charge!");
+						if(legsCharge< tag.getInteger("MaxStorage")/4)
+							 ((EntityPlayer) attackedEnt).addChatMessage("Legs Below 25% charge!");
 						event.setCanceled(true);
 					}
 					if(legsCharge<(event.ammount*48)/number)
 					{
-						int damageDone = (((event.ammount*48)/number) - legsCharge)/4;
+						float damageDone = (((event.ammount*48)/number) - legsCharge)/4;
 						attackedEnt.attackEntityFrom(DamageSource.magic, damageDone);
 						legsCharge =0;
 						event.setCanceled(true);
@@ -233,13 +221,13 @@ public class ArmorTickHandler {
 					if(bootsCharge>(event.ammount*48)/number)
 					{
 						bootsCharge-=((event.ammount*48)/number);
-						if(bootsCharge< tag.getInteger("MaxStorage")/25)
-							 ((EntityPlayer) attackedEnt).sendChatToPlayer("Boots Below 25% charge!");
+						if(bootsCharge< tag.getInteger("MaxStorage")/4)
+							 ((EntityPlayer) attackedEnt).addChatMessage("Boots Below 25% charge!");
 						event.setCanceled(true);
 					}
 					if(bootsCharge<(event.ammount*48)/number)
 					{
-						int damageDone = (((event.ammount*48)/number) - bootsCharge)/4;
+						float damageDone = (((event.ammount*48)/number) - bootsCharge)/4;
 						attackedEnt.attackEntityFrom(DamageSource.magic, damageDone);
 						bootsCharge =0;
 						event.setCanceled(true);

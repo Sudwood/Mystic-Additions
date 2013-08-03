@@ -113,10 +113,6 @@ int[] coords = {42,42,42};
 	}
 	public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
     {
-		if (par1World.isRemote)
-		{
-		return true;
-		}
 		if(!par1World.isRemote)
 		{
 			if(par5EntityPlayer.isSneaking())
@@ -136,7 +132,7 @@ int[] coords = {42,42,42};
 				tag.setInteger("zCoord", par4);
 				tag.setBoolean("isSet", true);
 				par5EntityPlayer.setCurrentItemOrArmor(0, tempStack);
-				par5EntityPlayer.sendChatToPlayer("Link Started");
+				par5EntityPlayer.addChatMessage("Link Started");
 				return true;
 				
 			}
@@ -149,7 +145,7 @@ int[] coords = {42,42,42};
 				tag.setInteger("zCoord", par4);
 				tag.setBoolean("isSet", true);
 				par5EntityPlayer.setCurrentItemOrArmor(0, tempStack);
-				par5EntityPlayer.sendChatToPlayer("Link Started");
+				par5EntityPlayer.addChatMessage("Link Started");
 				return true;
 				
 			}
@@ -162,7 +158,7 @@ int[] coords = {42,42,42};
 				tag.setInteger("zCoord", par4);
 				tag.setBoolean("isSet", true);
 				par5EntityPlayer.setCurrentItemOrArmor(0, tempStack);
-				par5EntityPlayer.sendChatToPlayer("Link Started");
+				par5EntityPlayer.addChatMessage("Link Started");
 				return true;
 				
 			}
@@ -175,13 +171,16 @@ int[] coords = {42,42,42};
 				tag.setInteger("zCoord", par4);
 				tag.setBoolean("isSet", true);
 				par5EntityPlayer.setCurrentItemOrArmor(0, tempStack);
-				par5EntityPlayer.sendChatToPlayer("Link Started");
+				par5EntityPlayer.addChatMessage("Link Started");
 				return true;
 				
 			}
 			
 			par5EntityPlayer.openGui(MysticAdditions.instance, 3, par1World, par2, par3, par4);
 		}
+	
+			
+		
 			return true;
 		}
     

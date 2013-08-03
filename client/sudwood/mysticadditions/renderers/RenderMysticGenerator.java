@@ -1,13 +1,14 @@
 package client.sudwood.mysticadditions.renderers;
 
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 
 import client.sudwood.mysticadditions.models.ModelMysticGeneratorTesting;
 
 import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedGenerator;
-
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.tileentity.TileEntity;
 
 public class RenderMysticGenerator extends TileEntitySpecialRenderer
 {
@@ -19,7 +20,7 @@ public class RenderMysticGenerator extends TileEntitySpecialRenderer
 		  GL11.glTranslatef((float)var2 + 0.5F, (float)var4 - 0.5F, (float)var6 + 0.5F);
 		  GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
 		  GL11.glTranslatef(0.0F, -2.0F, 0.0F);        
-		  bindTextureByName("/mods/MysticAdditions/textures/blockMysticCapacitor.png");   
+		  tileEntityRenderer.renderEngine.func_110577_a(new ResourceLocation("mysticadditions","/textures/blockMysticCapacitor.png"));   
 		  
 		  TileEntityMysticRedGenerator tile = (TileEntityMysticRedGenerator)var1;
 		float upDownLocation = tile.upDownLocation;

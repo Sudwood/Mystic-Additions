@@ -1,14 +1,14 @@
 package client.sudwood.mysticadditions.renderers;
 
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 
 import client.sudwood.mysticadditions.models.ModelMysticStorage2;
 
 import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedStorage;
-
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.tileentity.TileEntity;
 
 public class RenderMysticECapacitorBase extends TileEntitySpecialRenderer
 {
@@ -21,7 +21,7 @@ public class RenderMysticECapacitorBase extends TileEntitySpecialRenderer
 		  GL11.glTranslatef((float)var2 + 0.5F, (float)var4 - 0.5F, (float)var6 + 0.5F);
 		  GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
 		  GL11.glTranslatef(0.0F, -2.0F, 0.0F);        
-		  bindTextureByName("/mods/MysticAdditions/textures/blockMysticCapacitor.png");   
+		  func_110628_a(new ResourceLocation("mysticadditions","/textures/blockMysticCapacitor.png"));   
 		  TileEntityMysticRedStorage tile = (TileEntityMysticRedStorage) var1;
 		  model.setAnglesForCubes(tile.rotationAngle);
 		  model.render(0.0625F);  

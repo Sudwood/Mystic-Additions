@@ -171,4 +171,10 @@ public class InventoryCraftingMystic implements IInventory
     {
         return true;
     }
+
+	@Override
+	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

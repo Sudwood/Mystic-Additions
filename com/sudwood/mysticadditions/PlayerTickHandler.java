@@ -235,7 +235,8 @@ public class PlayerTickHandler implements ITickHandler {
 			}
 			if(player.inventory.armorItemInSlot(1)==null)
 			{
-				player.landMovementFactor = 0;
+				
+				player.capabilities.setPlayerWalkSpeed(0);
 				player.jumpMovementFactor = 0;
 			}
 			

@@ -1,15 +1,15 @@
 package client.sudwood.mysticadditions.gui;
 
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
+
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
 @SideOnly(Side.CLIENT)
 public class GuiMysticBud extends GuiScreen{
 	
@@ -34,9 +34,9 @@ this.buttonList.add(new GuiButton(0, posX+ 40, posY + 130, 50, 20, "Back"));
 public void drawScreen(int x, int y, float f)
 {
 drawDefaultBackground();
-String var4 = "/MysticAdditions/mysticbudgui.png";
+ResourceLocation var4 = new ResourceLocation("mysticadditions","/textures/mysticbudgui.png");
 GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-this.mc.renderEngine.bindTexture(var4);
+this.mc.func_110434_K().func_110577_a(var4);
 
 int posX = (this.width - xSizeOfTexture) / 2;
 int posY = (this.height - ySizeOfTexture) / 2;

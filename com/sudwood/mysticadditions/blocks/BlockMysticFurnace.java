@@ -172,7 +172,7 @@ public class BlockMysticFurnace extends BlockContainer
      * Returns the block texture based on the side being looked at.  Args: side
      */
 
-    public Icon getBlockTextureFromSideAndMetadata(int par1, int par2)
+    public Icon getIcon(int par1, int par2)
     {
     	
             return par1 == 1 ? this.iconlist[2] : (par1 == 0 ? this.iconlist[1] : (par1 == 3 ? this.iconlist[0] : this.iconlist[1]));
@@ -327,8 +327,8 @@ public class BlockMysticFurnace extends BlockContainer
     @Override
     public void registerIcons(IconRegister par1IconRegister)
     {
-        this.iconlist[0] = par1IconRegister.registerIcon("MysticAdditions:mysticfurnacefront");
-        this.iconlist[1] = par1IconRegister.registerIcon("MysticAdditions:mysticfurnaceside");
-        this.iconlist[2] = par1IconRegister.registerIcon("MysticAdditions:mysticblocksiding");
+        this.iconlist[0] = par1IconRegister.registerIcon("mysticadditions:mysticfurnacefront");
+        this.iconlist[1] = par1IconRegister.registerIcon("mysticadditions:mysticfurnaceside");
+        this.iconlist[2] = par1IconRegister.registerIcon("mysticadditions:mysticblocksiding");
     }
 }

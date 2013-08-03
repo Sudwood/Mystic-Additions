@@ -81,7 +81,7 @@ public class EntityMysticFireArrow extends Entity
         yOffset = 0.0F;
     }
 
-    public EntityMysticFireArrow(World world, EntityLiving entityliving, float f)
+    public EntityMysticFireArrow(World world, EntityLivingBase entityliving, float f)
     {
         super(world);
         xTile = -1;

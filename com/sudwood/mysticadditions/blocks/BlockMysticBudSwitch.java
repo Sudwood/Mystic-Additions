@@ -127,20 +127,20 @@ private boolean pwrlvl = false;
 	        }
 	    }
 	 @SideOnly(Side.CLIENT)
-	 public Icon getBlockTexture(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
+	 public Icon getIcon(int i, int j)
 	    {
-	    	if (par5 == 1)
+	    	if (i == 1)
 	        {
 	            return this.iconList[1];
 	        }
-	        else if (par5 == 0)
+	        else if (i == 0)
 	        {
 	            return this.iconList[1];
 	        }
 	        else
 	        {
-	            int var6 = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
-	            return par5 != var6 ? iconList[1] :  iconList[0];
+	            
+	            return i != j ? iconList[1] :  iconList[0];
 	        }
 	    }
 	 public boolean canConnectRedstone(IBlockAccess world, int x, int y, int z, int side)
@@ -187,8 +187,8 @@ private boolean pwrlvl = false;
 
 	            if(!par5EntityPlayer.isSneaking()){
 	            	TileEntityMysticBud tile = (TileEntityMysticBud)par1World.getBlockTileEntity(par2, par3, par4);
-	            	par5EntityPlayer.sendChatToPlayer(tile.getBlockID()+"");
-	            	par5EntityPlayer.sendChatToPlayer(tile.getBlockMeta()+"");
+	            	par5EntityPlayer.addChatMessage(tile.getBlockID()+"");
+	            	par5EntityPlayer.addChatMessage(tile.getBlockMeta()+"");
 	              	par5EntityPlayer.openGui(MysticAdditions.instance, 2, par1World, par2, par3, par4);
 	            }
 

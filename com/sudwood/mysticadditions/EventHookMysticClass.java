@@ -1,17 +1,10 @@
 package com.sudwood.mysticadditions;
 
-import com.sudwood.mysticadditions.blocks.MysticModBlocks;
-import com.sudwood.mysticadditions.items.MysticModItems;
-import com.sudwood.mysticadditions.items.potions.MysticModPotions;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
-import net.minecraftforge.event.Event.Result;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
-import net.minecraftforge.event.entity.player.FillBucketEvent;
+
+import com.sudwood.mysticadditions.items.potions.MysticModPotions;
 
 public class EventHookMysticClass {
 
@@ -19,6 +12,7 @@ public class EventHookMysticClass {
 	@ForgeSubscribe
 	public void onEntityUpdate(LivingUpdateEvent event) 
 	{
+	
 	if (event.entityLiving.isPotionActive(MysticModPotions.freezePotion)) 
 	{
 	event.entityLiving.motionX = 0;

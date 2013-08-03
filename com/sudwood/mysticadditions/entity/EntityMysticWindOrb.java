@@ -87,7 +87,7 @@ public class EntityMysticWindOrb extends Entity
         yOffset = 0.0F;
     }
 
-    public EntityMysticWindOrb(World world, EntityLiving entityliving, float f)
+    public EntityMysticWindOrb(World world, EntityLivingBase entityliving, float f)
     {
         super(world);
         xTile = -1;

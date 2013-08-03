@@ -1,12 +1,6 @@
 package com.sudwood.mysticadditions.items;
 
 
-import com.sudwood.mysticadditions.MysticCommonProxy;
-import com.sudwood.mysticadditions.MysticAdditions;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumArmorMaterial;
@@ -17,7 +11,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-import net.minecraftforge.common.IArmorTextureProvider;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemArmorMystic extends ItemArmor 
 {
@@ -120,7 +115,7 @@ public class ItemArmorMystic extends ItemArmor
 		
 	    if(legs!=null&&legs.getItem()==MysticModItems.legsMystic&&player.isSprinting())
 	    {
-	    	player.landMovementFactor = 0.45F;
+	    	player.capabilities.setPlayerWalkSpeed(0.45F);
 	    	player.jumpMovementFactor = 0.15F;
 	    	
 	    	

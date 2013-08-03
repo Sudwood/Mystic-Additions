@@ -5,6 +5,9 @@ import net.minecraft.item.Item;
 
 import com.sudwood.mysticadditions.MysticCommonProxy;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 
 public class ItemWoodenReinforcements extends Item 
 {
@@ -17,11 +20,13 @@ public class ItemWoodenReinforcements extends Item
 		
 	}
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister iconRegister)
 	{
-	         this.itemIcon = iconRegister.registerIcon("MysticAdditions:woodenreinforcements");
+	         this.itemIcon = iconRegister.registerIcon("mysticadditions:woodenreinforcements");
 	}
 
+	
 
 	
 }

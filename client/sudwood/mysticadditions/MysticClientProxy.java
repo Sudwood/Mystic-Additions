@@ -1,8 +1,6 @@
 package client.sudwood.mysticadditions;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.entity.RenderBiped;
-import net.minecraftforge.client.MinecraftForgeClient;
-
 import client.sudwood.mysticadditions.renderers.RenderLiquidStorage;
 import client.sudwood.mysticadditions.renderers.RenderMysticArrow;
 import client.sudwood.mysticadditions.renderers.RenderMysticCrystalGenerator;
@@ -13,13 +11,11 @@ import client.sudwood.mysticadditions.renderers.RenderMysticFreezeArrow;
 import client.sudwood.mysticadditions.renderers.RenderMysticGenerator;
 import client.sudwood.mysticadditions.renderers.RenderMysticLightningArrow;
 import client.sudwood.mysticadditions.renderers.RenderMysticMagicOrb;
-import client.sudwood.mysticadditions.renderers.RenderMysticRedGeneratorHelper;
 import client.sudwood.mysticadditions.renderers.RenderMysticRedGrinder;
 import client.sudwood.mysticadditions.renderers.RenderMysticRedStorageMrk2;
 import client.sudwood.mysticadditions.renderers.RenderMysticTeleArrow;
 import client.sudwood.mysticadditions.renderers.RenderSteelShuriken;
 
-import com.sudwood.mysticadditions.MysticCommonProxy;
 import com.sudwood.mysticadditions.entity.EntityEarthMiniBoss;
 import com.sudwood.mysticadditions.entity.EntityFireMiniBoss;
 import com.sudwood.mysticadditions.entity.EntityMysticWaterOrb;
@@ -76,7 +72,7 @@ public class MysticClientProxy extends com.sudwood.mysticadditions.MysticCommonP
 		
 		MysticCrystalGeneratorRenderId = RenderingRegistry.getNextAvailableRenderId();
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMysticCrystalGenerator.class, new RenderMysticCrystalGenerator());
-		RenderingRegistry.registerBlockHandler(MysticGeneratorRenderId, new RenderMysticRedGeneratorHelper());
+		
 		MysticRedGrinderid = RenderingRegistry.getNextAvailableRenderId();
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMysticRedGrinder.class, new RenderMysticRedGrinder());
 		

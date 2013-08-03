@@ -468,7 +468,7 @@ public class WorldGenWarpedFireShrine extends WorldGenerator
 		world.setBlock(i + 13, j + 4, k + 2, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 13, j + 4, k + 8, Block.mobSpawner.blockID);
 		TileEntityMobSpawner tile2 = (TileEntityMobSpawner) world.getBlockTileEntity(i+13, j+4, k+8);
-		tile2.func_98049_a().setMobID("MysticAdditions.FireMiniBoss");
+		tile2.getSpawnerLogic().setMobID("MysticAdditions.FireMiniBoss");
 		world.setBlock(i + 13, j + 4, k + 14, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 13, j + 5, k + 2, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 13, j + 5, k + 14, MysticModBlocks.mysticBricks.blockID);

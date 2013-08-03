@@ -4,25 +4,14 @@ package client.sudwood.mysticadditions.gui;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.ContainerFurnace;
-import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.Packet250CustomPayload;
-import net.minecraft.tileentity.TileEntityFurnace;
-import net.minecraft.util.StatCollector;
-import net.minecraft.world.World;
+import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import com.sudwood.mysticadditions.container.ContainerMysticFurnace;
-import com.sudwood.mysticadditions.container.ContainerMysticRedGenerator;
 import com.sudwood.mysticadditions.tileentity.TileEntityMysticEnergy;
-import com.sudwood.mysticadditions.tileentity.TileEntityMysticFurnace;
-import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedGenerator;
 
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
@@ -81,7 +70,7 @@ public class GuiMysticEnergyConfiguration extends GuiScreen
     	ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
     	DataOutputStream outputStream = new DataOutputStream(bos);
     	try {
-    	        outputStream.writeInt(this.furnaceInventory.worldObj.getWorldInfo().getDimension());
+    	        outputStream.writeInt(this.furnaceInventory.worldObj.provider.dimensionId);
     	        outputStream.writeInt(this.furnaceInventory.xCoord);
     	        outputStream.writeInt(this.furnaceInventory.yCoord);
     	        outputStream.writeInt(this.furnaceInventory.zCoord);
@@ -102,7 +91,7 @@ public class GuiMysticEnergyConfiguration extends GuiScreen
     	ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
     	DataOutputStream outputStream = new DataOutputStream(bos);
     	try {
-    	        outputStream.writeInt(this.furnaceInventory.worldObj.getWorldInfo().getDimension());
+    	        outputStream.writeInt(this.furnaceInventory.worldObj.provider.dimensionId);
     	        outputStream.writeInt(this.furnaceInventory.xCoord);
     	        outputStream.writeInt(this.furnaceInventory.yCoord);
     	        outputStream.writeInt(this.furnaceInventory.zCoord);
@@ -123,7 +112,7 @@ public class GuiMysticEnergyConfiguration extends GuiScreen
     	ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
     	DataOutputStream outputStream = new DataOutputStream(bos);
     	try {
-    	        outputStream.writeInt(this.furnaceInventory.worldObj.getWorldInfo().getDimension());
+    	        outputStream.writeInt(this.furnaceInventory.worldObj.provider.dimensionId);
     	        outputStream.writeInt(this.furnaceInventory.xCoord);
     	        outputStream.writeInt(this.furnaceInventory.yCoord);
     	        outputStream.writeInt(this.furnaceInventory.zCoord);
@@ -144,7 +133,7 @@ public class GuiMysticEnergyConfiguration extends GuiScreen
     	ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
     	DataOutputStream outputStream = new DataOutputStream(bos);
     	try {
-    	        outputStream.writeInt(this.furnaceInventory.worldObj.getWorldInfo().getDimension());
+    	        outputStream.writeInt(this.furnaceInventory.worldObj.provider.dimensionId);
     	        outputStream.writeInt(this.furnaceInventory.xCoord);
     	        outputStream.writeInt(this.furnaceInventory.yCoord);
     	        outputStream.writeInt(this.furnaceInventory.zCoord);
@@ -165,7 +154,7 @@ public class GuiMysticEnergyConfiguration extends GuiScreen
     	ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
     	DataOutputStream outputStream = new DataOutputStream(bos);
     	try {
-    	        outputStream.writeInt(this.furnaceInventory.worldObj.getWorldInfo().getDimension());
+    	        outputStream.writeInt(this.furnaceInventory.worldObj.provider.dimensionId);
     	        outputStream.writeInt(this.furnaceInventory.xCoord);
     	        outputStream.writeInt(this.furnaceInventory.yCoord);
     	        outputStream.writeInt(this.furnaceInventory.zCoord);
@@ -226,9 +215,9 @@ public class GuiMysticEnergyConfiguration extends GuiScreen
     {
     drawDefaultBackground();
     
-    String var4 = "/mods/MysticAdditions/textures/mysticenergygui.png";
+    ResourceLocation var4 = new ResourceLocation("mysticadditions","/textures/mysticenergygui.png");
     GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-    this.mc.renderEngine.bindTexture(var4);
+    this.mc.func_110434_K().func_110577_a(var4);
 
     int posX = (this.width - 256) / 2;
     int posY = (this.height - 180) / 2;

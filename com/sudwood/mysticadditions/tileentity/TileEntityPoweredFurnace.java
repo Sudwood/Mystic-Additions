@@ -426,7 +426,7 @@ public class TileEntityPoweredFurnace extends TileEntityMysticEnergy implements 
                 
             }
             if (var1 == Item.redstone.itemID) return 800;
-            if (var1 == Item.lightStoneDust.itemID) return 1600;
+            if (var1 == Item.glowstone.itemID) return 1600;
             if (var1 == Item.blazeRod.itemID) return 1200;
             if (var1 == Item.magmaCream.itemID) return 500;
             if (var1 == Item.diamond.itemID) return 1250;
@@ -472,8 +472,9 @@ public class TileEntityPoweredFurnace extends TileEntityMysticEnergy implements 
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
 	@Override
-	public boolean isStackValidForSlot(int i, ItemStack itemstack) {
+	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		// TODO Auto-generated method stub
 		if (i==0||i==1)
 			return true;

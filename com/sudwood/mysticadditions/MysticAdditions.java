@@ -1,11 +1,17 @@
 package com.sudwood.mysticadditions;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.oredict.OreDictionary;
 
 import com.sudwood.mysticadditions.blocks.MysticModBlocks;
 import com.sudwood.mysticadditions.dimensions.BiomeGenMystic;
@@ -25,17 +31,9 @@ import com.sudwood.mysticadditions.entity.EntityMysticWaterOrb;
 import com.sudwood.mysticadditions.entity.EntityMysticWindOrb;
 import com.sudwood.mysticadditions.entity.EntityWaterMiniBoss;
 import com.sudwood.mysticadditions.entity.EntityWindMiniBoss;
-
-import client.sudwood.mysticadditions.MysticClientProxy;
-import client.sudwood.mysticadditions.renderers.RenderMysticArrow;
-import client.sudwood.mysticadditions.renderers.RenderMysticExplosiveArrow;
-import client.sudwood.mysticadditions.renderers.RenderMysticFireArrow;
-import client.sudwood.mysticadditions.renderers.RenderMysticTeleArrow;
-import client.sudwood.mysticadditions.renderers.RenderSteelShuriken;
-
 import com.sudwood.mysticadditions.items.MysticModItems;
 import com.sudwood.mysticadditions.items.potions.MysticModPotions;
-import com.sudwood.mysticadditions.items.potions.PotionFreeze;
+import com.sudwood.mysticadditions.tileentity.TileEntityCamoBlock;
 import com.sudwood.mysticadditions.tileentity.TileEntityMysticBud;
 import com.sudwood.mysticadditions.tileentity.TileEntityMysticCrystalGenerator;
 import com.sudwood.mysticadditions.tileentity.TileEntityMysticEnergy;
@@ -47,58 +45,28 @@ import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedStorageMrk2;
 import com.sudwood.mysticadditions.tileentity.TileEntityPoweredFurnace;
 import com.sudwood.mysticadditions.tileentity.TileEntityPoweredMysticFurnace;
 
-
-import net.minecraftforge.common.Configuration;
-import net.minecraftforge.common.DimensionManager;
-import net.minecraftforge.common.EnumHelper;
-import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.Init;
+import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.Mod.PreInit;
+import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import cpw.mods.fml.common.registry.TickRegistry;
-
-import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
-
-
-import net.minecraftforge.*;
-import net.minecraftforge.client.MinecraftForgeClient;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.liquids.LiquidDictionary;
-import net.minecraftforge.liquids.LiquidStack;
-import net.minecraftforge.oredict.OreDictionary;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.relauncher.Side;
 
 
 
 
-@Mod( modid = "MysticAdditions", name="Mystic Additions", version="1.5.1")
+@Mod( modid = "mysticadditions", name="Mystic Additions", version="1.6.2")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels={"MysticER", "MysticIMS"}, packetHandler = MysticPacketHandler.class)
 public class MysticAdditions 
 {
 	
 	public static BiomeGenBase Mysticbiome;
-	@Instance("MysticAdditions")
+	@Instance("mysticadditions")
 	public static MysticAdditions instance;
 	
 	@SidedProxy(clientSide="client.sudwood.mysticadditions.MysticClientProxy", serverSide="com.sudwood.mysticadditions.MysticCommonProxy" )
@@ -109,6 +77,7 @@ public class MysticAdditions
 
 	
 	//block ids
+		
 		 public static int compressedcoalid;
 		 public static int compressedredstoneid;
 		 public static int refinedcarbonid;
@@ -166,6 +135,7 @@ public class MysticAdditions
 		 public static int crystalgeneratorbaseid;
 		 public static int mrk2mysticredstorageid;
 		 public static int liquidstorageblockid;
+		 public static int camoblockid;
 		//item ids
 		 public static int refinedironingotid;
 		 public static int csteelingotid;
@@ -274,10 +244,10 @@ public class MysticAdditions
 		
 	
 	
-@PreInit
+@EventHandler
 public void preInit(FMLPreInitializationEvent event){
 	System.out.println("Loading Version 1.1.0 of Mystic Additions");
-	
+
 		Potion[] potionTypes = null;
 
 		for (Field f : Potion.class.getDeclaredFields()) {
@@ -364,6 +334,7 @@ public void preInit(FMLPreInitializationEvent event){
 	     crystalgeneratorbaseid = config.getBlock("CrystalGeneratorBase", 2223).getInt();
 	     mrk2mysticredstorageid = config.getBlock("Mrk2RedCapacitor", 2224).getInt();
 	     liquidstorageblockid = config.getBlock("LiquidStorage", 2225).getInt();
+	     camoblockid = config.getBlock("CamoBlock", 2226).getInt();
 	//item ids
 	     refinedironingotid = config.getItem("RefinedIronIngot", 31000).getInt();
 	     csteelingotid = config.getItem("SteelIngot", 31001).getInt();
@@ -479,7 +450,7 @@ public void preInit(FMLPreInitializationEvent event){
 
 
 
-@Init
+@EventHandler
 public void load(FMLInitializationEvent event) 
 {
 	
@@ -547,6 +518,7 @@ public void load(FMLInitializationEvent event)
 			 GameRegistry.registerTileEntity(TileEntityMysticCrystalGenerator.class, "Mystic crystal gernator");
 			 GameRegistry.registerTileEntity(TileEntityMysticEnergy.class, "Mystic Energy");
 			 GameRegistry.registerTileEntity(TileEntityMysticRedStorageMrk2.class, "MysticRedStorageMrk2");
+			 GameRegistry.registerTileEntity(TileEntityCamoBlock.class, "CamoBlock");
 			 NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 			
 

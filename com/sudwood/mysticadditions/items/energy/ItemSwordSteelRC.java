@@ -102,7 +102,7 @@ public class ItemSwordSteelRC extends IItemMysticRechargeable {
     }
     public int func_82803_g()
     {
-        return this.toolMaterial.getDamageVsEntity();
+        return (int) this.toolMaterial.getDamageVsEntity();
     }
     /**
      * Current implementations of this method in child classes do not use the entry argument beside ev. They just raise
@@ -156,7 +156,7 @@ public class ItemSwordSteelRC extends IItemMysticRechargeable {
      */
     public int getDamageVsEntity(Entity par1Entity)
     {
-        return 4+this.toolMaterial.getDamageVsEntity();
+        return (int) (4+this.toolMaterial.getDamageVsEntity());
     }
 	
     @SideOnly(Side.CLIENT)

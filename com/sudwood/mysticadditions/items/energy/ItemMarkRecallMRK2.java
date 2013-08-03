@@ -66,7 +66,7 @@ public class ItemMarkRecallMRK2 extends IItemMysticRechargeable {
 		 {
 		 if(par1ItemStack.getTagCompound() == null) par1ItemStack.setTagCompound(new NBTTagCompound());
 		 
-	 dimensionIn = par2World.getWorldInfo().getDimension();
+	 dimensionIn = par2World.provider.dimensionId;
      NBTTagCompound tag = par1ItemStack.getTagCompound();
      this.currentCharge = tag.getInteger("CurrentCharge");
      state = tag.getBoolean("state");
@@ -80,14 +80,14 @@ public class ItemMarkRecallMRK2 extends IItemMysticRechargeable {
     	  if (state == false)
     	  {
     		  
-    		  par3EntityPlayer.sendChatToPlayer("Recall Mode Activated");
+    		  par3EntityPlayer.addChatMessage("Recall Mode Activated");
     		  state = true;
     		  tag.setBoolean("state", state);
     		  return par1ItemStack;
     	  }
     	  if (state==true)
     	  {
-    		  par3EntityPlayer.sendChatToPlayer("Mark Mode Activated");
+    		  par3EntityPlayer.addChatMessage("Mark Mode Activated");
     		  state = false;
     		  tag.setBoolean("state", state);
     		  return par1ItemStack;
@@ -98,7 +98,7 @@ public class ItemMarkRecallMRK2 extends IItemMysticRechargeable {
       {
     	  if(this.currentCharge<100)
     	  {
-    		  par3EntityPlayer.sendChatToPlayer("Not enough charge.");
+    		  par3EntityPlayer.addChatMessage("Not enough charge.");
     		  
     		  return par1ItemStack;
     	  }

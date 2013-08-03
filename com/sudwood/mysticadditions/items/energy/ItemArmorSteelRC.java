@@ -121,9 +121,9 @@ public class ItemArmorSteelRC extends IItemMysticRechargeableArmor{
 		   }
 	    if(legs!=null&&legs.getItem()==MysticModItems.legsSteelRC&&player.isSprinting())
 	    {
-	    	player.landMovementFactor = 0.20F;
+	    	player.capabilities.setPlayerWalkSpeed(0.20F);
 	    	player.jumpMovementFactor = 0.05F;
-	    	
+	    	player.sendPlayerAbilities();
 	    	
 	    }
 	    if(chest!=null&&chest.getItem()==MysticModItems.chestSteelRC)

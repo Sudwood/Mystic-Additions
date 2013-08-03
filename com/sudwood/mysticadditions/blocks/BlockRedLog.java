@@ -65,7 +65,7 @@ public class BlockRedLog extends Block
         }
     }
 
-    public Icon getBlockTextureFromSideAndMetadata(int i, int j)
+    public Icon getIcon(int i, int j)
     {
         if (i == 1)
         {

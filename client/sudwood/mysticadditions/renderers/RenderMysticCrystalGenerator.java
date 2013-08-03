@@ -1,16 +1,12 @@
 package client.sudwood.mysticadditions.renderers;
 
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 
 import client.sudwood.mysticadditions.models.ModelMysticCrystalGenerator;
-import client.sudwood.mysticadditions.models.ModelMysticGeneratorTesting;
-import client.sudwood.mysticadditions.models.ModelMysticRedGrinder;
-
-import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedGenerator;
-import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedGrinder;
-
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.tileentity.TileEntity;
 
 public class RenderMysticCrystalGenerator extends TileEntitySpecialRenderer
 {
@@ -22,7 +18,7 @@ public class RenderMysticCrystalGenerator extends TileEntitySpecialRenderer
 		  GL11.glTranslatef((float)var2 + 0.5F, (float)var4 - 0.5F, (float)var6 + 0.5F);
 		  GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
 		  GL11.glTranslatef(0.0F, -2.0F, 0.0F);        
-		  bindTextureByName("/mods/MysticAdditions/textures/blockMysticCapacitor.png");   
+		  func_110628_a(new ResourceLocation("mysticadditions","/textures/blockMysticCapacitor.png"));   
 		
 		  
 		  model.render(0.0625F);  

@@ -8,15 +8,12 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.src.ModLoader;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSourceIndirect;
@@ -24,7 +21,6 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 
 import com.sudwood.mysticadditions.items.MysticModItems;
 
@@ -93,7 +89,7 @@ public class EntityMysticTeleArrow extends Entity
         yOffset = 0.0F;
     }
     
-    public EntityMysticTeleArrow(World world1, EntityLiving entityliving, float f)
+    public EntityMysticTeleArrow(World world1, EntityLivingBase entityliving, float f)
     {
         super(world1);
         xTile = -1;

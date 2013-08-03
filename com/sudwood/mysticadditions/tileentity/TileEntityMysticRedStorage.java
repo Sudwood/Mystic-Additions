@@ -1,24 +1,19 @@
 package com.sudwood.mysticadditions.tileentity;
 
-import com.sudwood.mysticadditions.MysticEnergy;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.world.WorldServer;
+
 import com.sudwood.mysticadditions.MysticAdditions;
+import com.sudwood.mysticadditions.MysticEnergy;
 import com.sudwood.mysticadditions.items.energy.IItemMysticRechargeable;
 import com.sudwood.mysticadditions.items.energy.IItemMysticRechargeableArmor;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
-import net.minecraftforge.common.ForgeDirection;
-import net.minecraftforge.common.ISidedInventory;
 
 public class TileEntityMysticRedStorage extends TileEntityMysticEnergy implements MysticEnergy, IInventory{
 	private int[] coords = {42,42,42};
@@ -351,12 +346,13 @@ public class TileEntityMysticRedStorage extends TileEntityMysticEnergy implement
 			// TODO Auto-generated method stub
 			return false;
 		}
+		
 		@Override
-		public boolean isStackValidForSlot(int i, ItemStack itemstack) {
+		public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 			// TODO Auto-generated method stub
-			if(i==0||i==1)
+			if (i==0||i==1)
 				return true;
-			else
+			else 
 				return false;
 		}
 

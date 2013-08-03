@@ -248,7 +248,7 @@ public class ItemDiggingCatalyst extends IItemMysticRechargeable {
 		}
 		this.currentCharge-=5000;
 		tag.setInteger("CurrentCharge", currentCharge);
-		entityplayer.sendChatToPlayer("The destructive energies harm you!");
+		entityplayer.addChatMessage("The destructive energies harm you!");
 		entityplayer.attackEntityFrom(DamageSource.magic, 11);
 		}
 		this.setItemDamageByCharge(itemstack);

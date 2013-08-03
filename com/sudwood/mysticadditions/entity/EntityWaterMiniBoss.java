@@ -1,17 +1,10 @@
 package com.sudwood.mysticadditions.entity;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.Calendar;
-import java.util.Random;
-
-import com.sudwood.mysticadditions.items.MysticModItems;
 
 import net.minecraft.block.Block;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.ai.EntityAIArrowAttack;
@@ -30,13 +23,12 @@ import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.stats.AchievementList;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldProviderHell;
+
+import com.sudwood.mysticadditions.items.MysticModItems;
 
 public class EntityWaterMiniBoss extends EntityMob implements IRangedAttackMob
 {
@@ -46,17 +38,17 @@ public class EntityWaterMiniBoss extends EntityMob implements IRangedAttackMob
     public EntityWaterMiniBoss(World par1World)
     {
         super(par1World);
-        this.texture = "/mods/MysticAdditions/watermage.png";
-        this.moveSpeed = 0.65F;
+       // this.texture = "/mods/MysticAdditions/watermage.png";
+        this.setAIMoveSpeed(0.65F);
         
         this.tasks.addTask(1, new EntityAISwimming(this));
         this.tasks.addTask(2, new EntityAIRestrictSun(this));
-        this.tasks.addTask(3, new EntityAIFleeSun(this, this.moveSpeed));
-        this.tasks.addTask(5, new EntityAIWander(this, this.moveSpeed));
+        this.tasks.addTask(3, new EntityAIFleeSun(this, 0.65F));
+        this.tasks.addTask(5, new EntityAIWander(this, 0.65F));
         this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(6, new EntityAILookIdle(this));
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 16.0F, 0, true));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 
         if (par1World != null && !par1World.isRemote)
         {
@@ -256,10 +248,10 @@ public class EntityWaterMiniBoss extends EntityMob implements IRangedAttackMob
        
             this.tasks.addTask(4, this.aiArrowAttack);
             this.func_82164_bB();
-            this.func_82162_bC();
+          //  this.func_82162_bC();
         
 
-            this.setCanPickUpLoot(this.rand.nextFloat() < pickUpLootProability[this.worldObj.difficultySetting]);
+            this.setCanPickUpLoot(this.rand.nextFloat() < 20);
             
         if (this.getCurrentItemOrArmor(4) == null)
         {
@@ -336,4 +328,10 @@ public class EntityWaterMiniBoss extends EntityMob implements IRangedAttackMob
             this.func_85036_m();
         }
     }
+	@Override
+	public void attackEntityWithRangedAttack(EntityLivingBase entitylivingbase,
+			float f) {
+		// TODO Auto-generated method stub
+		
+	}
 }

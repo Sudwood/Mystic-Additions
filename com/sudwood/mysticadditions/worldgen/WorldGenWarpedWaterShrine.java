@@ -508,7 +508,7 @@ public class WorldGenWarpedWaterShrine extends WorldGenerator
 		world.setBlock(i + 8, j + 0, k + 7, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
 		world.setBlock(i + 8, j + 0, k + 8, Block.mobSpawner.blockID);
 		TileEntityMobSpawner tile2 = (TileEntityMobSpawner) world.getBlockTileEntity(i+8, j+0, k+8);
-		tile2.func_98049_a().setMobID("MysticAdditions.WaterMiniBoss");
+		tile2.getSpawnerLogic().setMobID("MysticAdditions.WaterMiniBoss");
 		world.setBlock(i + 8, j + 0, k + 9, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
 		world.setBlock(i + 8, j + 0, k + 10, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
 		world.setBlock(i + 8, j + 0, k + 13, MysticModBlocks.Elevator.blockID);

@@ -1,21 +1,19 @@
 package client.sudwood.mysticadditions.gui;
 
 
+import java.io.File;
+
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.ContainerFurnace;
-import net.minecraft.tileentity.TileEntityFurnace;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
+
 import org.lwjgl.opengl.GL11;
 
-import com.sudwood.mysticadditions.container.ContainerMysticFurnace;
-import com.sudwood.mysticadditions.container.ContainerMysticRedGrinder;
-import com.sudwood.mysticadditions.container.ContainerPoweredFurnace;
 import com.sudwood.mysticadditions.container.ContainerPoweredMysticFurnace;
-import com.sudwood.mysticadditions.tileentity.TileEntityMysticFurnace;
-import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedGrinder;
 import com.sudwood.mysticadditions.tileentity.TileEntityPoweredMysticFurnace;
 
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -45,9 +43,11 @@ public class GuiPoweredMysticFurnace extends GuiContainer
      */
     protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
     {
-    	String var4 = "/mods/MysticAdditions/textures/mysticredgrinder.png";
+    	ResourceLocation var4 = new ResourceLocation("mysticadditions","/textures/mysticredgrinder.png");
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.renderEngine.bindTexture(var4);
+        
+        
+        FMLClientHandler.instance().getClient().renderEngine.func_110577_a(var4);
         int var5 = (this.width - this.xSize) / 2;
         int var6 = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(var5, var6, 0, 0, this.xSize, this.ySize);

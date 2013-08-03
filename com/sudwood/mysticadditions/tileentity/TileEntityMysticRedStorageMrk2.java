@@ -351,12 +351,13 @@ public class TileEntityMysticRedStorageMrk2 extends TileEntityMysticEnergy imple
 			// TODO Auto-generated method stub
 			return false;
 		}
+		
 		@Override
-		public boolean isStackValidForSlot(int i, ItemStack itemstack) {
+		public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 			// TODO Auto-generated method stub
-			if(i==0||i==1)
+			if (i==0||i==1)
 				return true;
-			else
+			else 
 				return false;
 		}
 

@@ -114,7 +114,7 @@ int[] coords = {42,42,42};
 				tag.setInteger("zCoord", par4);
 				tag.setBoolean("isSet", true);
 				par5EntityPlayer.setCurrentItemOrArmor(0, tempStack);
-				par5EntityPlayer.sendChatToPlayer("Link Started");
+				par5EntityPlayer.addChatMessage("Link Started");
 				return true;
 				
 			}
@@ -127,7 +127,7 @@ int[] coords = {42,42,42};
 				tag.setInteger("zCoord", par4);
 				tag.setBoolean("isSet", true);
 				par5EntityPlayer.setCurrentItemOrArmor(0, tempStack);
-				par5EntityPlayer.sendChatToPlayer("Link Started");
+				par5EntityPlayer.addChatMessage("Link Started");
 				return true;
 				
 			}
@@ -140,7 +140,7 @@ int[] coords = {42,42,42};
 				tag.setInteger("zCoord", par4);
 				tag.setBoolean("isSet", true);
 				par5EntityPlayer.setCurrentItemOrArmor(0, tempStack);
-				par5EntityPlayer.sendChatToPlayer("Link Started");
+				par5EntityPlayer.addChatMessage("Link Started");
 				return true;
 				
 			}
@@ -153,7 +153,7 @@ int[] coords = {42,42,42};
 				tag.setInteger("zCoord", par4);
 				tag.setBoolean("isSet", true);
 				par5EntityPlayer.setCurrentItemOrArmor(0, tempStack);
-				par5EntityPlayer.sendChatToPlayer("Link Started");
+				par5EntityPlayer.addChatMessage("Link Started");
 				return true;
 				
 			}
@@ -162,7 +162,7 @@ int[] coords = {42,42,42};
 		
 		TileEntityMysticCrystalGenerator tile = (TileEntityMysticCrystalGenerator) par1World.getBlockTileEntity(par2, par3, par4);
 		if(!par1World.isRemote)
-		par5EntityPlayer.sendChatToPlayer(tile.energyLevel+"/"+8000+" MyJ");
+		par5EntityPlayer.addChatMessage(tile.energyLevel+"/"+8000+" MyJ");
 		
 		System.out.println("");
 			return true;

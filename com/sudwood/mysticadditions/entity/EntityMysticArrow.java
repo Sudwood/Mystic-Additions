@@ -82,7 +82,7 @@ public class EntityMysticArrow extends Entity
         yOffset = 0.0F;
     }
 
-    public EntityMysticArrow(World world, EntityLiving entityliving, float f)
+    public EntityMysticArrow(World world, EntityLivingBase entityliving, float f)
     {
         super(world);
         xTile = -1;

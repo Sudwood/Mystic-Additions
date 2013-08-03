@@ -1,18 +1,10 @@
 package com.sudwood.mysticadditions.blocks;
 
-import java.awt.Dimension;
 import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
-
-import com.sudwood.mysticadditions.MysticCommonProxy;
-
-
-import cpw.mods.fml.client.ITextureFX;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 
 

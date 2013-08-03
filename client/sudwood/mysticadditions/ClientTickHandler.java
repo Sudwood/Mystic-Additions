@@ -2,15 +2,13 @@ package client.sudwood.mysticadditions;
 
 import java.util.EnumSet;
 
-import com.sudwood.mysticadditions.MysticAdditions;
-import com.sudwood.mysticadditions.items.energy.IItemMysticRechargeable;
-import com.sudwood.mysticadditions.items.energy.IItemMysticRechargeableArmor;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+
+import com.sudwood.mysticadditions.items.energy.IItemMysticRechargeable;
+import com.sudwood.mysticadditions.items.energy.IItemMysticRechargeableArmor;
 
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;

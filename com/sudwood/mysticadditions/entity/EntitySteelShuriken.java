@@ -82,7 +82,7 @@ public class EntitySteelShuriken extends Entity
         yOffset = 0.0F;
     }
 
-    public EntitySteelShuriken(World world, EntityLiving entityliving, float f)
+    public EntitySteelShuriken(World world, EntityLivingBase entityliving, float f)
     {
         super(world);
         xTile = -1;
