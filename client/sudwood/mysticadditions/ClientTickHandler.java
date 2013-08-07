@@ -27,7 +27,7 @@ public class ClientTickHandler implements ITickHandler {
 		if(type.contains(TickType.RENDER))
 		{
 			
-			overlayTick(Minecraft.getMinecraft().thePlayer);
+		//	overlayTick(Minecraft.getMinecraft().thePlayer);
 			
 		}
 	}

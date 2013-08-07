@@ -1,36 +1,22 @@
 package com.sudwood.mysticadditions.blocks.energy;
 
-import java.util.List;
-
-import client.sudwood.mysticadditions.MysticClientProxy;
-
-import com.sudwood.mysticadditions.MysticERegistration;
-import com.sudwood.mysticadditions.MysticEnergy;
-
-
-import com.sudwood.mysticadditions.MysticAdditions;
-import com.sudwood.mysticadditions.items.MysticModItems;
-import com.sudwood.mysticadditions.items.energy.ItemWarpedPowerConnector;
-import com.sudwood.mysticadditions.tileentity.TileEntityMysticCrystalGenerator;
-import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedGenerator;
-import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedStorage;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import client.sudwood.mysticadditions.MysticClientProxy;
+
+import com.sudwood.mysticadditions.MysticEnergy;
+import com.sudwood.mysticadditions.items.MysticModItems;
+import com.sudwood.mysticadditions.tileentity.TileEntityMysticCrystalGenerator;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockMysticCrystalGenerator extends BlockContainer implements MysticEnergy {
 int[] coords = {42,42,42};
@@ -40,6 +26,11 @@ int[] coords = {42,42,42};
 		
 		// TODO Auto-generated constructor stub
 	}
+	@SideOnly(Side.CLIENT)
+	public int getRenderType()
+    {
+        return MysticClientProxy.MysticCrystalGeneratorRenderId;
+    }
 	public void onBlockAdded(World world, int x, int y, int z) 
 	{
 		super.onBlockAdded(world, x, y, z);
@@ -82,11 +73,7 @@ int[] coords = {42,42,42};
 		// TODO Auto-generated method stub
 		
 	}
-	@SideOnly(Side.CLIENT)
-	public int getRenderType()
-    {
-		return MysticClientProxy.MysticCrystalGeneratorRenderId;
-    }
+	
 
 	@Override
 	public TileEntity createNewTileEntity(World var1) {

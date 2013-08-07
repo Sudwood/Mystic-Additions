@@ -5,15 +5,15 @@
 package com.sudwood.mysticadditions.worldgen;
 import java.util.Random;
 
-import com.sudwood.mysticadditions.blocks.MysticModBlocks;
-import com.sudwood.mysticadditions.items.MysticModItems;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
+import com.sudwood.mysticadditions.blocks.MysticModBlocks;
+import com.sudwood.mysticadditions.items.MysticModItems;
 
 public class WorldGenWarpedFireShrine extends WorldGenerator
 {
@@ -66,17 +66,17 @@ public class WorldGenWarpedFireShrine extends WorldGenerator
 		}
 
 		
-		world.setBlock(i + 2, j + 1, k + 4, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 2, j + 1, k + 5, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 2, j + 1, k + 6, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 2, j + 1, k + 7, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 2, j + 1, k + 8, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 2, j + 1, k + 9, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 2, j + 1, k + 10, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 2, j + 1, k + 11, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 2, j + 1, k + 12, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 2, j + 1, k + 4, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 2, j + 1, k + 5, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 2, j + 1, k + 6, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 2, j + 1, k + 7, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 2, j + 1, k + 8, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 2, j + 1, k + 9, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 2, j + 1, k + 10, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 2, j + 1, k + 11, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 2, j + 1, k + 12, Block.stoneSingleSlab.blockID, 2,2);
 		
-		world.setBlock(i + 3, j + 1, k + 4, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 3, j + 1, k + 4, Block.stoneSingleSlab.blockID, 2,2);
 		world.setBlock(i + 3, j + 1, k + 5, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 3, j + 1, k + 6, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 3, j + 1, k + 7, MysticModBlocks.mysticBricks.blockID);
@@ -84,9 +84,9 @@ public class WorldGenWarpedFireShrine extends WorldGenerator
 		world.setBlock(i + 3, j + 1, k + 9, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 3, j + 1, k + 10, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 3, j + 1, k + 11, MysticModBlocks.mysticBricks.blockID);
-		world.setBlock(i + 3, j + 1, k + 12, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 3, j + 1, k + 12, Block.stoneSingleSlab.blockID, 2,2);
 		
-		world.setBlock(i + 4, j + 1, k + 4, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 4, j + 1, k + 4, Block.stoneSingleSlab.blockID, 2,2);
 		world.setBlock(i + 4, j + 1, k + 5, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 4, j + 1, k + 6, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 4, j + 1, k + 7, MysticModBlocks.mysticBricks.blockID);
@@ -94,14 +94,14 @@ public class WorldGenWarpedFireShrine extends WorldGenerator
 		world.setBlock(i + 4, j + 1, k + 9, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 4, j + 1, k + 10, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 4, j + 1, k + 11, MysticModBlocks.mysticBricks.blockID);
-		world.setBlock(i + 4, j + 1, k + 12, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 4, j + 2, k + 6, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 4, j + 2, k + 7, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 4, j + 2, k + 8, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 4, j + 2, k + 9, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 4, j + 2, k + 10, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 4, j + 1, k + 12, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 4, j + 2, k + 6, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 4, j + 2, k + 7, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 4, j + 2, k + 8, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 4, j + 2, k + 9, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 4, j + 2, k + 10, Block.stoneSingleSlab.blockID, 2,2);
 		
-		world.setBlock(i + 5, j + 1, k + 4, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 5, j + 1, k + 4, Block.stoneSingleSlab.blockID, 2,2);
 		world.setBlock(i + 5, j + 1, k + 5, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 5, j + 1, k + 6, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 5, j + 1, k + 7, MysticModBlocks.mysticBricks.blockID);
@@ -109,14 +109,14 @@ public class WorldGenWarpedFireShrine extends WorldGenerator
 		world.setBlock(i + 5, j + 1, k + 9, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 5, j + 1, k + 10, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 5, j + 1, k + 11, MysticModBlocks.mysticBricks.blockID);
-		world.setBlock(i + 5, j + 1, k + 12, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 5, j + 2, k + 6, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 5, j + 1, k + 12, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 5, j + 2, k + 6, Block.stoneSingleSlab.blockID, 2,2);
 		world.setBlock(i + 5, j + 2, k + 7, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 5, j + 2, k + 8, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 5, j + 2, k + 9, MysticModBlocks.mysticBricks.blockID);
-		world.setBlock(i + 5, j + 2, k + 10, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 5, j + 2, k + 10, Block.stoneSingleSlab.blockID, 2,2);
 		
-		world.setBlock(i + 6, j + 1, k + 4, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 6, j + 1, k + 4, Block.stoneSingleSlab.blockID, 2,2);
 		world.setBlock(i + 6, j + 1, k + 5, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 6, j + 1, k + 6, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 6, j + 1, k + 7, MysticModBlocks.mysticBricks.blockID);
@@ -124,16 +124,16 @@ public class WorldGenWarpedFireShrine extends WorldGenerator
 		world.setBlock(i + 6, j + 1, k + 9, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 6, j + 1, k + 10, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 6, j + 1, k + 11, MysticModBlocks.mysticBricks.blockID);
-		world.setBlock(i + 6, j + 1, k + 12, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 6, j + 2, k + 6, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 6, j + 1, k + 12, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 6, j + 2, k + 6, Block.stoneSingleSlab.blockID, 2,2);
 		world.setBlock(i + 6, j + 2, k + 7, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 6, j + 2, k + 8, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 6, j + 2, k + 9, MysticModBlocks.mysticBricks.blockID);
-		world.setBlock(i + 6, j + 2, k + 10, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 6, j + 2, k + 10, Block.stoneSingleSlab.blockID, 2,2);
 		
-		world.setBlock(i + 7, j + 1, k + 3, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 7, j + 1, k + 11, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 7, j + 1, k + 13, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 7, j + 1, k + 3, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 7, j + 1, k + 11, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 7, j + 1, k + 13, Block.stoneSingleSlab.blockID, 2,2);
 		world.setBlock(i + 7, j + 2, k + 2, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 7, j + 2, k + 3, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 7, j + 2, k + 4, MysticModBlocks.mysticBricks.blockID);
@@ -216,7 +216,7 @@ public class WorldGenWarpedFireShrine extends WorldGenerator
 		world.setBlock(i + 7, j + 8, k + 12, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 7, j + 8, k + 13, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 7, j + 8, k + 14, MysticModBlocks.mysticBricks.blockID);
-		world.setBlock(i + 7, j + 9, k + 2, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 7, j + 9, k + 2, Block.stoneSingleSlab.blockID, 2,2);
 		world.setBlock(i + 7, j + 9, k + 3, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 7, j + 9, k + 4, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 7, j + 9, k + 5, MysticModBlocks.mysticBricks.blockID);
@@ -228,12 +228,12 @@ public class WorldGenWarpedFireShrine extends WorldGenerator
 		world.setBlock(i + 7, j + 9, k + 11, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 7, j + 9, k + 12, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 7, j + 9, k + 13, MysticModBlocks.mysticBricks.blockID);
-		world.setBlock(i + 7, j + 9, k + 14, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 7, j + 9, k + 14, Block.stoneSingleSlab.blockID, 2,2);
 	
-		world.setBlock(i + 8, j + 1, k + 2, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 8, j + 1, k + 4, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 8, j + 1, k + 12, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 8, j + 1, k + 14, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 8, j + 1, k + 2, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 8, j + 1, k + 4, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 8, j + 1, k + 12, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 8, j + 1, k + 14, Block.stoneSingleSlab.blockID, 2,2);
 		world.setBlock(i + 8, j + 2, k + 2, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 8, j + 2, k + 4, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 8, j + 2, k + 5, MysticModBlocks.mysticBricks.blockID);
@@ -268,20 +268,20 @@ public class WorldGenWarpedFireShrine extends WorldGenerator
 		world.setBlock(i + 8, j + 9, k + 11, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 8, j + 9, k + 12, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 8, j + 9, k + 14, MysticModBlocks.mysticBricks.blockID);
-		world.setBlock(i + 8, j + 10, k + 3, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 8, j + 10, k + 4, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 8, j + 10, k + 5, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 8, j + 10, k + 6, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 8, j + 10, k + 7, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 8, j + 10, k + 8, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 8, j + 10, k + 9, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 8, j + 10, k + 10, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 8, j + 10, k + 11, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 8, j + 10, k + 12, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 8, j + 10, k + 13, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 8, j + 10, k + 3, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 8, j + 10, k + 4, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 8, j + 10, k + 5, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 8, j + 10, k + 6, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 8, j + 10, k + 7, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 8, j + 10, k + 8, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 8, j + 10, k + 9, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 8, j + 10, k + 10, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 8, j + 10, k + 11, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 8, j + 10, k + 12, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 8, j + 10, k + 13, Block.stoneSingleSlab.blockID, 2,2);
 	
-		world.setBlock(i + 9, j + 1, k + 3, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 9, j + 1, k + 13, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 9, j + 1, k + 3, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 9, j + 1, k + 13, Block.stoneSingleSlab.blockID, 2,2);
 		world.setBlock(i + 9, j + 1, k + 14, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 9, j + 2, k + 2, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 9, j + 2, k + 3, MysticModBlocks.mysticBricks.blockID);
@@ -321,8 +321,8 @@ public class WorldGenWarpedFireShrine extends WorldGenerator
 		world.setBlock(i + 9, j + 9, k + 12, MysticModBlocks.mysticGlass.blockID);
 		world.setBlock(i + 9, j + 9, k + 13, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 9, j + 9, k + 14, MysticModBlocks.mysticBricks.blockID);
-		world.setBlock(i + 9, j + 10, k + 3, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 9, j + 10, k + 13, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 9, j + 10, k + 3, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 9, j + 10, k + 13, Block.stoneSingleSlab.blockID, 2,2);
 		
 		world.setBlock(i + 10, j + 2, k + 2, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 10, j + 2, k + 3, MysticModBlocks.mysticBricks.blockID);
@@ -362,8 +362,8 @@ public class WorldGenWarpedFireShrine extends WorldGenerator
 		world.setBlock(i + 10, j + 9, k + 12, MysticModBlocks.mysticGlass.blockID);
 		world.setBlock(i + 10, j + 9, k + 13, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 10, j + 9, k + 14, MysticModBlocks.mysticBricks.blockID);
-		world.setBlock(i + 10, j + 10, k + 3, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 10, j + 10, k + 13, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 10, j + 10, k + 3, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 10, j + 10, k + 13, Block.stoneSingleSlab.blockID, 2,2);
 		
 		world.setBlock(i + 11, j + 2, k + 2, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 11, j + 2, k + 3, MysticModBlocks.mysticBricks.blockID);
@@ -403,8 +403,8 @@ public class WorldGenWarpedFireShrine extends WorldGenerator
 		world.setBlock(i + 11, j + 9, k + 12, MysticModBlocks.mysticGlass.blockID);
 		world.setBlock(i + 11, j + 9, k + 13, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 11, j + 9, k + 14, MysticModBlocks.mysticBricks.blockID);
-		world.setBlock(i + 11, j + 10, k + 3, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 11, j + 10, k + 13, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 11, j + 10, k + 3, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 11, j + 10, k + 13, Block.stoneSingleSlab.blockID, 2,2);
 		
 		world.setBlock(i + 12, j + 2, k + 2, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 12, j + 2, k + 3, MysticModBlocks.mysticBricks.blockID);
@@ -444,8 +444,8 @@ public class WorldGenWarpedFireShrine extends WorldGenerator
 		world.setBlock(i + 12, j + 9, k + 12, MysticModBlocks.mysticGlass.blockID);
 		world.setBlock(i + 12, j + 9, k + 13, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 12, j + 9, k + 14, MysticModBlocks.mysticBricks.blockID);
-		world.setBlock(i + 12, j + 10, k + 3, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 12, j + 10, k + 13, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 12, j + 10, k + 3, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 12, j + 10, k + 13, Block.stoneSingleSlab.blockID, 2,2);
 		
 		world.setBlock(i + 13, j + 2, k + 2, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 13, j + 2, k + 3, MysticModBlocks.mysticBricks.blockID);
@@ -491,11 +491,11 @@ public class WorldGenWarpedFireShrine extends WorldGenerator
 		world.setBlock(i + 13, j + 9, k + 12, MysticModBlocks.mysticGlass.blockID);
 		world.setBlock(i + 13, j + 9, k + 13, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 13, j + 9, k + 14, MysticModBlocks.mysticBricks.blockID);
-		world.setBlock(i + 13, j + 10, k + 3, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 13, j + 10, k + 13, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 13, j + 10, k + 3, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 13, j + 10, k + 13, Block.stoneSingleSlab.blockID, 2,2);
 
-		world.setBlock(i + 14, j + 1, k + 3, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 14, j + 1, k + 13, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 14, j + 1, k + 3, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 14, j + 1, k + 13, Block.stoneSingleSlab.blockID, 2,2);
 		world.setBlock(i + 14, j + 1, k + 14, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 14, j + 2, k + 2, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 14, j + 2, k + 3, MysticModBlocks.mysticBricks.blockID);
@@ -535,13 +535,13 @@ public class WorldGenWarpedFireShrine extends WorldGenerator
 		world.setBlock(i + 14, j + 9, k + 12, MysticModBlocks.mysticGlass.blockID);
 		world.setBlock(i + 14, j + 9, k + 13, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 14, j + 9, k + 14, MysticModBlocks.mysticBricks.blockID);
-		world.setBlock(i + 14, j + 10, k + 3, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 14, j + 10, k + 13, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 14, j + 10, k + 3, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 14, j + 10, k + 13, Block.stoneSingleSlab.blockID, 2,2);
 
-		world.setBlock(i + 15, j + 1, k + 2, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 15, j + 1, k + 4, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 15, j + 1, k + 12, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 15, j + 1, k + 14, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 15, j + 1, k + 2, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 15, j + 1, k + 4, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 15, j + 1, k + 12, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 15, j + 1, k + 14, Block.stoneSingleSlab.blockID, 2,2);
 		world.setBlock(i + 15, j + 2, k + 2, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 15, j + 2, k + 4, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 15, j + 2, k + 5, MysticModBlocks.mysticfireGlass.blockID);
@@ -576,13 +576,13 @@ public class WorldGenWarpedFireShrine extends WorldGenerator
 		world.setBlock(i + 15, j + 9, k + 11, MysticModBlocks.mysticGlass.blockID);
 		world.setBlock(i + 15, j + 9, k + 12, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 15, j + 9, k + 14, MysticModBlocks.mysticBricks.blockID);
-		world.setBlock(i + 15, j + 10, k + 3, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 15, j + 10, k + 4, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 15, j + 10, k + 12, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 15, j + 10, k + 13, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 15, j + 10, k + 3, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 15, j + 10, k + 4, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 15, j + 10, k + 12, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 15, j + 10, k + 13, Block.stoneSingleSlab.blockID, 2,2);
 
-		world.setBlock(i + 16, j + 1, k + 3, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 16, j + 1, k + 13, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 16, j + 1, k + 3, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 16, j + 1, k + 13, Block.stoneSingleSlab.blockID, 2,2);
 		world.setBlock(i + 16, j + 2, k + 2, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 16, j + 2, k + 3, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 16, j + 2, k + 4, MysticModBlocks.mysticBricks.blockID);
@@ -620,7 +620,7 @@ public class WorldGenWarpedFireShrine extends WorldGenerator
 		world.setBlock(i + 16, j + 8, k + 3, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 16, j + 8, k + 13, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 16, j + 8, k + 14, MysticModBlocks.mysticBricks.blockID);
-		world.setBlock(i + 16, j + 9, k + 2, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 16, j + 9, k + 2, Block.stoneSingleSlab.blockID, 2,2);
 		world.setBlock(i + 16, j + 9, k + 3, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 16, j + 9, k + 4, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 16, j + 9, k + 5, MysticModBlocks.mysticBricks.blockID);
@@ -632,11 +632,11 @@ public class WorldGenWarpedFireShrine extends WorldGenerator
 		world.setBlock(i + 16, j + 9, k + 11, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 16, j + 9, k + 12, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 16, j + 9, k + 13, MysticModBlocks.mysticBricks.blockID);
-		world.setBlock(i + 16, j + 9, k + 14, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 16, j + 10, k + 4, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 16, j + 10, k + 5, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 16, j + 10, k + 11, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 16, j + 10, k + 12, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 16, j + 9, k + 14, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 16, j + 10, k + 4, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 16, j + 10, k + 5, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 16, j + 10, k + 11, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 16, j + 10, k + 12, Block.stoneSingleSlab.blockID, 2,2);
 
 		world.setBlock(i + 17, j + 2, k + 4, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 17, j + 2, k + 5, MysticModBlocks.mysticBricks.blockID);
@@ -668,10 +668,10 @@ public class WorldGenWarpedFireShrine extends WorldGenerator
 		world.setBlock(i + 17, j + 9, k + 10, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 17, j + 9, k + 11, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 17, j + 9, k + 12, MysticModBlocks.mysticBricks.blockID);
-		world.setBlock(i + 17, j + 10, k + 5, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 17, j + 10, k + 6, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 17, j + 10, k + 10, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 17, j + 10, k + 11, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 17, j + 10, k + 5, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 17, j + 10, k + 6, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 17, j + 10, k + 10, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 17, j + 10, k + 11, Block.stoneSingleSlab.blockID, 2,2);
 
 		world.setBlock(i + 18, j + 2, k + 5, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 18, j + 2, k + 6, MysticModBlocks.mysticBricks.blockID);
@@ -699,8 +699,8 @@ public class WorldGenWarpedFireShrine extends WorldGenerator
 		world.setBlock(i + 18, j + 9, k + 9, MysticModBlocks.mysticGlass.blockID);
 		world.setBlock(i + 18, j + 9, k + 10, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 18, j + 9, k + 11, MysticModBlocks.mysticBricks.blockID);
-		world.setBlock(i + 18, j + 10, k + 6, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 18, j + 10, k + 10, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 18, j + 10, k + 6, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 18, j + 10, k + 10, Block.stoneSingleSlab.blockID, 2,2);
 
 		world.setBlock(i + 19, j + 2, k + 5, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 19, j + 2, k + 6, MysticModBlocks.mysticBricks.blockID);
@@ -728,12 +728,12 @@ public class WorldGenWarpedFireShrine extends WorldGenerator
 		world.setBlock(i + 19, j + 9, k + 9, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 19, j + 9, k + 10, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 19, j + 9, k + 11, MysticModBlocks.mysticBricks.blockID);
-		world.setBlock(i + 19, j + 10, k + 6, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 19, j + 10, k + 7, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 19, j + 10, k + 9, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 19, j + 10, k + 10, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 19, j + 10, k + 6, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 19, j + 10, k + 7, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 19, j + 10, k + 9, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 19, j + 10, k + 10, Block.stoneSingleSlab.blockID, 2,2);
 
-		world.setBlock(i + 20, j + 1, k + 8, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 20, j + 1, k + 8, Block.stoneSingleSlab.blockID, 2,2);
 		world.setBlock(i + 20, j + 2, k + 6, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 20, j + 2, k + 7, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 20, j + 2, k + 8, MysticModBlocks.mysticBricks.blockID);
@@ -756,12 +756,12 @@ public class WorldGenWarpedFireShrine extends WorldGenerator
 		world.setBlock(i + 20, j + 9, k + 8, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 20, j + 9, k + 9, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 20, j + 9, k + 10, MysticModBlocks.mysticBricks.blockID);
-		world.setBlock(i + 20, j + 10, k + 7, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 20, j + 10, k + 8, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 20, j + 10, k + 9, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 20, j + 10, k + 7, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 20, j + 10, k + 8, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 20, j + 10, k + 9, Block.stoneSingleSlab.blockID, 2,2);
 
-		world.setBlock(i + 21, j + 1, k + 7, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
-		world.setBlock(i + 21, j + 1, k + 9, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 21, j + 1, k + 7, Block.stoneSingleSlab.blockID, 2,2);
+		world.setBlock(i + 21, j + 1, k + 9, Block.stoneSingleSlab.blockID, 2,2);
 		world.setBlock(i + 21, j + 2, k + 7, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 21, j + 2, k + 9, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 21, j + 3, k + 7, MysticModBlocks.mysticBricks.blockID);
@@ -778,9 +778,9 @@ public class WorldGenWarpedFireShrine extends WorldGenerator
 		world.setBlock(i + 21, j + 8, k + 9, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 21, j + 9, k + 7, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 21, j + 9, k + 9, MysticModBlocks.mysticBricks.blockID);
-		world.setBlock(i + 21, j + 10, k + 8, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 21, j + 10, k + 8, Block.stoneSingleSlab.blockID, 2,2);
 
-		world.setBlock(i + 22, j + 1, k + 8, MysticModBlocks.mysticSlabSingle.blockID, 2,2);
+		world.setBlock(i + 22, j + 1, k + 8, Block.stoneSingleSlab.blockID, 2,2);
 		world.setBlock(i + 22, j + 2, k + 8, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 22, j + 3, k + 8, MysticModBlocks.mysticBricks.blockID);
 		world.setBlock(i + 22, j + 4, k + 8, MysticModBlocks.mysticBricks.blockID);

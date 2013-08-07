@@ -1,21 +1,5 @@
 package com.sudwood.mysticadditions.blocks.energy;
 
-import client.sudwood.mysticadditions.MysticClientProxy;
-
-import com.sudwood.mysticadditions.MysticERegistration;
-import com.sudwood.mysticadditions.MysticEnergy;
-
-import com.sudwood.mysticadditions.MysticAdditions;
-import com.sudwood.mysticadditions.items.MysticModItems;
-import com.sudwood.mysticadditions.items.energy.ItemWarpedPowerConnector;
-import com.sudwood.mysticadditions.tileentity.TileEntityMysticCrystalGenerator;
-import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedGenerator;
-import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedStorage;
-import com.sudwood.mysticadditions.tileentity.TileEntityMysticEnergy;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -26,6 +10,15 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import client.sudwood.mysticadditions.MysticClientProxy;
+
+import com.sudwood.mysticadditions.MysticAdditions;
+import com.sudwood.mysticadditions.MysticEnergy;
+import com.sudwood.mysticadditions.items.MysticModItems;
+import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedStorage;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockMysticRedStorage extends BlockContainer implements MysticEnergy {
 int[] coords = {42,42,42};
@@ -37,6 +30,11 @@ int[] generatorCoords = {0,0,0};
 		
 		// TODO Auto-generated constructor stub
 	}
+	@SideOnly(Side.CLIENT)
+	public int getRenderType()
+    {
+        return MysticClientProxy.MysticCapacitorRenderId;
+    }
 	public void onBlockAdded(World world, int x, int y, int z) 
 	{
 		coords[0]=x;
@@ -59,11 +57,7 @@ int[] generatorCoords = {0,0,0};
     {
         return false;
     }
-	@SideOnly(Side.CLIENT)
-	public int getRenderType()
-    {
-		return MysticClientProxy.MysticCapacitorRenderId;
-    }
+	
 	@Override
 	public int[] checkConnect(WorldServer world, int x, int y, int z){
 		

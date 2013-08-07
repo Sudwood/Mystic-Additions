@@ -1,7 +1,6 @@
 package com.sudwood.mysticadditions.blocks;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockHalfSlab;
 import net.minecraft.block.StepSound;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -14,7 +13,6 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import com.sudwood.mysticadditions.CraftingManagerMystic;
 import com.sudwood.mysticadditions.FurnaceRecipesMystic;
 import com.sudwood.mysticadditions.GrinderRecipesMystic;
-import com.sudwood.mysticadditions.ItemBlockMysticSlabs;
 import com.sudwood.mysticadditions.MysticAdditions;
 import com.sudwood.mysticadditions.blocks.energy.BlockCrystalGeneratorBase;
 import com.sudwood.mysticadditions.blocks.energy.BlockMysticCrystalGenerator;
@@ -72,8 +70,6 @@ public class MysticModBlocks {
 	public static  Block mysticRedStorage;
 	public static  Block mysticRedGenerator;
 	public static  Block mysticCobbleStairs;
-	public static  BlockHalfSlab mysticSlabSingle;
-	public static  BlockHalfSlab mysticSlabDouble;
 	public static  Block mysticStoneStairs;
 	public static  Block mysticBrickStairs;
 	public static  Block mysticRedPlankStairs;
@@ -85,7 +81,7 @@ public class MysticModBlocks {
 	public static  Block crystalGenerator;
 	public static  Block crystalGeneratorBase;
 	public static  Block mysticRedStorageMrk2;
-	public static  Block liquidStorage;
+	//public static  Block liquidStorage;
 	public static  Block camoBlock;
 	//blocksounds
 	public static final StepSound soundPowderFootstep = new StepSound("stone", 1.0F, 1.0F);
@@ -98,8 +94,6 @@ public class MysticModBlocks {
     public static final StepSound soundClothFootstep = new StepSound("cloth", 1.0F, 1.0F);
     public static final StepSound soundSandFootstep = new StepSound("sand", 1.0F, 1.0F);
 	
-    //multiblock names
-    private static final String[] mysticSlabNames = {"Mystic Cobblestone","Mystic Stone","Mystic Bricks","Red Planks","Iron Planks"};
     
     
     public static void init() {
@@ -145,8 +139,6 @@ public class MysticModBlocks {
 		mysticRedStorage = new BlockMysticRedStorage(MysticAdditions.mysticredstorageid, Material.circuits).setHardness(1.5F).setResistance(100F).setStepSound(soundStoneFootstep).setUnlocalizedName("mysticredstorage").setCreativeTab(MysticAdditions.mysticTab);
 		mysticRedGenerator = new BlockMysticRedGenerator(MysticAdditions.mysticredgeneratorid, Material.circuits).setHardness(1.5F).setResistance(100F).setStepSound(soundStoneFootstep).setUnlocalizedName("mysticredgenerator").setCreativeTab(MysticAdditions.mysticTab);
 		mysticCobbleStairs = new BlockMysticStairs(MysticAdditions.mysticcobblestairsid, mysticCobblestone, 0).setHardness(1.5F).setResistance(10.0F).setUnlocalizedName("mysticcobblestairs").setCreativeTab(MysticAdditions.mysticTab);
-		mysticSlabSingle = (BlockHalfSlab) new BlockMysticSlab(MysticAdditions.mysticslabssingleid, false).setHardness(1.5F).setResistance(10.0F).setUnlocalizedName("mysticSlabs").setCreativeTab(MysticAdditions.mysticTab);
-		mysticSlabDouble = (BlockHalfSlab) new BlockMysticSlab(MysticAdditions.mysticslabsdoubleid, true).setHardness(1.5F).setResistance(10.0F).setUnlocalizedName("mysticSlabs");
 		mysticStoneStairs = new BlockMysticStairs(MysticAdditions.mysticstonestairsid, mysticgenStone, 0).setHardness(1.5F).setResistance(10.0F).setUnlocalizedName("mysticstonestairs").setCreativeTab(MysticAdditions.mysticTab);
 		mysticBrickStairs = new BlockMysticStairs(MysticAdditions.mysticbrickstairsid, mysticBricks, 0).setHardness(1.5F).setResistance(10.0F).setUnlocalizedName("mysticbrickstairs").setCreativeTab(MysticAdditions.mysticTab);
 		mysticRedPlankStairs = new BlockMysticStairs(MysticAdditions.mysticredplankstairsid, redPlanks, 0).setHardness(1.5F).setResistance(10.0F).setUnlocalizedName("mysticredplankstairs").setCreativeTab(MysticAdditions.mysticTab);
@@ -159,7 +151,7 @@ public class MysticModBlocks {
 		crystalGeneratorBase = new BlockCrystalGeneratorBase(MysticAdditions.crystalgeneratorbaseid, Material.ice).setHardness(1.5F).setResistance(100F).setUnlocalizedName("MysticAdditions:crystalgenbase").setCreativeTab(MysticAdditions.mysticTab);
 		mysticRedStorageMrk2 = new BlockMysticRedStoragemrk2(MysticAdditions.mrk2mysticredstorageid, Material.circuits).setHardness(1.5F).setResistance(100F).setUnlocalizedName("MysticAdditions:mysticredstoragemrk2").setCreativeTab(MysticAdditions.mysticTab);
 		//liquidStorage = new BlockLiquidStorage(MysticAdditions.liquidstorageblockid, Material.circuits).setHardness(1.5F).setResistance(100F).setUnlocalizedName("MysticAdditions:liquidstorage").setCreativeTab(MysticAdditions.mysticTab);
-		//camoBlock = new BlockCamoBlock(MysticAdditions.camoblockid, Material.rock).setHardness(1.5F).setResistance(100F).setUnlocalizedName("MysticAdditions:camoblock").setCreativeTab(MysticAdditions.mysticTab);
+		camoBlock = new BlockCamoBlock(MysticAdditions.camoblockid, Material.rock).setHardness(1.5F).setResistance(100F).setUnlocalizedName("MysticAdditions:camoblock").setCreativeTab(MysticAdditions.mysticTab);
 		//block registration
 		//dimension stuff
 		
@@ -306,16 +298,15 @@ public class MysticModBlocks {
 	LanguageRegistry.addName(mysticIronPlankStairs, "Iron Plank Stair");
 	
 	
-	//slabs
-	GameRegistry.registerBlock(mysticSlabSingle, ItemBlockMysticSlabs.class, "MysticSlabs");
+	
 	
 	//teleportation
 	GameRegistry.registerBlock(markBlock, "markBlock");
 	LanguageRegistry.addName(markBlock, "Warp Locator");
 	
 	//camoblock
-//	GameRegistry.registerBlock(camoBlock, "camoBlock");
-//	LanguageRegistry.addName(camoBlock, "Camo Block");
+	GameRegistry.registerBlock(camoBlock, "camoBlock");
+	LanguageRegistry.addName(camoBlock, "Camo Block");
 	
 	
 	}
@@ -447,35 +438,7 @@ public class MysticModBlocks {
     	GameRegistry.addRecipe(new ItemStack(mysticIronPlankStairs, 6) , new Object[]{
     		"X  ","XX ","XXX", 'X', ironPlanks});
     	
-    //slabs
-    	for (int ix = 0; ix < 5; ix++) {
-    		
-    		ItemStack mysticSlabs = new ItemStack(mysticSlabSingle, 1, ix);
-    		switch(ix){
-    		case 0:
-    			GameRegistry.addShapelessRecipe(new ItemStack(mysticCobblestone, 3),  new Object[]{new ItemStack(mysticSlabSingle,6,0)});
-    			LanguageRegistry.addName(mysticSlabSingle, mysticSlabNames[0]);
-    			
-    		case 1:
-    			GameRegistry.addShapelessRecipe(new ItemStack(mysticgenStone, 3),  new Object[]{new ItemStack(mysticSlabSingle,6,1)});
-    			LanguageRegistry.addName(mysticSlabSingle, mysticSlabNames[1]);
-    			
-    		case 2:
-    			GameRegistry.addShapelessRecipe(new ItemStack(mysticBricks, 3),  new Object[]{new ItemStack(mysticSlabSingle,6,2)});
-    			LanguageRegistry.addName(mysticSlabSingle, mysticSlabNames[2]);
-    			
-    		case 3:
-    			GameRegistry.addShapelessRecipe(new ItemStack(redPlanks, 3),  new Object[]{new ItemStack(mysticSlabSingle,6,3)});
-    			LanguageRegistry.addName(mysticSlabSingle, mysticSlabNames[3]);
-    			
-    		case 4:
-    			GameRegistry.addShapelessRecipe(new ItemStack(ironPlanks, 3),  new Object[]{new ItemStack(mysticSlabSingle,6,4)});
-    			LanguageRegistry.addName(mysticSlabSingle, mysticSlabNames[4]);
-    		
-    		}
-    		
-    		
-    	}
+  
     	
     }
 	

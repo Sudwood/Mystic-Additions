@@ -8,6 +8,24 @@ public class TileEntityCamoBlock extends TileEntity
 	
 	private String[] players = new String[2];
 	private boolean playerListFull;
+	private int showid =2226;
+	private int showmeta =0;
+	public int getShowid()
+	{
+		return showid;
+	}
+	public void setShowid(int showid)
+	{
+		this.showid = showid;
+	}
+	public int getShowmeta()
+	{
+		return showmeta;
+	}
+	public void setShowmeta(int showmeta)
+	{
+		this.showmeta = showmeta;
+	}
 	public void populatePlayers()
 	{
 		for (int i=0;i<players.length;i++)
@@ -61,6 +79,8 @@ public class TileEntityCamoBlock extends TileEntity
     {
 	super.readFromNBT(tag);
 	this.playerListFull = tag.getBoolean("playersfull");
+	this.showid = tag.getInteger("idblock");
+	this.showmeta = tag.getInteger("metablock");
 	NBTTagCompound tag2 = (NBTTagCompound) tag.getTag("tag2");
 	for (int i=0;i<players.length;i++)
 	{
@@ -69,8 +89,12 @@ public class TileEntityCamoBlock extends TileEntity
     }
 	public void writeToNBT(NBTTagCompound tag)
     {
+		
 		super.writeToNBT(tag);
+		this.populatePlayers();
 		tag.setBoolean("playersfull", this.playerListFull);
+		tag.setInteger("idblock", showid);
+		tag.setInteger("metablock", showmeta);
 		NBTTagCompound tag2 = new NBTTagCompound();
 		tag2.setName("tag2");
 		for(int i=0;i<players.length;i++)

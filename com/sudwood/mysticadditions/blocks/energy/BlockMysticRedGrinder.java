@@ -1,21 +1,5 @@
 package com.sudwood.mysticadditions.blocks.energy;
 
-import client.sudwood.mysticadditions.MysticClientProxy;
-
-import com.sudwood.mysticadditions.MysticERegistration;
-import com.sudwood.mysticadditions.MysticEnergy;
-
-import com.sudwood.mysticadditions.MysticAdditions;
-import com.sudwood.mysticadditions.items.MysticModItems;
-import com.sudwood.mysticadditions.items.energy.ItemWarpedPowerConnector;
-import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedGenerator;
-import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedGrinder;
-import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedStorage;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -25,7 +9,14 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
+import client.sudwood.mysticadditions.MysticClientProxy;
+
+import com.sudwood.mysticadditions.MysticAdditions;
+import com.sudwood.mysticadditions.items.MysticModItems;
+import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedGrinder;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockMysticRedGrinder extends BlockContainer {
 int[] coords = {42,42,42};
@@ -36,6 +27,11 @@ int[] coords = {42,42,42};
 		
 		// TODO Auto-generated constructor stub
 	}
+	@SideOnly(Side.CLIENT)
+	public int getRenderType()
+    {
+        return MysticClientProxy.MysticRedGrinderid;
+    }
 	public void onBlockAdded(World world, int x, int y, int z) 
 	{
 		coords[0]=x;
@@ -57,11 +53,6 @@ int[] coords = {42,42,42};
 	public boolean isOpaqueCube()
     {
         return false;
-    }
-	@SideOnly(Side.CLIENT)
-	public int getRenderType()
-    {
-		return MysticClientProxy.MysticRedGrinderid;
     }
 	
 	
