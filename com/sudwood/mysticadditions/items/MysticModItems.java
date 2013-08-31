@@ -65,6 +65,7 @@ import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 public class MysticModItems {
 	public static   Item refinedIronIngot;
 	public static   Item cSteelIngot;
@@ -663,15 +664,15 @@ public class MysticModItems {
     GameRegistry.addShapelessRecipe(new ItemStack(warpedPowerConnector, 1), new Object[]{
     	Item.ingotIron,Item.ingotIron,Item.ingotIron,Item.ingotIron, new ItemStack(MysticModItems.crudeMysticBattery,1,OreDictionary.WILDCARD_VALUE)
     });
-    GameRegistry.addShapelessRecipe(new ItemStack(MysticModItems.mePowerConnector, 1), new Object[]{
-    	MysticModItems.refinedIronIngot,MysticModItems.refinedIronIngot,MysticModItems.refinedIronIngot,MysticModItems.refinedIronIngot, new ItemStack(MysticModItems.crudeMysticBattery,1,OreDictionary.WILDCARD_VALUE)
-    });
-    GameRegistry.addShapelessRecipe(new ItemStack(MysticModItems.ePowerConnector, 1), new Object[]{
-    	MysticModItems.cSteelIngot,MysticModItems.cSteelIngot,MysticModItems.cSteelIngot,MysticModItems.cSteelIngot,  new ItemStack(MysticModItems.mrk2Battery,1,OreDictionary.WILDCARD_VALUE)
-    });
-    GameRegistry.addShapelessRecipe(new ItemStack(MysticModItems.tPowerConnector, 1), new Object[]{
+    GameRegistry.addRecipe(new ShapelessOreRecipe (new ItemStack(MysticModItems.mePowerConnector, 1), new Object[]{
+    	"ingotRefinedIron","ingotRefinedIron","ingotRefinedIron","ingotRefinedIron", new ItemStack(MysticModItems.crudeMysticBattery,1,OreDictionary.WILDCARD_VALUE)
+    }));
+    GameRegistry.addRecipe(new ShapelessOreRecipe (new ItemStack(MysticModItems.ePowerConnector, 1), new Object[]{
+    	"ingotSteel","ingotSteel","ingotSteel","ingotSteel",  new ItemStack(MysticModItems.mrk2Battery,1,OreDictionary.WILDCARD_VALUE)
+    }));
+    GameRegistry.addRecipe(new ShapelessOreRecipe (new ItemStack(MysticModItems.tPowerConnector, 1), new Object[]{
     	MysticModItems.mysticIngot,MysticModItems.mysticIngot,MysticModItems.mysticIngot,MysticModItems.mysticIngot, new ItemStack(MysticModItems.mrk3Battery,1,OreDictionary.WILDCARD_VALUE)
-    });
+    }));
     GameRegistry.addRecipe(new ItemStack(markRecallMrk2, 1), new Object[]{
     	"ZXZ","XYX","ZXZ", 'Y', MysticModItems.markrecallMRK1, 'X', new ItemStack(MysticModItems.crudeMysticBattery,1,OreDictionary.WILDCARD_VALUE), 'Z', MysticModItems.moltenRedstone
     });
@@ -686,7 +687,7 @@ public class MysticModItems {
     });
     
     GameRegistry.addRecipe(new ItemStack(mrk3Battery, 1), new Object[]{
-    	"ZXZ","XYX","ZXZ", 'Y', MysticModBlocks.refinedRedstone, 'X', new ItemStack(MysticModItems.mrk3Battery,1, OreDictionary.WILDCARD_VALUE), 'Z', MysticModItems.moltencSteel
+    	"ZXZ","XYX","ZXZ", 'Y', MysticModBlocks.refinedRedstone, 'X', new ItemStack(MysticModItems.mrk2Battery,1, OreDictionary.WILDCARD_VALUE), 'Z', MysticModItems.moltencSteel
     });
     
     //dusts

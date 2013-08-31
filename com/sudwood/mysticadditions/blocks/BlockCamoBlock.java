@@ -166,6 +166,7 @@ public class BlockCamoBlock extends BlockContainer
 				int meta = iblock.getDamage(par5EntityPlayer.getCurrentEquippedItem());
 				tile.setShowid(id);
 				tile.setShowmeta(meta);
+				tile.sendData(id, meta);
 				
 			}
 		}

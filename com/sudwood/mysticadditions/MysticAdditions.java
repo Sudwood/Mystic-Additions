@@ -44,6 +44,7 @@ import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedStorage;
 import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedStorageMrk2;
 import com.sudwood.mysticadditions.tileentity.TileEntityPoweredFurnace;
 import com.sudwood.mysticadditions.tileentity.TileEntityPoweredMysticFurnace;
+import com.sudwood.mysticadditions.tileentity.TileEntitySpawnerBlock;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -61,7 +62,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 
 
 @Mod( modid = "mysticadditions", name="Mystic Additions", version="1.6.2")
-@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels={"MysticER", "MysticIMS"}, packetHandler = MysticPacketHandler.class)
+@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels={"MysticER", "MysticIMS", "CAMO"}, packetHandler = MysticPacketHandler.class)
 public class MysticAdditions 
 {
 	
@@ -136,6 +137,7 @@ public class MysticAdditions
 		 public static int mrk2mysticredstorageid;
 		 public static int liquidstorageblockid;
 		 public static int camoblockid;
+		 public static int spawnerblockid;
 		//item ids
 		 public static int refinedironingotid;
 		 public static int csteelingotid;
@@ -335,6 +337,7 @@ public void preInit(FMLPreInitializationEvent event){
 	     mrk2mysticredstorageid = config.getBlock("Mrk2RedCapacitor", 2224).getInt();
 	     liquidstorageblockid = config.getBlock("LiquidStorage", 2225).getInt();
 	     camoblockid = config.getBlock("CamoBlock", 2226).getInt();
+	     spawnerblockid = config.getBlock("SpawnerBlock", 2227).getInt();
 	//item ids
 	     refinedironingotid = config.getItem("RefinedIronIngot", 31000).getInt();
 	     csteelingotid = config.getItem("SteelIngot", 31001).getInt();
@@ -466,6 +469,9 @@ public void load(FMLInitializationEvent event)
 	OreDictionary.registerOre("ingotRefinedIron", new ItemStack(MysticModItems.refinedIronIngot));
 	OreDictionary.registerOre("ingotSteel", new ItemStack(MysticModItems.cSteelIngot));
 	OreDictionary.registerOre("ingotMystic", new ItemStack(MysticModItems.mysticIngot));
+	OreDictionary.registerOre("dustIron", new ItemStack(MysticModItems.essenceIron));
+	OreDictionary.registerOre("dustGold", new ItemStack(MysticModItems.essenceGold));
+	OreDictionary.registerOre("dustDiamond", new ItemStack(MysticModItems.essenceDiamond));
 	proxy.registerServerTickHandlers();
 	
 		
@@ -519,6 +525,7 @@ public void load(FMLInitializationEvent event)
 			 GameRegistry.registerTileEntity(TileEntityMysticEnergy.class, "Mystic Energy");
 			 GameRegistry.registerTileEntity(TileEntityMysticRedStorageMrk2.class, "MysticRedStorageMrk2");
 			 GameRegistry.registerTileEntity(TileEntityCamoBlock.class, "CamoBlock");
+			 GameRegistry.registerTileEntity(TileEntitySpawnerBlock.class, "SpawnerBlock");
 			 NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 			
 

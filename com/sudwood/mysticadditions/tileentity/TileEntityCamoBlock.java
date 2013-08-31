@@ -1,6 +1,11 @@
 package com.sudwood.mysticadditions.tileentity;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+
+import cpw.mods.fml.common.network.PacketDispatcher;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityCamoBlock extends TileEntity
@@ -104,6 +109,27 @@ public class TileEntityCamoBlock extends TileEntity
 		tag.setTag("tag2", tag2);
 		
     }
+	
+	public void sendData(int id, int meta)
+	{
+		ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
+    	DataOutputStream outputStream = new DataOutputStream(bos);
+    	try {
+    	        outputStream.writeInt(worldObj.provider.dimensionId);
+    	        outputStream.writeInt(this.xCoord);
+    	        outputStream.writeInt(this.yCoord);
+    	        outputStream.writeInt(this.zCoord);
+    	        outputStream.writeInt(id);
+    	        outputStream.writeInt(meta);
+    	} catch (Exception ex) {
+    	        ex.printStackTrace();
+    	}
+    	Packet250CustomPayload packet = new Packet250CustomPayload();
+    	packet.channel="CAMO";
+    	packet.data = bos.toByteArray();
+    	packet.length = bos.size();
+    	PacketDispatcher.sendPacketToServer(packet);
+	}
 	
 	
 }

@@ -1,14 +1,20 @@
 package com.sudwood.mysticadditions.tileentity;
 
+import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTank;
+import net.minecraftforge.fluids.FluidTankInfo;
+import net.minecraftforge.fluids.IFluidTank;
 
 import com.sudwood.mysticadditions.MysticAdditions;
 
-public class TileEntityLiquidStorage extends TileEntityMysticEnergy implements ITankContainer{
+public class TileEntityLiquidStorage extends TileEntityMysticEnergy implements IFluidTank{
 
-	public final LiquidTank tank = new LiquidTank(LiquidContainerRegistry.BUCKET_VOLUME *65536);
+	public final FluidTank tank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME *65536);
 	
 	
 	private int[] coords = {42,42,42};
@@ -46,8 +52,16 @@ public class TileEntityLiquidStorage extends TileEntityMysticEnergy implements I
 		
 		public void updateEntity()
 	    {
+			
+			if(worldObj.getBlockId(this.xCoord, this.yCoord-1, this.zCoord)==Block.waterStill.blockID)
+			{
+				tank.fill(new FluidStack(FluidRegistry.WATER, 1000), true);
+			}
+			
+			
 			if(MysticAdditions.areAnimations)
 	        {
+				
 	        	this.spinAngleX+=0.1F;
 	        	this.spinAngleY+=0.1F;
 	        	this.spinAngleZ+=0.1F;
@@ -87,12 +101,12 @@ public class TileEntityLiquidStorage extends TileEntityMysticEnergy implements I
         teleportedPowerCoords = data.getIntArray("teleportedPowerCoords");
         isGettingTeleportedPower = data.getBoolean("isGettingTeleportedPower");
 		if (data.hasKey("stored") && data.hasKey("liquidId")) {
-			LiquidStack liquid = new LiquidStack(data.getInteger("liquidId"), data.getInteger("stored"), 0);
-			tank.setLiquid(liquid);
+			FluidStack liquid = new FluidStack(data.getInteger("liquidId"), data.getInteger("stored"));
+			tank.setFluid(liquid);
 		} else {
-			LiquidStack liquid = LiquidStack.loadLiquidStackFromNBT(data.getCompoundTag("tank"));
+			FluidStack liquid = FluidStack.loadFluidStackFromNBT(data.getCompoundTag("tank"));
 			if (liquid != null) {
-				tank.setLiquid(liquid);
+				tank.setFluid(liquid);
 			}
 		}
 	}
@@ -114,47 +128,42 @@ public class TileEntityLiquidStorage extends TileEntityMysticEnergy implements I
 	       
 	        data.setIntArray("teleportedPowerCoords", teleportedPowerCoords);
 	        data.setBoolean("isGettingTeleportedPower", isGettingTeleportedPower);
+	        
+			data.setTag("tank", tank.getFluid().writeToNBT(new NBTTagCompound()));
 		
-		if (tank.containsValidLiquid()) {
-			data.setTag("tank", tank.getLiquid().writeToNBT(new NBTTagCompound()));
-		}
+	}
+	@Override
+	public FluidStack getFluid() {
+		// TODO Auto-generated method stub
+		return tank.getFluid();
+	}
+	@Override
+	public int getFluidAmount() {
+		// TODO Auto-generated method stub
+		return tank.getFluidAmount();
+	}
+	@Override
+	public int getCapacity() {
+		// TODO Auto-generated method stub
+		return tank.getCapacity();
+	}
+	@Override
+	public FluidTankInfo getInfo() {
+		// TODO Auto-generated method stub
+		return tank.getInfo();
+	}
+	@Override
+	public int fill(FluidStack resource, boolean doFill) {
+		// TODO Auto-generated method stub
+		
+		return tank.fill(resource, doFill);
+	}
+	@Override
+	public FluidStack drain(int maxDrain, boolean doDrain) {
+		// TODO Auto-generated method stub
+		return tank.drain(maxDrain, doDrain);
 	}
 	
 	
-	@Override
-	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill) {
-		
-		return fill(0, resource, doFill);
-	}
-
-	@Override
-	public int fill(int tankIndex, LiquidStack resource, boolean doFill) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public LiquidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
-		
-		return drain(0, maxDrain, doDrain);
-	}
-
-	@Override
-	public LiquidStack drain(int tankIndex, int maxDrain, boolean doDrain) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ILiquidTank[] getTanks(ForgeDirection direction) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ILiquidTank getTank(ForgeDirection direction, LiquidStack type) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

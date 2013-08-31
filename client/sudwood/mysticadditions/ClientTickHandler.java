@@ -3,6 +3,8 @@ package client.sudwood.mysticadditions;
 import java.util.EnumSet;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -10,11 +12,19 @@ import net.minecraft.nbt.NBTTagCompound;
 import com.sudwood.mysticadditions.items.energy.IItemMysticRechargeable;
 import com.sudwood.mysticadditions.items.energy.IItemMysticRechargeableArmor;
 
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
 
 public class ClientTickHandler implements ITickHandler {
 
+	private final Minecraft mc;
+	public ClientTickHandler()
+	{
+		mc = Minecraft.getMinecraft();
+	}
+	
 	@Override
 	public void tickStart(EnumSet<TickType> type, Object... tickData) {
 		
@@ -27,7 +37,7 @@ public class ClientTickHandler implements ITickHandler {
 		if(type.contains(TickType.RENDER))
 		{
 			
-		//	overlayTick(Minecraft.getMinecraft().thePlayer);
+			overlayTick(Minecraft.getMinecraft().thePlayer);
 			
 		}
 	}
@@ -44,12 +54,13 @@ public class ClientTickHandler implements ITickHandler {
 		return null;
 	}
 
+	
 	public void overlayTick(EntityPlayer player)
 	{
 		
 		if(player!=null)
 		{
-		NBTTagCompound tag1 = player.getEntityData();
+		
 		
 		boolean doesNeedCharge = false;
 		int nump = 0;
@@ -91,8 +102,23 @@ public class ClientTickHandler implements ITickHandler {
 		}
 		
 		if(player!=null&&doesNeedCharge)
-			Minecraft.getMinecraft().fontRenderer.drawString(charge+"/"+nump+" MyJ", 1, 1, 16777215);
+		{
+			//Minecraft.getMinecraft().fontRenderer.drawString(charge+"/"+nump+" MyJ", 1, 1, 16777215);
+			ScaledResolution res = new ScaledResolution(this.mc.gameSettings,
+			this.mc.displayWidth, this.mc.displayHeight);
+			FontRenderer fontRender = mc.fontRenderer;
+			int width = res.getScaledWidth();
+			int height = res.getScaledHeight();
+			mc.entityRenderer.setupOverlayRendering();
+
+			// draw
+			String text = charge+"/"+nump+" MyJ";
+			int x = 2;
+			int y = 2;
+			int color = 0xFFFFFF;
+			fontRender.drawStringWithShadow(text, x, y, color);
 		}
+	}
 		
 	}
 	
