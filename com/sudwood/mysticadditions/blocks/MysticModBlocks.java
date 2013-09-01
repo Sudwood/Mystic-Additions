@@ -350,8 +350,8 @@ public class MysticModBlocks {
     	
     	
     	//metal blocks
-    	CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(cSteelBlock, 1) , new Object[]{
-    		"XXX","XXX","XXX", 'X', "ingotSteel"}));
+    	GameRegistry.addRecipe(new ItemStack(cSteelBlock, 1) , new Object[]{
+    		"XXX","XXX","XXX", 'X', MysticModItems.cSteelIngot});
     	GameRegistry.addShapelessRecipe(new ItemStack(MysticModItems.cSteelIngot, 9), cSteelBlock);
     	CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(refinedIronBlock, 1) , new Object[]{
     		"XXX","XXX","XXX", 'X', "ingotRefinedIron"}));
@@ -413,10 +413,10 @@ public class MysticModBlocks {
     		"RTR", "IFI", "RRR", Character.valueOf('R'), new ItemStack(MysticModItems.crudeMysticBattery,1, OreDictionary.WILDCARD_VALUE), Character.valueOf('I'), new ItemStack(MysticModItems.crudeMysticBattery,1, OreDictionary.WILDCARD_VALUE), Character.valueOf('F'), MysticModBlocks.mysticFurnace, Character.valueOf('T'), MysticModItems.warpedPowerConnector});
     	GameRegistry.addRecipe(new ItemStack(mysticRedGrinder, 1) , new Object[]{
     		"RTR", "IFR", "RRR", Character.valueOf('R'), Item.redstone, Character.valueOf('I'), new ItemStack(MysticModItems.crudeMysticBattery,1, OreDictionary.WILDCARD_VALUE), Character.valueOf('F'), MysticModBlocks.mysticFurnace, Character.valueOf('T'), MysticModItems.warpedPowerConnector});
-    	GameRegistry.addRecipe(new ItemStack(poweredFurnace, 1) , new Object[]{
-    		"PTP", "IFR", "RRR", Character.valueOf('R'), Item.redstone, Character.valueOf('I'), new ItemStack(MysticModItems.crudeMysticBattery,1, OreDictionary.WILDCARD_VALUE), Character.valueOf('F'), MysticModBlocks.mysticFurnace, Character.valueOf('T'), MysticModItems.warpedPowerConnector, 'P', "ingotRefinedIron"});
-    	GameRegistry.addRecipe(new ItemStack(poweredMysticFurnace, 1) , new Object[]{
-    		"PTP", "IFR", "RRR", Character.valueOf('R'), Item.redstone, Character.valueOf('I'), new ItemStack(MysticModItems.crudeMysticBattery,1, OreDictionary.WILDCARD_VALUE), Character.valueOf('F'), MysticModBlocks.mysticFurnace, Character.valueOf('T'), MysticModItems.warpedPowerConnector,'P', "ingotSteel"});
+    	CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(poweredFurnace, 1) , new Object[]{
+    		"PTP", "IFR", "RRR", Character.valueOf('R'), Item.redstone, Character.valueOf('I'), new ItemStack(MysticModItems.crudeMysticBattery,1, OreDictionary.WILDCARD_VALUE), Character.valueOf('F'), MysticModBlocks.mysticFurnace, Character.valueOf('T'), MysticModItems.warpedPowerConnector, Character.valueOf('P'), "ingotRefinedIron"}));
+    	CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(poweredMysticFurnace, 1) , new Object[]{
+    		"PTP", "IFR", "RRR", Character.valueOf('R'), Item.redstone, Character.valueOf('I'), new ItemStack(MysticModItems.crudeMysticBattery,1, OreDictionary.WILDCARD_VALUE), Character.valueOf('F'), MysticModBlocks.mysticFurnace, Character.valueOf('T'), MysticModItems.warpedPowerConnector,'P', "ingotSteel"}));
     	GameRegistry.addRecipe(new ItemStack(crystalGenerator, 1) , new Object[]{
     		"BSB", "SRS", "MSP", Character.valueOf('S'), MysticModItems.redstoneShards, Character.valueOf('B'), new ItemStack(MysticModItems.crudeMysticBattery,1, OreDictionary.WILDCARD_VALUE), Character.valueOf('R'), MysticModBlocks.refinedRedstone, Character.valueOf('M'), MysticModItems.warpedPowerConnector,'P', MysticModItems.moltenRedstone});
     	GameRegistry.addRecipe(new ItemStack(crystalGeneratorBase, 1), new Object[]{
