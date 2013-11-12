@@ -108,7 +108,7 @@ public class TileEntityMysticRedGenerator extends TileEntityMysticEnergy impleme
 	{
 		
 	}
-	public void generateEnergy()
+	public void generateEnergy() // generates the energy
 	{
 		if (this.energyLevel<this.maxEnergyLevel)
 		{
@@ -175,13 +175,13 @@ public class TileEntityMysticRedGenerator extends TileEntityMysticEnergy impleme
 	    {
 		 return (this.energyLevel<this.maxEnergyLevel);
 	    }
-	 public static void addItemToFuelList(int id, int energyOutput)
+	 public static void addItemToFuelList(int id, int energyOutput) // custom fuel list - can be called anywhere
 	 {
 		fuelItems.add(id);
 		fuelOutput.add(energyOutput);
 	 }
 	 
-	 public static int getItemBurnTime(ItemStack par0ItemStack)
+	 public static int getItemBurnTime(ItemStack par0ItemStack) // gets the burn time for the fuel items list
 	    {
 		 if (par0ItemStack == null)
 	        {
@@ -237,22 +237,22 @@ public class TileEntityMysticRedGenerator extends TileEntityMysticEnergy impleme
 		 }
 		 else return "blarg";
 	 }
-	 public void updateEntity()
+	 public void updateEntity() // update method - this is where it all comes together
 	    {
 		 
 		 boolean var1 = this.furnaceBurnTime > 0;
-	        boolean var2 = false;
+	        boolean var2 = false;  // used to determine if an item was used from the stacks in the inventory
 	        if(this.canSmelt()){
-	        if (this.furnaceBurnTime > 0)
+	        if (this.furnaceBurnTime > 0) // reduces the remaining burn time of the item
 	        {
 	            this.furnaceBurnTime-=10;
 	        }
 	        }
-	        if (!this.worldObj.isRemote)
+	        if (!this.worldObj.isRemote) // makes sure to only do the logic on the server side
 	        {
-	            if (this.furnaceBurnTime == 0 && this.canSmelt())
+	            if (this.furnaceBurnTime == 0 && this.canSmelt()) // is called if there is something that can be turned into energy
 	            {
-	                this.currentItemBurnTime = this.furnaceBurnTime = getItemBurnTime(this.furnaceItemStacks[0]);
+	                this.currentItemBurnTime = this.furnaceBurnTime = getItemBurnTime(this.furnaceItemStacks[0]); // sets the burn time to the item in slot 0 ie the bottom slot
 
 	                if (this.furnaceBurnTime > 0)
 	                {
@@ -284,7 +284,7 @@ public class TileEntityMysticRedGenerator extends TileEntityMysticEnergy impleme
 	            if (var1 != this.furnaceBurnTime > 0)
 	            {
 	                var2 = true;
-	                BlockMysticFurnace.updateFurnaceBlockState(this.furnaceBurnTime > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+	                BlockMysticFurnace.updateFurnaceBlockState(this.furnaceBurnTime > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord); // this is not particularly needed
 	            }
 	        }
 
@@ -292,7 +292,7 @@ public class TileEntityMysticRedGenerator extends TileEntityMysticEnergy impleme
 	        {
 	            this.onInventoryChanged();
 	        }
-	        if (MysticAdditions.areAnimations&&this.currentItemBurnTime>0&&this.energyLevel<this.maxEnergyLevel)
+	        if (MysticAdditions.areAnimations&&this.currentItemBurnTime>0&&this.energyLevel<this.maxEnergyLevel) // this is solely for my animated models - ignore
 			 {
 			 if (this.upDownLocation<12&&!upDown)
 			  {
