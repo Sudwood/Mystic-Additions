@@ -2,6 +2,7 @@ package com.sudwood.mysticadditions.items;
 
 
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.EnumRarity;
@@ -36,17 +37,18 @@ public class ItemArmorMystic extends ItemArmor
     	return EnumRarity.epic;
     }
 
-    public String getArmorTextureFile(ItemStack itemstack)
+    @Override
+	public String getArmorTexture(ItemStack itemstack, Entity entity, int slot, String type)
     {
         if(itemstack.itemID == MysticModItems.helmMystic.itemID || itemstack.itemID == MysticModItems.chestMystic.itemID || itemstack.itemID == MysticModItems.bootsMystic.itemID)
         {
-                return "/mods/MysticAdditions/textures/mystic_1.png";
+                return "MysticAdditions:textures/mystic_1.png";
         }
         if(itemstack.itemID == MysticModItems.legsMystic.itemID)
         {
-                return "/mods/MysticAdditions/textures/mystic_2.png";
+                return "MysticAdditions:textures/mystic_2.png";
         }
-        return  "/mods/MysticAdditions/textures/mystic_1.png";
+        return  "MysticAdditions:textures/mystic_1.png";
     }
     
     
@@ -107,8 +109,8 @@ public class ItemArmorMystic extends ItemArmor
     	   ItemStack boots = player.getCurrentItemOrArmor(1);
 		if(boots!=null&&boots.getItem()==MysticModItems.bootsMystic)
 		   {
-		player.fallDistance = 0;
-		player.stepHeight = 1;
+			player.fallDistance = 0;
+			player.stepHeight = 1;
 		
 		player.addPotionEffect(new PotionEffect(Potion.jump.id, 200,5));
 		   }
@@ -122,17 +124,6 @@ public class ItemArmorMystic extends ItemArmor
 	    }
 	    if(chest!=null&&chest.getItem()==MysticModItems.chestMystic)
 	    {
-	    	if(player.isInWater())
-	    	{
-	    		player.capabilities.allowFlying = true;
-	    		player.capabilities.isFlying = true;
-	    	}
-	    	else if(!player.isInWater()&&!player.capabilities.isCreativeMode)
-	    	{
-	    		player.capabilities.allowFlying = false;
-	    		player.capabilities.isFlying = false;
-	    	}
-	    	
 	    	player.extinguish();
 	    }
 	    if(helmet!=null&&helmet.getItem()==MysticModItems.helmMystic)

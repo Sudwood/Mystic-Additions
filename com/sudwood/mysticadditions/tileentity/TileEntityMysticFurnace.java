@@ -2,7 +2,7 @@ package com.sudwood.mysticadditions.tileentity;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -19,7 +19,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class TileEntityMysticFurnace extends TileEntity implements IInventory
+public class TileEntityMysticFurnace extends TileEntity implements ISidedInventory
 {
 	public TileEntityMysticFurnace()
 	{
@@ -414,6 +414,42 @@ public class TileEntityMysticFurnace extends TileEntity implements IInventory
 			return true;
 		else
 			return false;
+	}
+	@Override
+	public int[] getAccessibleSlotsFromSide(int var1) {
+		// TODO Auto-generated method stub
+		if( var1 == 1)
+		{
+			int[] temp = {0};
+			return temp;
+		}
+		if( var1 == 0)
+		{
+			int[] temp = {2};
+			return temp;
+		}
+		if( var1 == 2 || var1 == 3 || var1 == 4)
+		{
+			int[] temp = {1};
+			return temp;
+		}
+		return null;
+	}
+	@Override
+	public boolean canInsertItem(int i, ItemStack itemstack, int j) {
+		if( i == 2 )
+			return false;
+		if( i == 0 && j == 1)
+			return true;
+		if( i == 1 && j == 0)
+			return true;
+		return false;
+	}
+	@Override
+	public boolean canExtractItem(int i, ItemStack itemstack, int j) {
+		if( i == 2 )
+			return true;
+		return false;
 	}
 
    

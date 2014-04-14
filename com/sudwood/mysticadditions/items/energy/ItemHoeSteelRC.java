@@ -7,11 +7,14 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.Event.Result;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
@@ -44,13 +47,20 @@ public class ItemHoeSteelRC extends IItemMysticRechargeable {
     	else return false;
     }
 
-    /**
-     * Returns the strength of the stack against a given block. 1.0F base, (Quality+1)*2 if correct blocktype, 1.5F if
-     * sword
-     */
-    public float getStrVsBlock(ItemStack par1ItemStack, Block par2Block)
+    /** FORGE: Overridden to allow custom tool effectiveness */
+    @Override
+    public float getStrVsBlock(ItemStack stack, Block block, int meta) 
     {
-        return 1.0F;
+        if (ForgeHooks.isToolEffective(stack, block, meta))
+        {
+        	double temp = efficiencyOnProperMaterial;
+        	if(MysticModule.getTypeForStack(mods[0])== MysticModule.AIR)
+        		temp *=(1.1*mods[0].stackSize);
+        	if(MysticModule.getTypeForStack(mods[1])== MysticModule.AIR)
+        		temp *=(1.1*mods[0].stackSize);
+            return (float) temp;
+        }
+        return getStrVsBlock(stack, block);
     }
     public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
     {
@@ -72,48 +82,36 @@ public class ItemHoeSteelRC extends IItemMysticRechargeable {
   		 return true;
   	 }
     }
-    /**
-     * Current implementations of this method in child classes do not use the entry argument beside ev. They just raise
-     * the damage on the stack.
-     */
-    public boolean hitEntity(ItemStack par1ItemStack, EntityLiving par2EntityLiving, EntityLiving par3EntityLiving)
+    public boolean hitEntity(ItemStack par1ItemStack, EntityLivingBase par2EntityLivingBase, EntityLivingBase par3EntityLivingBase)
     {
-    	 if(par1ItemStack.getTagCompound()==null)
-		  {
-			  par1ItemStack.setTagCompound(new NBTTagCompound());
-		  }
     	 NBTTagCompound tag = par1ItemStack.getTagCompound();
-    	 this.currentCharge = tag.getInteger("CurrentCharge");
-    	 if(this.currentCharge>=48)
-    	 {
-    	 this.currentCharge-=48;
-    	 tag.setInteger("CurrentCharge", this.currentCharge);
-    	 return true;
-    	 }
-    	 else return false;
-       
-    }
-    public boolean onBlockDestroyed(ItemStack par1ItemStack, World par2World, int par3, int par4, int par5, int par6, EntityLiving par7EntityLiving)
-    {
-        if ((double)Block.blocksList[par3].getBlockHardness(par2World, par4, par5, par6) != 0.0D)
-        {
-        	if(par1ItemStack.getTagCompound()==null)
-  		  {
-  			  par1ItemStack.setTagCompound(new NBTTagCompound());
-  		  }
-      	 NBTTagCompound tag = par1ItemStack.getTagCompound();
       	 this.currentCharge = tag.getInteger("CurrentCharge");
       	 if(this.currentCharge>=48)
       	 {
       	 this.currentCharge-=48;
       	 tag.setInteger("CurrentCharge", this.currentCharge);
-      	 return true;
+      	this.doModuleHitAdditions(par2EntityLivingBase, par3EntityLivingBase);
+      	 par2EntityLivingBase.attackEntityFrom(DamageSource.anvil, 2);
+      	 return false;
       	 }
-      	 else return false;
-      	 
-        }
+        return false;
+    }
+    public boolean onBlockDestroyed(ItemStack par1ItemStack, World par2World, int par3, int par4, int par5, int par6, EntityLiving par7EntityLiving)
+    {
 
-        return true;
+    	if(par1ItemStack.getTagCompound()==null)
+		  {
+			  par1ItemStack.setTagCompound(new NBTTagCompound());
+		  }
+	  	 NBTTagCompound tag = par1ItemStack.getTagCompound();
+	  	 this.currentCharge = tag.getInteger("CurrentCharge");
+	  	 if(this.currentCharge>=48)
+	  	 {
+	      	 this.currentCharge-=48;
+	      	 tag.setInteger("CurrentCharge", this.currentCharge);
+	      	 return true;
+	  	 }
+	  	 else return false;
     }
     /**
      * Returns the damage against a given entity.
@@ -165,11 +163,14 @@ public class ItemHoeSteelRC extends IItemMysticRechargeable {
 		  {
 			  itemstack.setTagCompound(new NBTTagCompound());
 		  }
-    	 NBTTagCompound tag = itemstack.getTagCompound();
-    	 this.currentCharge = tag.getInteger("CurrentCharge");
-    	 if(this.currentCharge>=10)
-        return false;
-    	 else return true;
+    	NBTTagCompound tag = itemstack.getTagCompound();
+     	 this.currentCharge = tag.getInteger("CurrentCharge");
+     	 System.out.println(this.currentCharge);
+     	 if(this.currentCharge<48)
+     	 {
+	      	 return true;
+     	 }
+    	 else return false;
     }
     /**
      * Callback for item usage. If the item does something special on right clicking, he will have one of those. Return
@@ -191,19 +192,20 @@ public class ItemHoeSteelRC extends IItemMysticRechargeable {
 
             if (event.getResult() == Result.ALLOW)
             {
+
             	if(par1ItemStack.getTagCompound()==null)
-        		  {
-        			  par1ItemStack.setTagCompound(new NBTTagCompound());
-        		  }
-            	 NBTTagCompound tag = par1ItemStack.getTagCompound();
-            	 this.currentCharge = tag.getInteger("CurrentCharge");
-            	 if(this.currentCharge>=10)
-            	 {
-            	 this.currentCharge-=10;
-            	 tag.setInteger("CurrentCharge", this.currentCharge);
-                return true;
-            	 }
-            	 else return false;
+      		  {
+      			  par1ItemStack.setTagCompound(new NBTTagCompound());
+      		  }
+          	 NBTTagCompound tag = par1ItemStack.getTagCompound();
+          	 this.currentCharge = tag.getInteger("CurrentCharge");
+          	 if(this.currentCharge>=10)
+          	 {
+    	      	 this.currentCharge-=10;
+    	      	 tag.setInteger("CurrentCharge", this.currentCharge);
+    	      	 return true;
+          	 }
+          	 else return false;
             }
 
             int i1 = par3World.getBlockId(par4, par5, par6);
@@ -225,19 +227,20 @@ public class ItemHoeSteelRC extends IItemMysticRechargeable {
                 else
                 {
                     par3World.setBlock(par4, par5, par6, block.blockID);
+
                 	if(par1ItemStack.getTagCompound()==null)
-            		  {
-            			  par1ItemStack.setTagCompound(new NBTTagCompound());
-            		  }
-                	 NBTTagCompound tag = par1ItemStack.getTagCompound();
-                	 this.currentCharge = tag.getInteger("CurrentCharge");
-                	 if(this.currentCharge>=10)
-                	 {
-                	 this.currentCharge-=10;
-                	 tag.setInteger("CurrentCharge", this.currentCharge);
-                    return true;
-                	 }
-                	 else return false;
+          		  {
+          			  par1ItemStack.setTagCompound(new NBTTagCompound());
+          		  }
+              	 NBTTagCompound tag = par1ItemStack.getTagCompound();
+              	 this.currentCharge = tag.getInteger("CurrentCharge");
+              	 if(this.currentCharge>=10)
+              	 {
+        	      	 this.currentCharge-=10;
+        	      	 tag.setInteger("CurrentCharge", this.currentCharge);
+        	      	 return true;
+              	 }
+              	 else return false;
                 }
             }
         }

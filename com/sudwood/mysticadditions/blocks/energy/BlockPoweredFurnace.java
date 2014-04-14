@@ -2,23 +2,6 @@ package com.sudwood.mysticadditions.blocks.energy;
 
 import java.util.Random;
 
-import client.sudwood.mysticadditions.MysticClientProxy;
-
-import com.sudwood.mysticadditions.MysticERegistration;
-import com.sudwood.mysticadditions.MysticEnergy;
-
-import com.sudwood.mysticadditions.MysticAdditions;
-import com.sudwood.mysticadditions.items.MysticModItems;
-import com.sudwood.mysticadditions.items.energy.ItemWarpedPowerConnector;
-import com.sudwood.mysticadditions.tileentity.TileEntityMysticFurnace;
-import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedGenerator;
-import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedGrinder;
-import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedStorage;
-import com.sudwood.mysticadditions.tileentity.TileEntityPoweredFurnace;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -28,11 +11,16 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
+
+import com.sudwood.mysticadditions.MysticAdditions;
+import com.sudwood.mysticadditions.items.MysticModItems;
+import com.sudwood.mysticadditions.tileentity.TileEntityPoweredFurnace;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockPoweredFurnace extends BlockContainer {
 	public int[] coords = {42,42,42};

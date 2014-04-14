@@ -22,7 +22,15 @@ public class ItemEPowerConnector extends Item {
 		super(par1);
 		// TODO Auto-generated constructor stub
 	}
-	
+	public void onCreated(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) 
+	{
+		if(par1ItemStack.getTagCompound() == null) par1ItemStack.setTagCompound(new NBTTagCompound());
+		NBTTagCompound tag = par1ItemStack.getTagCompound();
+		tag.setInteger("xCoord", 0);
+		tag.setInteger("yCoord", 0);
+		tag.setInteger("zCoord", 0);
+		tag.setBoolean("isSet", false);
+	}
 	Integer[] firstCoords = {0,0,0};
 	boolean isSet =false;
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4)

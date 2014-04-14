@@ -1,6 +1,7 @@
 package com.sudwood.mysticadditions.items;
 
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
@@ -36,18 +37,18 @@ public class ItemArmorMysticsteel extends ItemArmor
     		 }
 	}
 
-
-    public String getArmorTextureFile(ItemStack itemstack)
+    @Override
+	public String getArmorTexture(ItemStack itemstack, Entity entity, int slot, String type)
     {
         if(itemstack.itemID == MysticModItems.helmCSteel.itemID || itemstack.itemID == MysticModItems.chestCSteel.itemID || itemstack.itemID == MysticModItems.bootsCSteel.itemID)
         {
-                return "/mods/MysticAdditions/textures/csteel_1.png";
+                return "MysticAdditions:textures/csteel_1.png";
         }
         if(itemstack.itemID == MysticModItems.legsCSteel.itemID)
         {
-                return "/mods/MysticAdditions/textures/csteel_2.png";
+                return "MysticAdditions:textures/csteel_2.png";
         }
-        return  "/mods/MysticAdditions/textures/csteel_1.png";
+        return  "MysticAdditions:textures/csteel_1.png";
     }
   
     /**

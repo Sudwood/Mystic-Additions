@@ -92,7 +92,7 @@ public class RenderMysticFireArrow extends Render
     }
 
 	@Override
-	protected ResourceLocation func_110775_a(Entity entity) {
+	protected ResourceLocation getEntityTexture(Entity entity) {
 		// TODO Auto-generated method stub
 		return new ResourceLocation("mysticadditions","/textures/mysticfirearrow.png");
 	}

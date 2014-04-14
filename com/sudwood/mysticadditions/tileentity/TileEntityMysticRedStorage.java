@@ -15,7 +15,7 @@ import com.sudwood.mysticadditions.items.energy.IItemMysticRechargeableArmor;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class TileEntityMysticRedStorage extends TileEntityMysticEnergy implements MysticEnergy, IInventory{
+public class TileEntityMysticRedStorage extends TileEntityMysticEnergy implements IInventory{
 	private int[] coords = {42,42,42};
 	private int[] connectors = {42,42,42,42,42,42};
 
@@ -27,7 +27,7 @@ public class TileEntityMysticRedStorage extends TileEntityMysticEnergy implement
 	private boolean isGettingTeleportedPower = false;
 	public float rotationAngle =0F;
 	public double efficiencyLevel = 4;
-	private ItemStack[] furnaceItemStacks = new ItemStack[2];
+	private ItemStack[] inventory = new ItemStack[2];
 	public TileEntityMysticRedStorage(int maxEnergy)
 	{
 		super(maxEnergy);
@@ -39,11 +39,6 @@ public class TileEntityMysticRedStorage extends TileEntityMysticEnergy implement
 	public boolean canUpdate(){
 		   return true;
 	   }
-	@Override
-	public int[] checkConnect(WorldServer world, int x, int y, int z) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	public int getMaxEnergy()
 	{
@@ -71,16 +66,16 @@ public class TileEntityMysticRedStorage extends TileEntityMysticEnergy implement
         isGettingTeleportedPower = tag.getBoolean("isGettingTeleportedPower");
         numberDrawing = tag.getInteger("numberDrawing");
         NBTTagList var2 = tag.getTagList("Items");
-        this.furnaceItemStacks = new ItemStack[this.getSizeInventory()];
+        this.inventory = new ItemStack[this.getSizeInventory()];
 
         for (int var3 = 0; var3 < var2.tagCount(); ++var3)
         {
             NBTTagCompound var4 = (NBTTagCompound)var2.tagAt(var3);
             byte var5 = var4.getByte("Slot");
 
-            if (var5 >= 0 && var5 < this.furnaceItemStacks.length)
+            if (var5 >= 0 && var5 < this.inventory.length)
             {
-                this.furnaceItemStacks[var5] = ItemStack.loadItemStackFromNBT(var4);
+                this.inventory[var5] = ItemStack.loadItemStackFromNBT(var4);
             }
         }
     }
@@ -117,28 +112,13 @@ public class TileEntityMysticRedStorage extends TileEntityMysticEnergy implement
 	{
 		return energyLevel;
 	}
-	public void getEnergy()
-	{
-	}
 	
 	  @SideOnly(Side.CLIENT)
 		 public int getCookProgressScaled(int par1)
 		    {
 		        return this.energyLevel * par1 / this.maxEnergyLevel;
 		    }
-	
-	public void setWireConnectors(int[] connect)
-	{
-		
-	}
-	public void getNetwork()
-	{
-		
-	}
-	public void sendEnergy()
-	{
-		
-	}
+
 	 public void writeToNBT(NBTTagCompound tag)
 	    {
 	        super.writeToNBT(tag);
@@ -158,13 +138,13 @@ public class TileEntityMysticRedStorage extends TileEntityMysticEnergy implement
 	        tag.setInteger("numberDrawing", numberDrawing);
 	        NBTTagList var2 = new NBTTagList();
 
-	        for (int var3 = 0; var3 < this.furnaceItemStacks.length; ++var3)
+	        for (int var3 = 0; var3 < this.inventory.length; ++var3)
 	        {
-	            if (this.furnaceItemStacks[var3] != null)
+	            if (this.inventory[var3] != null)
 	            {
 	                NBTTagCompound var4 = new NBTTagCompound();
 	                var4.setByte("Slot", (byte)var3);
-	                this.furnaceItemStacks[var3].writeToNBT(var4);
+	                this.inventory[var3].writeToNBT(var4);
 	                var2.appendTag(var4);
 	            }
 	        }
@@ -173,29 +153,29 @@ public class TileEntityMysticRedStorage extends TileEntityMysticEnergy implement
 	    }
 	 public void rechargeItem()
 	 {
-		 /*if(this.furnaceItemStacks[0].getItem() instanceof ItemBlock)
+		 /*if(this.inventory[0].getItem() instanceof ItemBlock)
 		 {
 			 
 		 }*/
-		 if(this.furnaceItemStacks[0]!=null)
+		 if(this.inventory[0]!=null)
 		 {
-		 if(this.furnaceItemStacks[0].getItem() instanceof IItemMysticRechargeable&&this.energyLevel>20)
+		 if(this.inventory[0].getItem() instanceof IItemMysticRechargeable&&this.energyLevel>20)
 		 {
-			 IItemMysticRechargeable item = (IItemMysticRechargeable) furnaceItemStacks[0].getItem();
+			 IItemMysticRechargeable item = (IItemMysticRechargeable) inventory[0].getItem();
 			 
-			 item.Charge(furnaceItemStacks[0]);
+			 item.Charge(inventory[0]);
 			 if(!(item.currentCharge>item.maxStorage-item.rechargeRatePerTick))
 			 {
 			 this.energyLevel-=item.rechargeRatePerTick;
 			 }
 			return;
 		 }
-		 if(this.furnaceItemStacks[0].getItem() instanceof IItemMysticRechargeableArmor&&this.energyLevel>20)
+		 if(this.inventory[0].getItem() instanceof IItemMysticRechargeableArmor&&this.energyLevel>20)
 		 {
-			 IItemMysticRechargeableArmor item = (IItemMysticRechargeableArmor) furnaceItemStacks[0].getItem();
+			 IItemMysticRechargeableArmor item = (IItemMysticRechargeableArmor) inventory[0].getItem();
 			 
 			
-			 item.Charge(furnaceItemStacks[0]);
+			 item.Charge(inventory[0]);
 			 
 			 if(!(item.currentCharge>item.maxStorage-item.rechargeRatePerTick))
 			 {
@@ -207,26 +187,26 @@ public class TileEntityMysticRedStorage extends TileEntityMysticEnergy implement
 	 }
 	 public void dischargeItem()
 	 {
-		 /*if(this.furnaceItemStacks[0].getItem() instanceof ItemBlock)
+		 /*if(this.inventory[0].getItem() instanceof ItemBlock)
 		 {
 			 
 		 }*/
-		 if(this.furnaceItemStacks[1]!=null&&this.furnaceItemStacks[1].getItem() instanceof IItemMysticRechargeable&&this.energyLevel<this.maxEnergyLevel)
+		 if(this.inventory[1]!=null&&this.inventory[1].getItem() instanceof IItemMysticRechargeable&&this.energyLevel<this.maxEnergyLevel)
 		 {
-			 IItemMysticRechargeable item = (IItemMysticRechargeable) furnaceItemStacks[1].getItem();
+			 IItemMysticRechargeable item = (IItemMysticRechargeable) inventory[1].getItem();
 			 
-			 item.disCharge(furnaceItemStacks[1]);
+			 item.disCharge(inventory[1]);
 			 if(!(item.currentCharge<1+item.rechargeRatePerTick))
 			 {
 			 this.energyLevel+=item.rechargeRatePerTick;
 			 }
 			
 		 }
-		 if(this.furnaceItemStacks[1]!=null&&this.furnaceItemStacks[1].getItem() instanceof IItemMysticRechargeableArmor&&this.energyLevel<this.maxEnergyLevel)
+		 if(this.inventory[1]!=null&&this.inventory[1].getItem() instanceof IItemMysticRechargeableArmor&&this.energyLevel<this.maxEnergyLevel)
 		 {
-			 IItemMysticRechargeableArmor item = (IItemMysticRechargeableArmor) furnaceItemStacks[1].getItem();
+			 IItemMysticRechargeableArmor item = (IItemMysticRechargeableArmor) inventory[1].getItem();
 			 
-			 item.disCharge(furnaceItemStacks[1]);
+			 item.disCharge(inventory[1]);
 			 if(!(item.currentCharge<1+item.rechargeRatePerTick))
 			 {
 			 this.energyLevel+=item.rechargeRatePerTick;
@@ -257,32 +237,32 @@ public class TileEntityMysticRedStorage extends TileEntityMysticEnergy implement
 		@Override
 		 public int getSizeInventory()
 	    {
-	        return this.furnaceItemStacks.length;
+	        return this.inventory.length;
 	    }
 		@Override
 		public ItemStack getStackInSlot(int var1) {
 			// TODO Auto-generated method stub
-			return this.furnaceItemStacks[var1];
+			return this.inventory[var1];
 		}
 		@Override
 		public ItemStack decrStackSize(int par1, int par2) {
-			 if (this.furnaceItemStacks[par1] != null)
+			 if (this.inventory[par1] != null)
 		        {
 		            ItemStack var3;
 
-		            if (this.furnaceItemStacks[par1].stackSize <= par2)
+		            if (this.inventory[par1].stackSize <= par2)
 		            {
-		                var3 = this.furnaceItemStacks[par1];
-		                this.furnaceItemStacks[par1] = null;
+		                var3 = this.inventory[par1];
+		                this.inventory[par1] = null;
 		                return var3;
 		            }
 		            else
 		            {
-		                var3 = this.furnaceItemStacks[par1].splitStack(par2);
+		                var3 = this.inventory[par1].splitStack(par2);
 
-		                if (this.furnaceItemStacks[par1].stackSize == 0)
+		                if (this.inventory[par1].stackSize == 0)
 		                {
-		                    this.furnaceItemStacks[par1] = null;
+		                    this.inventory[par1] = null;
 		                }
 
 		                return var3;
@@ -295,10 +275,10 @@ public class TileEntityMysticRedStorage extends TileEntityMysticEnergy implement
 		}
 		@Override
 		public ItemStack getStackInSlotOnClosing(int var1) {
-			if (this.furnaceItemStacks[var1] != null)
+			if (this.inventory[var1] != null)
 	        {
-	            ItemStack var2 = this.furnaceItemStacks[var1];
-	            this.furnaceItemStacks[var1] = null;
+	            ItemStack var2 = this.inventory[var1];
+	            this.inventory[var1] = null;
 	            return var2;
 	        }
 	        else
@@ -308,7 +288,7 @@ public class TileEntityMysticRedStorage extends TileEntityMysticEnergy implement
 		}
 		@Override
 		public void setInventorySlotContents(int var1, ItemStack var2) {
-			this.furnaceItemStacks[var1] = var2;
+			this.inventory[var1] = var2;
 
 	        if (var2 != null && var2.stackSize > this.getInventoryStackLimit())
 	        {

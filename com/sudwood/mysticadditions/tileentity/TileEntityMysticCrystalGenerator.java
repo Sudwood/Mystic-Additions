@@ -11,7 +11,6 @@ import com.sudwood.mysticadditions.blocks.MysticModBlocks;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -22,8 +21,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
-
+import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.WorldServer;
+import net.minecraftforge.common.ForgeChunkManager;
+import net.minecraftforge.common.ForgeChunkManager.Ticket;
+import net.minecraftforge.common.ForgeChunkManager.Type;
 import net.minecraftforge.common.ForgeDirection;
 
 
@@ -34,7 +36,7 @@ public class TileEntityMysticCrystalGenerator extends TileEntityMysticEnergy imp
 
 	public static int numberDrawing = 0;
 	private boolean isFull = false;
-	
+
 	private static List<Integer> fuelItems = new ArrayList();
 	private static List<Integer> fuelOutput = new ArrayList();
 	private int[] iMB = new int[260];
@@ -334,7 +336,31 @@ public class TileEntityMysticCrystalGenerator extends TileEntityMysticEnergy imp
 		 
 	    }
 	 
+	/* public void loadChunks()
+	 {
+		 if(chunkTicket == null)
+		 {
+			 chunkTicket = ForgeChunkManager.requestTicket(MysticAdditions.instance, worldObj, Type.NORMAL);
+		 }
+		 chunkTicket.getModData().setInteger("blockX", xCoord);
+		 chunkTicket.getModData().setInteger("blocky", yCoord);
+		 chunkTicket.getModData().setInteger("blockz", zCoord);
+		
+		 ForgeChunkManager.forceChunk(chunkTicket, new ChunkCoordIntPair(xCoord>>4, zCoord >>4));
+	 }
 	 
+	 public void unloadChunks()
+	 {
+		 ForgeChunkManager.unforceChunk(chunkTicket, new ChunkCoordIntPair(xCoord>>4, zCoord >>4));
+	 }
+	 public void loadTicket(Ticket ticket)
+	 {
+		 if (chunkTicket == null) {
+				chunkTicket = ticket;
+			}
+		 ChunkCoordIntPair loadChunk = new ChunkCoordIntPair(xCoord >> 4, zCoord >> 4);
+		 ForgeChunkManager.forceChunk(ticket, loadChunk);
+	 }*/
 	 
 	 
 	

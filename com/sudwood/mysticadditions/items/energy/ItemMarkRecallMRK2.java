@@ -13,6 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 
@@ -44,6 +45,10 @@ public class ItemMarkRecallMRK2 extends IItemMysticRechargeable {
 			  par1ItemStack.setTagCompound(new NBTTagCompound());
 		  }
 		  NBTTagCompound tag = par1ItemStack.getTagCompound();
+		  if(tag.getString("Creator") == "")
+		  {
+			  tag.setString("Creator", par2EntityPlayer.username);
+		  }
 		  this.currentCharge = tag.getInteger("CurrentCharge");
 		  tag.setInteger("MaxStorage", this.maxStorage);
 		  this.maxStorage = tag.getInteger("MaxStorage");
@@ -57,7 +62,9 @@ public class ItemMarkRecallMRK2 extends IItemMysticRechargeable {
 			 par3List.add("X: "+x.toString());
 			 par3List.add("Y: "+y.toString());
 			 par3List.add("Z: "+z.toString());
+			 par3List.add("Dimension: " + dimensionTravel);
 			 par3List.add(this.currentCharge+"/"+this.maxStorage+" MyJ");
+			 par3List.add("Creator: "+tag.getString("Creator"));
 			 }
 	}
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
@@ -110,7 +117,8 @@ public class ItemMarkRecallMRK2 extends IItemMysticRechargeable {
     		  
     		  if (isSet==true)
     		  {
-    			  par2World.setBlock(tag.getInteger("posX"), tag.getInteger("posY"), tag.getInteger("posZ"), 0);
+    			  World otherWorld = MinecraftServer.getServer().worldServerForDimension(tag.getInteger("Dimension"));
+    			  otherWorld.setBlock(tag.getInteger("posX"), tag.getInteger("posY"), tag.getInteger("posZ"), 0);
     			  this.x = (int)par3EntityPlayer.posX;
 	    		  this.y = (int)par3EntityPlayer.posY;
 	    		  this.z = (int)par3EntityPlayer.posZ;
@@ -123,7 +131,7 @@ public class ItemMarkRecallMRK2 extends IItemMysticRechargeable {
     		  }
     		  if (isSet==false)
     		  {
-    		
+    		  
     			
     		  this.x = (int)par3EntityPlayer.posX;
     		  this.y = (int)par3EntityPlayer.posY;
@@ -141,6 +149,7 @@ public class ItemMarkRecallMRK2 extends IItemMysticRechargeable {
     		  tag.setInteger("posX", x);
     		  tag.setInteger("posY", y);
     		  tag.setInteger("posZ", z);
+    		  tag.setInteger("Dimension", par2World.provider.dimensionId);
     		  this.setItemDamageByCharge(par1ItemStack);
     		  return par1ItemStack;
     		  
@@ -151,6 +160,7 @@ public class ItemMarkRecallMRK2 extends IItemMysticRechargeable {
 	    		 {
 	    			 return par1ItemStack;
 	    		 }
+	    		 par3EntityPlayer.travelToDimension(tag.getInteger("Dimension"));
 	    		 par3EntityPlayer.setPositionAndUpdate(x, y, z);
 	    		 par3EntityPlayer.fallDistance = 0;
 	    		 this.currentCharge-=100;
@@ -255,6 +265,12 @@ public class ItemMarkRecallMRK2 extends IItemMysticRechargeable {
 	         this.iconList[6] = iconRegister.registerIcon("MysticAdditions:markrecallmrk2-6");
 	         this.iconList[7] = iconRegister.registerIcon("MysticAdditions:markrecallmrk2-7");
 	         
+	}
+	
+	public void onCreated(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) 
+	{
+		NBTTagCompound tag = par1ItemStack.getTagCompound();
+		tag.setString("Creator", par3EntityPlayer.username);
 	}
 	
 	

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.sudwood.mysticadditions.items.MysticModItems;
+import com.sudwood.mysticadditions.items.potions.MysticModPotions;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.*;
@@ -285,7 +286,7 @@ public class EntityMysticFreezeArrow extends Entity
             	//worldsetfire.createExplosion(null, posX, posY, posZ, 10F);
             	if(movingobjectposition.entityHit instanceof EntityLiving)
             	{
-            	((EntityLiving) movingobjectposition.entityHit).addPotionEffect(new PotionEffect(46,200, 0));
+            	((EntityLiving) movingobjectposition.entityHit).addPotionEffect(new PotionEffect(MysticModPotions.FREEZE_ID,200, 0));
             	}
                 float f1 = MathHelper.sqrt_double(motionX * motionX + motionY * motionY + motionZ * motionZ);
                 int j1 = (int)Math.ceil((double)f1 * 2D);

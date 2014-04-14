@@ -60,7 +60,12 @@ public class ClientTickHandler implements ITickHandler {
 		
 		if(player!=null)
 		{
-		
+			if(player.inventory.armorItemInSlot(3) == null)
+			{
+				player.capabilities.setPlayerWalkSpeed(0.1F);
+				player.jumpMovementFactor = 0.02F;
+				player.sendPlayerAbilities();
+			}
 		
 		boolean doesNeedCharge = false;
 		int nump = 0;

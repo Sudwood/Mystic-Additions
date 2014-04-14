@@ -21,7 +21,7 @@ public class RenderMysticRedStorageMrk2 extends TileEntitySpecialRenderer
 		  GL11.glTranslatef((float)var2 + 0.5F, (float)var4 - 0.5F, (float)var6 + 0.5F);
 		  GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
 		  GL11.glTranslatef(0.0F, -2.0F, 0.0F);        
-		  func_110628_a(new ResourceLocation("mysticadditions","/textures/mark2capacitor.png"));   
+		  bindTexture(new ResourceLocation("mysticadditions","textures/mysticcapacitor2.png"));   
 		  TileEntityMysticRedStorageMrk2 tile = (TileEntityMysticRedStorageMrk2) var1;
 		  model.setAnglesForCubes(tile.rotationAngle);
 		  model.render(0.0625F);  

@@ -1,18 +1,20 @@
 package com.sudwood.mysticadditions.items.energy;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemSwordSteelRC extends IItemMysticRechargeable {
 
@@ -39,18 +41,18 @@ public class ItemSwordSteelRC extends IItemMysticRechargeable {
 		  {
 			  stack.setTagCompound(new NBTTagCompound());
 		  }
-  	 NBTTagCompound tag = stack.getTagCompound();
-  	 this.currentCharge = tag.getInteger("CurrentCharge");
-  	 if(this.currentCharge>10)
-  	 {
-  	
-  	 return false;
-  	 }
-  	 else
-  	 {
-  		 
-  		 return true;
-  	 }
+	  	 NBTTagCompound tag = stack.getTagCompound();
+	  	 this.currentCharge = tag.getInteger("CurrentCharge");
+	  	 if(this.currentCharge>24)
+	  	 {
+	  	
+	  	 return false;
+	  	 }
+	  	 else
+	  	 {
+	  		 
+	  		 return true;
+	  	 }
     }
     /**
      * Returns if the item (tool) can harvest results from the block type.
@@ -97,42 +99,30 @@ public class ItemSwordSteelRC extends IItemMysticRechargeable {
         else
         {
             Material material = par2Block.blockMaterial;
-            return material != Material.plants && material != Material.vine && material != Material.coral && material != Material.leaves && material != Material.pumpkin ? 1.0F : 1.5F;
+            return 1.5F;
         }
-    }
-    public int func_82803_g()
-    {
-        return (int) this.toolMaterial.getDamageVsEntity();
     }
     /**
      * Current implementations of this method in child classes do not use the entry argument beside ev. They just raise
      * the damage on the stack.
      */
-    public boolean hitEntity(ItemStack par1ItemStack, EntityLiving par2EntityLiving, EntityLiving par3EntityLiving)
+    public boolean hitEntity(ItemStack par1ItemStack, EntityLivingBase par2EntityLivingBase, EntityLivingBase par3EntityLivingBase)
     {
-    	 if(par1ItemStack.getTagCompound()==null)
-		  {
-			  par1ItemStack.setTagCompound(new NBTTagCompound());
-		  }
     	 NBTTagCompound tag = par1ItemStack.getTagCompound();
-    	 this.currentCharge = tag.getInteger("CurrentCharge");
-    	 if(this.currentCharge>=10)
-    	 {
-    	 this.currentCharge-=10;
-    	 tag.setInteger("CurrentCharge", this.currentCharge);
-    	 return true;
-    	 }
-    	 else
-    	 {
-    		 
-    		 return false;
-    	 }
-       
+      	 this.currentCharge = tag.getInteger("CurrentCharge");
+      	 if(this.currentCharge>=24)
+      	 {
+	      	 this.currentCharge-=24;
+	      	 tag.setInteger("CurrentCharge", this.currentCharge);
+	      	int extra = this.doModuleHitAdditions(par2EntityLivingBase, par3EntityLivingBase);
+	      	 par2EntityLivingBase.attackEntityFrom(DamageSource.magic, 8+extra/2);// /2 because its steel not the best material
+	      	 return false;
+      	 }
+        return false;
     }
-    public boolean onBlockDestroyed(ItemStack par1ItemStack, World par2World, int par3, int par4, int par5, int par6, EntityLiving par7EntityLiving)
+    public boolean onBlockDestroyed(ItemStack par1ItemStack, World par2World, int par3, int par4, int par5, int par6, EntityLivingBase par7EntityLivingBase)
     {
-        if ((double)Block.blocksList[par3].getBlockHardness(par2World, par4, par5, par6) != 0.0D)
-        {
+        
         	if(par1ItemStack.getTagCompound()==null)
   		  {
   			  par1ItemStack.setTagCompound(new NBTTagCompound());
@@ -146,19 +136,8 @@ public class ItemSwordSteelRC extends IItemMysticRechargeable {
       	 return true;
       	 }
       	 else return false;
-      	 
-        }
 
-        return true;
     }
-    /**
-     * Returns the damage against a given entity.
-     */
-    public int getDamageVsEntity(Entity par1Entity)
-    {
-        return (int) (4+this.toolMaterial.getDamageVsEntity());
-    }
-	
     @SideOnly(Side.CLIENT)
 
     /**
@@ -193,20 +172,18 @@ public class ItemSwordSteelRC extends IItemMysticRechargeable {
     {
         return this.toolMaterial.getToolCraftingMaterial() == par2ItemStack.itemID ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
     }
-    
-    
     public boolean onBlockStartBreak(ItemStack itemstack, int X, int Y, int Z, EntityPlayer player)
     {
     	if(itemstack.getTagCompound()==null)
 		  {
 			  itemstack.setTagCompound(new NBTTagCompound());
 		  }
-    	 NBTTagCompound tag = itemstack.getTagCompound();
-    	 this.currentCharge = tag.getInteger("CurrentCharge");
-    	 if(this.currentCharge>=10)
-        return false;
-    	 else return true;
+    	NBTTagCompound tag = itemstack.getTagCompound();
+     	 this.currentCharge = tag.getInteger("CurrentCharge");
+     	 if(this.currentCharge<48)
+     	 {
+	      	 return true;
+     	 }
+    	 else return false;
     }
-	
-	
 }

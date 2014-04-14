@@ -1,21 +1,11 @@
 package com.sudwood.mysticadditions;
 
-import com.sudwood.mysticadditions.container.ContainerMysticFurnace;
-import com.sudwood.mysticadditions.container.ContainerMysticRedGenerator;
-import com.sudwood.mysticadditions.container.ContainerMysticRedGrinder;
-import com.sudwood.mysticadditions.container.ContainerMysticRedStorage;
-import com.sudwood.mysticadditions.container.ContainerMysticRedStorageMrk2;
-import com.sudwood.mysticadditions.container.ContainerPoweredFurnace;
-import com.sudwood.mysticadditions.container.ContainerPoweredMysticFurnace;
-import com.sudwood.mysticadditions.tileentity.TileEntityMysticEnergy;
-import com.sudwood.mysticadditions.tileentity.TileEntityMysticFurnace;
-import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedGenerator;
-import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedGrinder;
-import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedStorage;
-import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedStorageMrk2;
-import com.sudwood.mysticadditions.tileentity.TileEntityPoweredFurnace;
-import com.sudwood.mysticadditions.tileentity.TileEntityPoweredMysticFurnace;
-
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
+import client.sudwood.mysticadditions.gui.GuiFluidConfiguration;
+import client.sudwood.mysticadditions.gui.GuiLiquidStorage;
+import client.sudwood.mysticadditions.gui.GuiModuleInventory;
 import client.sudwood.mysticadditions.gui.GuiMysticBud;
 import client.sudwood.mysticadditions.gui.GuiMysticEnergyConfiguration;
 import client.sudwood.mysticadditions.gui.GuiMysticFurnace;
@@ -23,12 +13,38 @@ import client.sudwood.mysticadditions.gui.GuiMysticRedGenerator;
 import client.sudwood.mysticadditions.gui.GuiMysticRedGrinder;
 import client.sudwood.mysticadditions.gui.GuiMysticRedStorage;
 import client.sudwood.mysticadditions.gui.GuiMysticRedStorageMrk2;
-
+import client.sudwood.mysticadditions.gui.GuiNaturalRift;
+import client.sudwood.mysticadditions.gui.GuiOreRift;
 import client.sudwood.mysticadditions.gui.GuiPoweredFurnace;
 import client.sudwood.mysticadditions.gui.GuiPoweredMysticFurnace;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
+import client.sudwood.mysticadditions.gui.GuiRecallPortal;
+
+import com.sudwood.mysticadditions.container.ContainerLiquidStorage;
+import com.sudwood.mysticadditions.container.ContainerMysticFurnace;
+import com.sudwood.mysticadditions.container.ContainerMysticModules;
+import com.sudwood.mysticadditions.container.ContainerMysticRedGenerator;
+import com.sudwood.mysticadditions.container.ContainerMysticRedGrinder;
+import com.sudwood.mysticadditions.container.ContainerMysticRedStorage;
+import com.sudwood.mysticadditions.container.ContainerMysticRedStorageMrk2;
+import com.sudwood.mysticadditions.container.ContainerNaturalRift;
+import com.sudwood.mysticadditions.container.ContainerOreRift;
+import com.sudwood.mysticadditions.container.ContainerPoweredFurnace;
+import com.sudwood.mysticadditions.container.ContainerPoweredMysticFurnace;
+import com.sudwood.mysticadditions.container.ContainerRecallPortal;
+import com.sudwood.mysticadditions.tileentity.TileEntityLiquidStorage;
+import com.sudwood.mysticadditions.tileentity.TileEntityModuleTable;
+import com.sudwood.mysticadditions.tileentity.TileEntityMysticEnergy;
+import com.sudwood.mysticadditions.tileentity.TileEntityMysticFurnace;
+import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedGenerator;
+import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedGrinder;
+import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedStorage;
+import com.sudwood.mysticadditions.tileentity.TileEntityMysticRedStorageMrk2;
+import com.sudwood.mysticadditions.tileentity.TileEntityNaturalRift;
+import com.sudwood.mysticadditions.tileentity.TileEntityOreRift;
+import com.sudwood.mysticadditions.tileentity.TileEntityPoweredFurnace;
+import com.sudwood.mysticadditions.tileentity.TileEntityPoweredMysticFurnace;
+import com.sudwood.mysticadditions.tileentity.TileEntityRecallPortal;
+
 import cpw.mods.fml.common.network.IGuiHandler;
 
 public class GuiHandlerMystic implements IGuiHandler {
@@ -38,10 +54,18 @@ public class GuiHandlerMystic implements IGuiHandler {
 		if(id==0)
 		{
 		TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
-        if(tileEntity instanceof TileEntityMysticFurnace){
+        if(tileEntity instanceof TileEntityMysticFurnace)
+        	{
                 return new ContainerMysticFurnace(player.inventory, (TileEntityMysticFurnace) tileEntity);
-        }
-        
+        	}        
+		}
+		
+		if(id==1)
+		{
+			TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+			if(tileEntity instanceof TileEntityLiquidStorage){
+			return new ContainerLiquidStorage(player.inventory, (TileEntityLiquidStorage)tileEntity);
+			}
 		}
 		
 		
@@ -89,6 +113,43 @@ public class GuiHandlerMystic implements IGuiHandler {
 			return new ContainerMysticRedStorageMrk2(player.inventory, (TileEntityMysticRedStorageMrk2)tileEntity);
 			}
 		}
+		if (id==MysticAdditions.MODULE_INVENTORY_GUI)
+		{
+			TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+			if(tileEntity instanceof TileEntityModuleTable)
+			{
+				return new ContainerMysticModules(player, player.inventory, (TileEntityModuleTable)tileEntity);
+			}
+		}
+		
+		if(id == 11)
+		{
+			
+		}
+		if(id == 12)
+		{
+			TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+			if(tileEntity instanceof TileEntityRecallPortal)
+			{
+				return new ContainerRecallPortal(player.inventory, (TileEntityRecallPortal)tileEntity);
+			}
+		}
+		if(id == 13)
+		{
+			TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+			if(tileEntity instanceof TileEntityOreRift)
+			{
+				return new ContainerOreRift(player.inventory, (TileEntityOreRift)tileEntity);
+			}
+		}
+		if(id == 14)
+		{
+			TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+			if(tileEntity instanceof TileEntityNaturalRift)
+			{
+				return new ContainerNaturalRift(player.inventory, (TileEntityNaturalRift)tileEntity);
+			}
+		}
 	
 		return null;
 	}
@@ -98,12 +159,19 @@ public class GuiHandlerMystic implements IGuiHandler {
 {
 	if(id==0){
 		TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
-        if(tileEntity instanceof TileEntityMysticFurnace){
+        if(tileEntity instanceof TileEntityMysticFurnace)
+        	{
                 return new GuiMysticFurnace(player.inventory, (TileEntityMysticFurnace) tileEntity);
-        }
-        
+        	}        
 		}
 		
+	if(id==1)
+	{
+		TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+		if(tileEntity instanceof TileEntityLiquidStorage){
+		return new GuiLiquidStorage(player.inventory, (TileEntityLiquidStorage)tileEntity);
+		}
+	}
 	
 	if (id==2){
 		
@@ -159,7 +227,46 @@ public class GuiHandlerMystic implements IGuiHandler {
 		return new GuiMysticRedStorageMrk2(player.inventory, (TileEntityMysticRedStorageMrk2)tileEntity);
 		}
 	}
-	
+	if (id==MysticAdditions.MODULE_INVENTORY_GUI)
+	{
+		TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+		if(tileEntity instanceof TileEntityModuleTable)
+		{
+			return new GuiModuleInventory(player, player.inventory, (TileEntityModuleTable)tileEntity);
+		}
+	}
+	if(id == 11)
+	{
+		TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+		if(tileEntity instanceof TileEntityLiquidStorage)
+		{
+			return new GuiFluidConfiguration((TileEntityLiquidStorage) tileEntity);
+		}
+	}
+	if( id == 12)
+	{
+		TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+		if(tileEntity instanceof TileEntityRecallPortal)
+		{
+			return new GuiRecallPortal(player, player.inventory, (TileEntityRecallPortal)tileEntity);
+		}
+	}
+	if( id == 13)
+	{
+		TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+		if(tileEntity instanceof TileEntityOreRift)
+		{
+			return new GuiOreRift(player, player.inventory, (TileEntityOreRift)tileEntity);
+		}
+	}
+	if( id == 14)
+	{
+		TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+		if(tileEntity instanceof TileEntityNaturalRift)
+		{
+			return new GuiNaturalRift(player.inventory, (TileEntityNaturalRift)tileEntity);
+		}
+	}
     return null;
 }
 	

@@ -1,6 +1,7 @@
 package com.sudwood.mysticadditions.items.energy;
 
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumArmorMaterial;
@@ -44,17 +45,18 @@ public class ItemArmorSteelRC extends IItemMysticRechargeableArmor{
 	         this.itemIcon = iconRegister.registerIcon("MysticAdditions:steelbootsrc");
     		 }
 	}
-	public String getArmorTextureFile(ItemStack itemstack)
+	@Override
+	public String getArmorTexture(ItemStack itemstack, Entity entity, int slot, String type)
     {
-        if(itemstack.itemID == MysticModItems.helmCSteel.itemID || itemstack.itemID == MysticModItems.chestCSteel.itemID || itemstack.itemID == MysticModItems.bootsCSteel.itemID)
+        if(itemstack.itemID == MysticModItems.helmSteelRC.itemID || itemstack.itemID == MysticModItems.chestSteelRC.itemID || itemstack.itemID == MysticModItems.bootsSteelRC.itemID)
         {
-                return "/mods/MysticAdditions/textures/csteel_1.png";
+                return "MysticAdditions:textures/csteel_1.png";
         }
-        if(itemstack.itemID == MysticModItems.legsCSteel.itemID)
+        if(itemstack.itemID == MysticModItems.legsSteelRC.itemID)
         {
-                return "/mods/MysticAdditions/textures/csteel_2.png";
+                return "MysticAdditions:textures/csteel_2.png";
         }
-        return  "/mods/MysticAdditions/textures/csteel_1.png";
+        return  "MysticAdditions:textures/csteel_1.png";
     }
   
     /**
@@ -121,8 +123,34 @@ public class ItemArmorSteelRC extends IItemMysticRechargeableArmor{
 		   }
 	    if(legs!=null&&legs.getItem()==MysticModItems.legsSteelRC&&player.isSprinting())
 	    {
-	    	player.capabilities.setPlayerWalkSpeed(0.20F);
-	    	player.jumpMovementFactor = 0.05F;
+	    	IItemMysticRechargeableArmor item = (IItemMysticRechargeableArmor) legs.getItem();
+	    	item.readNBT(legs);
+	    	if(MysticModule.getTypeForStack(item.mods[0]) == MysticModule.AIR || MysticModule.getTypeForStack(item.mods[1]) == MysticModule.AIR)
+	    	{
+	    		if(MysticModule.getTypeForStack(item.mods[0]) == MysticModule.AIR && MysticModule.getTypeForStack(item.mods[1]) == MysticModule.AIR)
+	    		{
+	    			player.capabilities.setPlayerWalkSpeed(0.03F*(1+(item.mods[0].stackSize/4))*(1+(item.mods[1].stackSize/4)));
+			    	player.jumpMovementFactor = 0.03F*(1+(item.mods[0].stackSize/4))*(1+(item.mods[1].stackSize/4));
+	    		}
+	    		else
+	    		{
+	    			if(MysticModule.getTypeForStack(item.mods[0]) == MysticModule.AIR)
+	    			{
+	    				player.capabilities.setPlayerWalkSpeed(0.03F*(1+(item.mods[0].stackSize/2)));
+				    	player.jumpMovementFactor = 0.03F*(1+(item.mods[0].stackSize/4));
+	    			}
+	    			else if(MysticModule.getTypeForStack(item.mods[1]) == MysticModule.AIR)
+	    			{
+	    				player.capabilities.setPlayerWalkSpeed(0.03F*(1+(item.mods[0].stackSize/2)));
+				    	player.jumpMovementFactor = 0.03F*(1+(item.mods[0].stackSize/4));
+	    			}
+	    		}
+	    	}
+	    	else
+	    	{
+		    	player.capabilities.setPlayerWalkSpeed(0.20F);
+		    	player.jumpMovementFactor = 0.05F;
+	    	}
 	    	player.sendPlayerAbilities();
 	    	
 	    }

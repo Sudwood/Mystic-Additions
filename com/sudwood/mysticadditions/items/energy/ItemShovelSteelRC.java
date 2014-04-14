@@ -7,10 +7,13 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 
@@ -19,6 +22,7 @@ public class ItemShovelSteelRC extends IItemMysticRechargeable {
 	  public static final Block[] blocksEffectiveAgainst = new Block[] {Block.grass, Block.dirt, Block.sand, Block.gravel, Block.snow, Block.blockSnow, Block.blockClay, Block.tilledField, Block.slowSand, Block.mycelium};
 	 private EnumToolMaterial toolMaterial;
 	 private float efficiencyOnProperMaterial;
+	 public final float KNOCKBACK = 1.4F;
 	 
 	 public ItemShovelSteelRC(int i, EnumToolMaterial enumtoolmaterial, int maxStorage, int rechargeRate)
     {
@@ -47,82 +51,53 @@ public class ItemShovelSteelRC extends IItemMysticRechargeable {
     {
         if (ForgeHooks.isToolEffective(stack, block, meta))
         {
-            return efficiencyOnProperMaterial;
+        	double temp = efficiencyOnProperMaterial;
+        	if(MysticModule.getTypeForStack(mods[0])== MysticModule.AIR)
+        		temp *=(1.1*mods[0].stackSize);
+        	if(MysticModule.getTypeForStack(mods[1])== MysticModule.AIR)
+        		temp *=(1.1*mods[0].stackSize);
+            return (float) temp;
         }
         return getStrVsBlock(stack, block);
     }
-    
-    public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
-    {
-    	
-    	if(stack.getTagCompound()==null)
-		  {
-			  stack.setTagCompound(new NBTTagCompound());
-		  }
-  	 NBTTagCompound tag = stack.getTagCompound();
-  	 this.currentCharge = tag.getInteger("CurrentCharge");
-  	 if(this.currentCharge>=48)
-  	 {
-  	
-  	 return false;
-  	 }
-  	 else
-  	 {
-  		 
-  		 return true;
-  	 }
-    }
-    
     
     /**
      * Current implementations of this method in child classes do not use the entry argument beside ev. They just raise
      * the damage on the stack.
      */
-    public boolean hitEntity(ItemStack par1ItemStack, EntityLiving par2EntityLiving, EntityLiving par3EntityLiving)
+    public boolean hitEntity(ItemStack par1ItemStack, EntityLivingBase par2EntityLivingBase, EntityLivingBase par3EntityLivingBase)
     {
-    	 if(par1ItemStack.getTagCompound()==null)
+    	 NBTTagCompound tag = par1ItemStack.getTagCompound();
+      	 this.currentCharge = tag.getInteger("CurrentCharge");
+      	 if(this.currentCharge>=48)
+      	 {
+      	 this.currentCharge-=48;
+      	 tag.setInteger("CurrentCharge", this.currentCharge);
+      	 this.doModuleHitAdditions(par2EntityLivingBase, par3EntityLivingBase);
+      	 par2EntityLivingBase.addVelocity((double)(-MathHelper.sin(par3EntityLivingBase.rotationYaw * (float)Math.PI / 180.0F) * (float)KNOCKBACK * 0.5F), 0.1D, (double)(MathHelper.cos(par3EntityLivingBase.rotationYaw * (float)Math.PI / 180.0F) * (float)KNOCKBACK * 0.5F));
+      	 par2EntityLivingBase.attackEntityFrom(DamageSource.anvil, 3);
+      	 return false;
+      	 }
+        return false;
+    }
+    
+    public boolean onBlockDestroyed(ItemStack par1ItemStack, World par2World, int par3, int par4, int par5, int par6, EntityLivingBase par7EntityLivingBase)
+    {
+    	if(par1ItemStack.getTagCompound()==null)
 		  {
 			  par1ItemStack.setTagCompound(new NBTTagCompound());
 		  }
     	 NBTTagCompound tag = par1ItemStack.getTagCompound();
     	 this.currentCharge = tag.getInteger("CurrentCharge");
-    	 if(this.currentCharge>=48)
+    	 
+    	 if(this.currentCharge>=20)
     	 {
-    	 this.currentCharge-=48;
-    	 tag.setInteger("CurrentCharge", this.currentCharge);
-    	 return true;
+	      	 this.currentCharge -= 20;
+	      	 tag.setInteger("CurrentCharge", this.currentCharge);
+	      	 return true;
     	 }
     	 else return false;
-       
-    }
-    public boolean onBlockDestroyed(ItemStack par1ItemStack, World par2World, int par3, int par4, int par5, int par6, EntityLiving par7EntityLiving)
-    {
-        if ((double)Block.blocksList[par3].getBlockHardness(par2World, par4, par5, par6) != 0.0D)
-        {
-        	if(par1ItemStack.getTagCompound()==null)
-  		  {
-  			  par1ItemStack.setTagCompound(new NBTTagCompound());
-  		  }
-      	 NBTTagCompound tag = par1ItemStack.getTagCompound();
-      	 this.currentCharge = tag.getInteger("CurrentCharge");
-      	 if(this.currentCharge>=10)
-      	 {
-      	 this.currentCharge-=10;
-      	 tag.setInteger("CurrentCharge", this.currentCharge);
-      	 return true;
-      	 }
-      	 else return false;
-      	 
-        }
 
-        return true;
-    }
-    /**
-     * Returns the damage against a given entity.
-     */
-    public int getDamageVsEntity(Entity par1Entity)
-    {
-        return 2;
     }
 	
     @SideOnly(Side.CLIENT)
@@ -167,11 +142,13 @@ public class ItemShovelSteelRC extends IItemMysticRechargeable {
 		  {
 			  itemstack.setTagCompound(new NBTTagCompound());
 		  }
-    	 NBTTagCompound tag = itemstack.getTagCompound();
-    	 this.currentCharge = tag.getInteger("CurrentCharge");
-    	 if(this.currentCharge>=10)
-        return false;
-    	 else return true;
+	  	NBTTagCompound tag = itemstack.getTagCompound();
+	   	 this.currentCharge = tag.getInteger("CurrentCharge");
+	   	 if(this.currentCharge<20)
+	   	 {
+		      	 return true;
+	   	 }
+	  	 else return false;
     }
 	
 	

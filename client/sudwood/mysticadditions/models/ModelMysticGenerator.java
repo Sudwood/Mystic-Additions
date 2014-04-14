@@ -15,7 +15,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ModelMysticGenerator extends ModelBase
+public class ModelMysticGenerator extends ModelMysticBase
 {
   //fields
     ModelRenderer Shape1;

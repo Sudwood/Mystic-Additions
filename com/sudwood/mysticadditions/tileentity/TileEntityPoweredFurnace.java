@@ -8,7 +8,6 @@ import com.sudwood.mysticadditions.items.MysticModItems;
 import com.sudwood.mysticadditions.items.energy.IItemMysticRechargeable;
 import com.sudwood.mysticadditions.items.energy.IItemMysticRechargeableArmor;
 
-
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -17,6 +16,7 @@ import net.minecraft.block.BlockFurnace;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemHoe;
@@ -27,11 +27,10 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-
 import net.minecraftforge.common.ForgeDirection;
 
 
-public class TileEntityPoweredFurnace extends TileEntityMysticEnergy implements IInventory
+public class TileEntityPoweredFurnace extends TileEntityMysticEnergy implements ISidedInventory
 {
 	public TileEntityPoweredFurnace(int maxEnergy) {
 		super(maxEnergy);
@@ -313,7 +312,7 @@ public class TileEntityPoweredFurnace extends TileEntityMysticEnergy implements 
                     var2 = true;
                 }
             }
-            else
+            else if(!this.canSmelt())
             {
                 this.furnaceCookTime = 0;
             }
@@ -480,5 +479,41 @@ public class TileEntityPoweredFurnace extends TileEntityMysticEnergy implements 
 			return true;
 		else 
 			return false;
+	}
+	@Override
+	public int[] getAccessibleSlotsFromSide(int var1) {
+		// TODO Auto-generated method stub
+		if( var1 == 1)
+		{
+			int[] temp = {0};
+			return temp;
+		}
+		if( var1 == 0)
+		{
+			int[] temp = {2};
+			return temp;
+		}
+		if( var1 == 2 || var1 == 3 || var1 == 4)
+		{
+			int[] temp = {1};
+			return temp;
+		}
+		return null;
+	}
+	@Override
+	public boolean canInsertItem(int i, ItemStack itemstack, int j) {
+		if( i == 2 )
+			return false;
+		if( i == 0 && j == 1)
+			return true;
+		if( i == 1 && j == 0)
+			return true;
+		return false;
+	}
+	@Override
+	public boolean canExtractItem(int i, ItemStack itemstack, int j) {
+		if( i == 2 )
+			return true;
+		return false;
 	}
 }

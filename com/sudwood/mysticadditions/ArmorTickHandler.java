@@ -1,14 +1,20 @@
 package com.sudwood.mysticadditions;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
+import net.minecraftforge.event.Event.Result;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 
+import com.sudwood.mysticadditions.blocks.energy.BlockRecallPortal;
+import com.sudwood.mysticadditions.items.energy.IItemMysticRechargeable;
 import com.sudwood.mysticadditions.items.energy.IItemMysticRechargeableArmor;
+import com.sudwood.mysticadditions.tileentity.TileEntityRecallPortal;
 
 public class ArmorTickHandler {
 	
@@ -16,7 +22,47 @@ public class ArmorTickHandler {
 	
 	
 	
-	
+	@ForgeSubscribe
+	public void onBlockEvent(HarvestDropsEvent event) 
+	{
+		
+		if(event.harvester != null)
+		{
+			
+			if(event.harvester.inventory.getCurrentItem()!=null && event.harvester.inventory.getCurrentItem().getItem() instanceof IItemMysticRechargeable)
+			{
+				IItemMysticRechargeable item = (IItemMysticRechargeable) event.harvester.inventory.getCurrentItem().getItem();
+				item.readNBT(event.harvester.inventory.getCurrentItem());
+				if(item.mods[0]!=null ||item.mods[1]!=null)
+				{
+					ItemStack temp = item.doModuleMineAdditions(event.drops, event.harvester.inventory.getCurrentItem());
+					
+					if(temp!=null)
+					{
+					
+					event.world.spawnEntityInWorld(new EntityItem(event.world, event.x, event.y, event.z, temp));
+					}
+					event.dropChance = 0;
+				}
+			}
+			/*if(event.block instanceof BlockRecallPortal)
+			{
+				TileEntityRecallPortal tile = (TileEntityRecallPortal)event.world.getBlockTileEntity(event.x, event.y, event.z);
+				if(tile!=null&&tile.getStackInSlot(0)!=null)
+				{
+					NBTTagCompound tag = tile.getStackInSlot(0).getTagCompound();
+					if(tag!=null)
+					{
+						if(tag.getString("Creator").compareToIgnoreCase(event.harvester.username)!=0)
+						{
+							System.out.println(tag.getString("Creator").compareToIgnoreCase(event.harvester.username)!=0);
+							event.setResult(Result.DEFAULT);
+						}
+					}
+				}
+			}*/
+		}
+	}
 	
 	
 	

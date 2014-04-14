@@ -32,6 +32,7 @@ public class TileEntityMysticRedStorageMrk2 extends TileEntityMysticEnergy imple
 	private boolean isGettingTeleportedPower = false;
 	public float rotationAngle =0F;
 	public double efficiencyLevel = 4;
+	public final int rechargeRate = 128;
 	private ItemStack[] furnaceItemStacks = new ItemStack[2];
 	public TileEntityMysticRedStorageMrk2(int maxEnergy)
 	{
@@ -239,6 +240,132 @@ public class TileEntityMysticRedStorageMrk2 extends TileEntityMysticEnergy imple
 			
 		 }
 	 }
+	 
+	 public void getEnergyTeleported()
+		{
+			if(activeConnections.length>0 && !worldObj.isRemote)
+			{
+				if(activeConnections[0] == 0 && activeConnections[1] == 0 && activeConnections[2] == 0 && activeConnections[3] == 0 && activeConnections[4] == 0)
+					return;
+			if(activeConnections[0]==1)
+			{
+				if(energyLevel<maxEnergyLevel-128)
+				{
+					if(coords0.length>0)
+					{
+					TileEntity tile = worldObj.getBlockTileEntity(coords0[0], coords0[1], coords0[2]);
+					if(tile instanceof TileEntityMysticEnergy)
+					{
+						if(((TileEntityMysticEnergy) tile).getEnergyLevel()>128)
+						{
+							TileEntityMysticEnergy tile2 = (TileEntityMysticEnergy) worldObj.getBlockTileEntity(coords0[0], coords0[1], coords0[2]);
+							if(tile2!=null)
+							{
+								tile2.setEnergyLevel(tile2.energyLevel-128);
+								setEnergyLevel(energyLevel+128/(efficiencyLevel));
+								
+							}
+						}
+					}
+					}
+				}
+			}
+			if(activeConnections[1]==1)
+			{
+				if(energyLevel<maxEnergyLevel-128)
+				{
+					if(coords1.length>0)
+					{
+					TileEntity tile = worldObj.getBlockTileEntity(coords1[0], coords1[1], coords1[2]);
+					if(tile instanceof TileEntityMysticEnergy)
+					{
+						if(((TileEntityMysticEnergy) tile).getEnergyLevel()>128)
+						{
+							
+							TileEntityMysticEnergy tile2 = (TileEntityMysticEnergy) worldObj.getBlockTileEntity(coords1[0], coords1[1], coords1[2]);
+							if(tile2!=null)
+							{
+								tile2.setEnergyLevel(tile2.energyLevel-128);
+								setEnergyLevel(energyLevel+128/(efficiencyLevel));
+							}
+						}
+					}
+					}
+				}
+			}
+			if(activeConnections[2]==1)
+			{
+				if(energyLevel<maxEnergyLevel-128)
+				{
+					if(coords2.length>0)
+					{
+					TileEntity tile = worldObj.getBlockTileEntity(coords2[0], coords2[1], coords2[2]);
+					if(tile instanceof TileEntityMysticEnergy)
+					{
+						if(((TileEntityMysticEnergy) tile).getEnergyLevel()>128)
+						{
+							TileEntityMysticEnergy tile2 = (TileEntityMysticEnergy) worldObj.getBlockTileEntity(coords2[0], coords2[1], coords2[2]);
+							if(tile2!=null)
+							{
+								tile2.setEnergyLevel(tile2.energyLevel-128);
+								setEnergyLevel(energyLevel+128/(efficiencyLevel));
+					
+							}
+						}
+					}
+					}
+				}
+			}
+			if(activeConnections[3]==1)
+			{
+				if(energyLevel<maxEnergyLevel-128)
+				{
+					if(coords3.length>0)
+					{
+					TileEntity tile = worldObj.getBlockTileEntity(coords3[0], coords3[1], coords3[2]);
+					if(tile instanceof TileEntityMysticEnergy)
+					{
+						if(((TileEntityMysticEnergy) tile).getEnergyLevel()>128)
+						{
+							TileEntityMysticEnergy tile2 = (TileEntityMysticEnergy) worldObj.getBlockTileEntity(coords3[0], coords3[1], coords3[2]);
+							if(tile2!=null)
+							{
+								tile2.setEnergyLevel(tile2.energyLevel-128);
+								setEnergyLevel(energyLevel+128/(efficiencyLevel));
+							}
+						}
+					}
+					}
+				}
+			}
+			if(activeConnections[4]==1)
+			{
+				if(energyLevel<maxEnergyLevel-128)
+				{
+					if(coords4.length>0)
+					{
+					TileEntity tile = worldObj.getBlockTileEntity(coords4[0], coords4[1], coords4[2]);
+					if(tile instanceof TileEntityMysticEnergy)
+					{
+						if(((TileEntityMysticEnergy) tile).getEnergyLevel()>128)
+						{
+							TileEntityMysticEnergy tile2 = (TileEntityMysticEnergy) worldObj.getBlockTileEntity(coords4[0], coords4[1], coords4[2]);
+							if(tile2!=null)
+							{
+								tile2.setEnergyLevel(tile2.energyLevel-128);
+								setEnergyLevel(energyLevel+128/(efficiencyLevel));
+							}
+						}
+					}
+					}
+				}
+			}
+			
+			}
+			
+		}
+	 
+	 
 	 public void updateEntity()
 	    {
 		 if (MysticAdditions.areAnimations&&this.energyLevel<this.maxEnergyLevel)

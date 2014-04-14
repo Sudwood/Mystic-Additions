@@ -8,11 +8,12 @@ import com.sudwood.mysticadditions.items.energy.IItemMysticRechargeableArmor;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-
 import net.minecraft.block.Block;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 
@@ -30,7 +31,7 @@ public class TileEntityMysticEnergy extends TileEntity{
 	protected boolean isFull = false;
 	public static int numberDrawing = 0;
 	protected boolean isGettingTeleportedPower = false;
-	protected ItemStack[] furnaceItemStacks = new ItemStack[2];
+	protected ItemStack[] inventory = new ItemStack[2];
 	public double efficiencyLevel = 4;
 	
 	
@@ -40,13 +41,69 @@ public class TileEntityMysticEnergy extends TileEntity{
 		maxEnergyLevel = maxEnergy;
 	}
 	
-	
+	public void readFromNBT(NBTTagCompound tag)
+    {
+		
+        super.readFromNBT(tag);
+        efficiencyLevel = tag.getDouble("EfficiencyLevel");
+        energyLevel = tag.getInteger("energyLevel");
+        isFull = tag.getBoolean("isFull");
+        this.coords0 = tag.getIntArray("coordinates0");
+        this.coords1 = tag.getIntArray("coordinates1");
+        this.coords2 = tag.getIntArray("coordinates2");
+        this.coords3 = tag.getIntArray("coordinates3");
+        this.coords4 = tag.getIntArray("coordinated4");
+        this.activeConnections = tag.getIntArray("activeconnections");
+        isGettingTeleportedPower = tag.getBoolean("isGettingTeleportedPower");
+        numberDrawing = tag.getInteger("numberDrawing");
+        NBTTagList var2 = tag.getTagList("Items");
+        for (int var3 = 0; var3 < var2.tagCount(); ++var3)
+        {
+            NBTTagCompound var4 = (NBTTagCompound)var2.tagAt(var3);
+            byte var5 = var4.getByte("Slot");
+
+            if (var5 >= 0 && var5 < this.inventory.length)
+            {
+                this.inventory[var5] = ItemStack.loadItemStackFromNBT(var4);
+            }
+        }
+    }
+	public void writeToNBT(NBTTagCompound tag)
+    {
+        super.writeToNBT(tag);
+        tag.setDouble("EfficiencyLevel", efficiencyLevel);
+        tag.setInteger("energyLevel", energyLevel);
+        tag.setIntArray("coordinates0", coords0);
+        tag.setIntArray("coordinates1", coords1);
+        tag.setIntArray("coordinates2", coords2);
+        tag.setIntArray("coordinates3", coords3);
+        tag.setIntArray("coordinates4", coords4);
+        tag.setIntArray("activeconnections", activeConnections);
+        tag.setBoolean("isFull", isFull);
+        tag.setBoolean("isGettingTeleportedPower", isGettingTeleportedPower);
+        tag.setInteger("numberDrawing", numberDrawing);
+        NBTTagList var2 = new NBTTagList();
+
+        for (int var3 = 0; var3 < this.inventory.length; ++var3)
+        {
+            if (this.inventory[var3] != null)
+            {
+                NBTTagCompound var4 = new NBTTagCompound();
+                var4.setByte("Slot", (byte)var3);
+                this.inventory[var3].writeToNBT(var4);
+                var2.appendTag(var4);
+            }
+        }
+       tag.setTag("Items", var2);
+       
+    }
 	
 	@Override
 	public boolean canUpdate()
 	{
 		   return true;
 	}
+	
 	
 	/**
 	 * 
@@ -104,8 +161,10 @@ public class TileEntityMysticEnergy extends TileEntity{
 	
 	public void getEnergyTeleported()
 	{
-		if(activeConnections.length>0)
+		if(activeConnections.length>0 && !worldObj.isRemote)
 		{
+			if(activeConnections[0] == 0 && activeConnections[1] == 0 && activeConnections[2] == 0 && activeConnections[3] == 0 && activeConnections[4] == 0)
+				return;
 		if(activeConnections[0]==1)
 		{
 			if(energyLevel<maxEnergyLevel-32)
@@ -291,29 +350,29 @@ public class TileEntityMysticEnergy extends TileEntity{
 	
 	 public void rechargeItem()
 	 {
-		 /*if(furnaceItemStacks[0].getItem() instanceof ItemBlock)
+		 /*if(inventory[0].getItem() instanceof ItemBlock)
 		 {
 			 
 		 }*/
-		 if(furnaceItemStacks[0]!=null)
+		 if(inventory[0]!=null)
 		 {
-		 if(furnaceItemStacks[0].getItem() instanceof IItemMysticRechargeable&&energyLevel>20)
+		 if(inventory[0].getItem() instanceof IItemMysticRechargeable && energyLevel>20)
 		 {
-			 IItemMysticRechargeable item = (IItemMysticRechargeable) furnaceItemStacks[0].getItem();
+			 IItemMysticRechargeable item = (IItemMysticRechargeable) inventory[0].getItem();
 			 
-			 item.Charge(furnaceItemStacks[0]);
+			 item.Charge(inventory[0]);
 			 if(!(item.currentCharge>item.maxStorage-item.rechargeRatePerTick))
 			 {
 			 energyLevel-=item.rechargeRatePerTick;
 			 }
 			return;
 		 }
-		 if(furnaceItemStacks[0].getItem() instanceof IItemMysticRechargeableArmor&&energyLevel>20)
+		 if(inventory[0].getItem() instanceof IItemMysticRechargeableArmor&&energyLevel>20)
 		 {
-			 IItemMysticRechargeableArmor item = (IItemMysticRechargeableArmor) furnaceItemStacks[0].getItem();
+			 IItemMysticRechargeableArmor item = (IItemMysticRechargeableArmor) inventory[0].getItem();
 			 
 			
-			 item.Charge(furnaceItemStacks[0]);
+			 item.Charge(inventory[0]);
 			 
 			 if(!(item.currentCharge>item.maxStorage-item.rechargeRatePerTick))
 			 {
@@ -330,26 +389,26 @@ public class TileEntityMysticEnergy extends TileEntity{
 	 
 	 public void dischargeItem()
 	 {
-		 /*if(furnaceItemStacks[0].getItem() instanceof ItemBlock)
+		 /*if(inventory[0].getItem() instanceof ItemBlock)
 		 {
 			 
 		 }*/
-		 if(furnaceItemStacks[1]!=null&&furnaceItemStacks[1].getItem() instanceof IItemMysticRechargeable&&energyLevel<maxEnergyLevel)
+		 if(inventory[1]!=null&&inventory[1].getItem() instanceof IItemMysticRechargeable&&energyLevel<maxEnergyLevel)
 		 {
-			 IItemMysticRechargeable item = (IItemMysticRechargeable) furnaceItemStacks[1].getItem();
+			 IItemMysticRechargeable item = (IItemMysticRechargeable) inventory[1].getItem();
 			 
-			 item.disCharge(furnaceItemStacks[1]);
+			 item.disCharge(inventory[1]);
 			 if(!(item.currentCharge<1+item.rechargeRatePerTick))
 			 {
 			 energyLevel+=item.rechargeRatePerTick;
 			 }
 			
 		 }
-		 if(furnaceItemStacks[1]!=null&&furnaceItemStacks[1].getItem() instanceof IItemMysticRechargeableArmor&&energyLevel<maxEnergyLevel)
+		 if(inventory[1]!=null&&inventory[1].getItem() instanceof IItemMysticRechargeableArmor&&energyLevel<maxEnergyLevel)
 		 {
-			 IItemMysticRechargeableArmor item = (IItemMysticRechargeableArmor) furnaceItemStacks[1].getItem();
+			 IItemMysticRechargeableArmor item = (IItemMysticRechargeableArmor) inventory[1].getItem();
 			 
-			 item.disCharge(furnaceItemStacks[1]);
+			 item.disCharge(inventory[1]);
 			 if(!(item.currentCharge<1+item.rechargeRatePerTick))
 			 {
 			 energyLevel+=item.rechargeRatePerTick;
@@ -372,7 +431,7 @@ public class TileEntityMysticEnergy extends TileEntity{
 			 TileEntity tile3 = worldObj.getBlockTileEntity(xCoord, yCoord,zCoord-1);
 			 TileEntity tile4 = worldObj.getBlockTileEntity(xCoord+1, yCoord,zCoord);
 			 TileEntity tile5 = worldObj.getBlockTileEntity(xCoord, yCoord-1,zCoord);
-			 if(furnaceItemStacks[1]==null)
+			 if(inventory[1]==null)
 			 {
 				 if(tile0!=null&&tile0 instanceof TileEntityChest)
 				 {
@@ -466,7 +525,7 @@ public class TileEntityMysticEnergy extends TileEntity{
 	  * @param stack itemstack to check for space in
 	  * @return arraylist of either empty spaces or spaces that can take the given stack
 	  */
-	 public List<Integer> checkSpace(int x, int y, int z, ItemStack stack)
+	 public List<Integer> getAllSpaces(int x, int y, int z, ItemStack stack)
 	 {
 		 List<Integer> freeSpaces = new ArrayList();
 		 
@@ -476,24 +535,9 @@ public class TileEntityMysticEnergy extends TileEntity{
 		 
 		 if(tempTile!=null&&tempTile instanceof IInventory)
 		 {
-			 int i =0;
+			 	int i =0;
 				int num = 0;
-				boolean didFail = false;
-				while(!didFail)
-				{
-					try
-					{
-						((IInventory) tempTile).getStackInSlot(i);
-						i++;
-						num++;
-						
-					}
-					catch(Exception e)
-					{
-						didFail = true;
-					}
-				}
-				for(int ix = 0; ix<num; ix++)
+				for(int ix = 0; ix<((IInventory)tempTile).getSizeInventory(); ix++)
 				{
 					if(((IInventory) tempTile).getStackInSlot(ix)==null)
 					{
@@ -502,7 +546,7 @@ public class TileEntityMysticEnergy extends TileEntity{
 					
 					else if (((IInventory) tempTile).getStackInSlot(ix).itemID == stack.itemID)
 					{
-						if(stack.stackSize+((IInventory) tempTile).getStackInSlot(ix).stackSize<stack.getItem().getItemStackLimit())
+						if(stack.stackSize+((IInventory) tempTile).getStackInSlot(ix).stackSize<stack.getItem().getItemStackLimit(stack))
 						{
 							freeSpaces.add(ix);
 						}
@@ -521,6 +565,50 @@ public class TileEntityMysticEnergy extends TileEntity{
 		 return freeSpaces;
 	 }
 	 
+	 /**
+	  * 
+	  * @param x of block
+	  * @param y of block
+	  * @param z of block
+	  * @param stack itemstack to check for space in
+	  * @return int address of the first space available in the inventory
+	  */
+	 public int getFirstSpace(int x, int y, int z, ItemStack stack)
+	 {
+		 try
+		 {
+		 TileEntity tempTile = worldObj.getBlockTileEntity(x, y, z);
+		 
+		 if(tempTile!=null&&tempTile instanceof IInventory)
+		 {
+			 	int i =0;
+				int num = 0;
+				for(int ix = 0; ix<((IInventory)tempTile).getSizeInventory(); ix++)
+				{
+					if(((IInventory) tempTile).getStackInSlot(ix)==null)
+					{
+						return ix;
+					}
+					
+					else if (((IInventory) tempTile).getStackInSlot(ix).itemID == stack.itemID)
+					{
+						if(stack.stackSize+((IInventory) tempTile).getStackInSlot(ix).stackSize<stack.getItem().getItemStackLimit(stack))
+						{
+							return ix;
+						}
+					}
+				}
+				return -1;
+		 }
+		 
+		 
+		 }
+		 catch(Exception e)
+		 {
+			 e.printStackTrace();
+		 }
+		 return -1;
+	 }
 	 
 	 
 	 public void disConnect()

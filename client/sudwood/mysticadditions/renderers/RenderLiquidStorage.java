@@ -20,7 +20,7 @@ public class RenderLiquidStorage extends TileEntitySpecialRenderer {
 		  GL11.glTranslatef((float)d0 + 0.5F, (float)d1 - 0.5F, (float)d2 + 0.5F);
 		  GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
 		  GL11.glTranslatef(0.0F, -2.0F, 0.0F);        
-		  func_110628_a(new ResourceLocation("mysticadditions","/textures/blockMysticCapacitor.png"));   
+		  bindTexture(new ResourceLocation("mysticadditions","textures/liquidrift.png"));   
 		  TileEntityLiquidStorage tile = (TileEntityLiquidStorage) tile1;
 		  model.spinCenter(tile.spinAngleX, tile.spinAngleY, tile.spinAngleZ);
 		  model.render(0.0625F);  

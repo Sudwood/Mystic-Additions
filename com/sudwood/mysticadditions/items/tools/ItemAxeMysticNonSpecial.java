@@ -9,16 +9,17 @@ import com.sudwood.mysticadditions.MysticCommonProxy;
 
 public class ItemAxeMysticNonSpecial extends ItemAxe 
 {
-        
-    public ItemAxeMysticNonSpecial(int i, EnumToolMaterial enumtoolmaterial)
+        String icon;
+    public ItemAxeMysticNonSpecial(int i, EnumToolMaterial enumtoolmaterial, String icon)
     {
         super(i, enumtoolmaterial);
+        this.icon = icon;
     }
     
     @Override
    	public void registerIcons(IconRegister iconRegister)
    	{
-   		this.itemIcon = iconRegister.registerIcon("MysticAdditions:CSteel Axe");
+   		this.itemIcon = iconRegister.registerIcon(icon);
    	}
 
 }

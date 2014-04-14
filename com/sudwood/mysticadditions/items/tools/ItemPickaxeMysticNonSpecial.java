@@ -9,16 +9,17 @@ import com.sudwood.mysticadditions.MysticCommonProxy;
 
 public class ItemPickaxeMysticNonSpecial extends ItemPickaxe 
 {
-        
-    public ItemPickaxeMysticNonSpecial(int i, EnumToolMaterial enumtoolmaterial)
+        String icon;
+    public ItemPickaxeMysticNonSpecial(int i, EnumToolMaterial enumtoolmaterial, String icon)
     {
         super(i, enumtoolmaterial);
+        this.icon = icon;
     }
    
     @Override
    	public void registerIcons(IconRegister iconRegister)
    	{
-   		this.itemIcon = iconRegister.registerIcon("MysticAdditions:CSteel Pick");
+   		this.itemIcon = iconRegister.registerIcon(icon);
    	}
 
 }

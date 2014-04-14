@@ -95,7 +95,7 @@ public class GuiMysticEnergyConfiguration extends GuiScreen
     	        outputStream.writeInt(this.furnaceInventory.xCoord);
     	        outputStream.writeInt(this.furnaceInventory.yCoord);
     	        outputStream.writeInt(this.furnaceInventory.zCoord);
-    	        outputStream.writeInt(0);
+    	        outputStream.writeInt(1);
     	} catch (Exception ex) {
     	        ex.printStackTrace();
     	}
@@ -116,7 +116,7 @@ public class GuiMysticEnergyConfiguration extends GuiScreen
     	        outputStream.writeInt(this.furnaceInventory.xCoord);
     	        outputStream.writeInt(this.furnaceInventory.yCoord);
     	        outputStream.writeInt(this.furnaceInventory.zCoord);
-    	        outputStream.writeInt(0);
+    	        outputStream.writeInt(2);
     	} catch (Exception ex) {
     	        ex.printStackTrace();
     	}
@@ -137,7 +137,7 @@ public class GuiMysticEnergyConfiguration extends GuiScreen
     	        outputStream.writeInt(this.furnaceInventory.xCoord);
     	        outputStream.writeInt(this.furnaceInventory.yCoord);
     	        outputStream.writeInt(this.furnaceInventory.zCoord);
-    	        outputStream.writeInt(0);
+    	        outputStream.writeInt(3);
     	} catch (Exception ex) {
     	        ex.printStackTrace();
     	}
@@ -158,7 +158,7 @@ public class GuiMysticEnergyConfiguration extends GuiScreen
     	        outputStream.writeInt(this.furnaceInventory.xCoord);
     	        outputStream.writeInt(this.furnaceInventory.yCoord);
     	        outputStream.writeInt(this.furnaceInventory.zCoord);
-    	        outputStream.writeInt(0);
+    	        outputStream.writeInt(4);
     	} catch (Exception ex) {
     	        ex.printStackTrace();
     	}
@@ -215,9 +215,9 @@ public class GuiMysticEnergyConfiguration extends GuiScreen
     {
     drawDefaultBackground();
     
-    ResourceLocation var4 = new ResourceLocation("mysticadditions","/textures/mysticenergygui.png");
+    ResourceLocation var4 = new ResourceLocation("mysticadditions","textures/mysticenergygui.png");
     GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-    this.mc.func_110434_K().func_110577_a(var4);
+    this.mc.getTextureManager().bindTexture(var4);
 
     int posX = (this.width - 256) / 2;
     int posY = (this.height - 180) / 2;

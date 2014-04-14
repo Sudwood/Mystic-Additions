@@ -20,7 +20,7 @@ public class RenderMysticGenerator extends TileEntitySpecialRenderer
 		  GL11.glTranslatef((float)var2 + 0.5F, (float)var4 - 0.5F, (float)var6 + 0.5F);
 		  GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
 		  GL11.glTranslatef(0.0F, -2.0F, 0.0F);        
-		  tileEntityRenderer.renderEngine.func_110577_a(new ResourceLocation("mysticadditions","/textures/blockMysticCapacitor.png"));   
+		  tileEntityRenderer.renderEngine.bindTexture(new ResourceLocation("mysticadditions","textures/mysticgenerator.png"));   
 		  
 		  TileEntityMysticRedGenerator tile = (TileEntityMysticRedGenerator)var1;
 		float upDownLocation = tile.upDownLocation;
